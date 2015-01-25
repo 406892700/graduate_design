@@ -1,0 +1,10 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+var User = new Schema({
+    id:String,
+    username:String,
+    password:String
+});
+var User = mongoose.model('User',User);
+module.exports = User;
