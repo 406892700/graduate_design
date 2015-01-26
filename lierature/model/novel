@@ -1,0 +1,10 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+var Novel = new Schema({
+    id:String,
+    novel_name:String,
+    novel_author:String
+});
+var Novel = mongoose.model('Novel',Novel);
+module.exports = Novel;
