@@ -1,6 +1,7 @@
 var mongoose = require("../db_connection/db_con");
 var Schema = mongoose.Schema;
 
+//普通用户
 var User = new Schema({
     id:String,
     username:String,

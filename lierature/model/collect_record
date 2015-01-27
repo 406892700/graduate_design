@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//收藏记录
+var Collect_record = new Schema({
+    id:String,
+    Collect_record_name:String,
+    Collect_record_author:String
+});
+var Collect_record = mongoose.model('Collect_record',Collect_record);
+module.exports = Collect_record;

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= name %></title>
+    <script src="javascript/jquery-2.0.3.js"></script>
+    <script>
+        $(function(){
+            $("#username").bind("focus",function(){
+                $(".user_info").text("");
+            });
+            $("#username").bind('blur',function(){
+                var $info = $(".user_info");
+                var that = $(this);
+                $.ajax({
+                    url:'/check_exist',
+                    data:{'username':that.val()},
+                    success:function(data){
+                        //alert(data.code);
+                        if(data.code == 1){
+                            $info.text('该用户名已经存在');
+                        }else{
+                            $info.text('该用户名可以使用');
+                        }
+                    },
+                    error:function(xhr){
+                        alert('网络错误！'+xhr.readyState);
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<form action = "/regnow" method="post">
+    username <input type="text" name="username" id="username"> <span class="user_info"></span><br>
+    password <input type="password" name="password"><br>
+    repeat password <input type="password"><br>
+    <input type="submit" value="register">
+</form>
+</body>
+</html>

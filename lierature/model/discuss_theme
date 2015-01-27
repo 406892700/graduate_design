@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//讨论主题
+var Discuss_theme = new Schema({
+    id:String,
+    Discuss_theme_name:String,
+    Discuss_theme_author:String
+});
+var Discuss_theme = mongoose.model('Discuss_theme',Discuss_theme);
+module.exports = Discuss_theme;

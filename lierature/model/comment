@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//评论
+var Comment = new Schema({
+    id:String,
+    Comment_name:String,
+    Comment_author:String
+});
+var Comment = mongoose.model('Comment',Comment);
+module.exports = Comment;

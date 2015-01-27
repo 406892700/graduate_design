@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//阅读记录
+var Read_record = new Schema({
+    id:String,
+    Read_record_name:String,
+    Read_record_author:String
+});
+var Read_record = mongoose.model('Read_record',Read_record);
+module.exports = Read_record;

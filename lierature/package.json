@@ -12,6 +12,5 @@
     "mongoose":"*",
     "connect-mongo":"*",
     "connect-flash":"*"
-
   }
 }

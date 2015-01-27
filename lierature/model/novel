@@ -1,6 +1,7 @@
 var mongoose = require("../db_connection/db_con");
 var Schema = mongoose.Schema;
 
+//小说
 var Novel = new Schema({
     id:String,
     novel_name:String,

@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//站内消息
+var Site_msg = new Schema({
+    id:String,
+    Site_msg_name:String,
+    Site_msg_author:String
+});
+var Site_msg = mongoose.model('Site_msg',Site_msg);
+module.exports = Site_msg;

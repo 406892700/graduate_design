@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//作者申请记录--------------------------------------------
+var Apply_record = new Schema({
+    id:String,
+    Apply_record_name:String,
+    Apply_record_author:String
+});
+var Apply_record = mongoose.model('Apply_record',Apply_record);
+module.exports = Apply_record;

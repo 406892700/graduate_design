@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//站内公告
+var Notice = new Schema({
+    id:String,
+    Notice_name:String,
+    Notice_author:String
+});
+var Notice = mongoose.model('Notice',Notice);
+module.exports = Notice;

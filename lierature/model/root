@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//首页的一些信息-------------------------------
+
+var Root = new Schema({
+    id:String,
+    Root_list:[]
+});
+var Root = mongoose.model('Root',Root);
+module.exports = Root;

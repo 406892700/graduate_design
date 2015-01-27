@@ -1,0 +1,12 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//章节
+
+var Chapter = new Schema({
+    id:String,
+    Chapter_name:String,
+    Chapter_author:String
+});
+var Chapter = mongoose.model('Chapter',Chapter);
+module.exports = Chapter;

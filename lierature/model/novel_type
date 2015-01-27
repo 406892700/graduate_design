@@ -1,0 +1,11 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//小说大类
+var Novel_type = new Schema({
+    id:String,
+    Novel_type_name:String,
+    Novel_type_author:String
+});
+var Novel_type = mongoose.model('Novel_type',Novel_type);
+module.exports = Novel_type;

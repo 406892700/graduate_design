@@ -1,0 +1,12 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//首页的一些信息-------------------------------
+
+var Ad = new Schema({
+    id:String,
+    Ad_name:String,
+    Ad_author:String
+});
+var Ad = mongoose.model('Ad',Ad);
+module.exports = Ad;

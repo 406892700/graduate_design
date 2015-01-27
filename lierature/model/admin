@@ -1,0 +1,12 @@
+var mongoose = require("../db_connection/db_con");
+var Schema = mongoose.Schema;
+
+//管理员-------------------------------
+var Admin = new Schema({
+    id:String,
+    username:String,
+    password:String,
+    root:1 /*1: primary 2:junior 3:senior*/
+});
+var Admin = mongoose.model('Admin',Admin);
+module.exports = Admin;

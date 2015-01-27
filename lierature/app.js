@@ -4,7 +4,10 @@
  */
 
 var express = require('express');
-var routes = require('./routes');
+var routes = require('./routes');//index.js主要用于控制页面之间的跳转
+var validate = require('./routes/validate');//用于各种验证
+var log_reg = require('./routes/log_reg');//登录注册
+var novel= require("./routes/novel")
 var http = require('http');
 var path = require('path');
 ejs = require('ejs');
@@ -36,10 +39,13 @@ if ('development' == app.get('env')) {
 //app.get('/', routes.index);
 //app.get('/users', user.list);
 
-//引用index.js中的路由规则
+//引用路由规则
 routes(app);
+validate(app);
+log_reg(app);
+novel(app);
 
 http.createServer(app).listen(app.get('port'), function(){
-  console.log('监听了locahost: ' + app.get('port')+
+  console.log('监听了localhost: ' + app.get('port')+
  "\n-------------------------------------------------------------------------------------------");
 });
