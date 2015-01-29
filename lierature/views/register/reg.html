@@ -31,11 +31,52 @@
     </script>
 </head>
 <body>
-<form action = "/regnow" method="post">
-    username <input type="text" name="username" id="username"> <span class="user_info"></span><br>
-    password <input type="password" name="password"><br>
-    repeat password <input type="password"><br>
-    <input type="submit" value="register">
+<form action = "/regnow" method="post" class="reg_form">
+    <!--username <input type="text" name="username" id="username"> <span class="user_info"></span><br>-->
+    <!--password <input type="password" name="password"><br>-->
+    <!--repeat password <input type="password"><br>-->
+    <!--<input type="submit" value="register">-->
+    <label>邮箱地址</label><input type="text" name="username" class="email" data-valid-type="email">
+    <a href="javascript:void(0)" class="get_valide_code">点击获取验证码</a>
+    <label>验证码</label><input type="text" name="validate_code" clas="vd_code" data-valid-type="code">
+    <label>密码</label><input type="password" name="password" class="psw"  data-valid-type="password">
+    <label>确认密码</label><input type="passowrd" data-valid-type="password">
+    <input type="submit" value="下一步">
 </form>
+<script>
+    ;(function(){
+        $.fn.formvalid = function(){
+            var form = $(this);//全局表单对象
+            var form_item= form.children('input');//表单字段列表
+
+            var valid_rule = {//字段的验证规则正则表达式
+              email:/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/,
+              validate_code:/^\w{6}$/,
+              password:/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/
+            };
+
+            var valid_fn = {//验证函数
+              v_email : function(val){
+                  return valid_rule.email.test(val);
+            },
+              v_password:function(val){
+                  return valid_rule.password.test(val);
+            },
+              v_code:function(val){
+                  return valid_rule.validate_code.test(val);
+             },
+              v_psw_same:function(val1,val2){
+                  return val1 == val2;
+              }
+            };
+            var temp = {};
+            form_item.each(function(){
+                var v_type = $(this).data('validType');
+                eval("v"+v_type);
+            });
+
+        }
+    })();
+</script>
 </body>
 </html>
