@@ -6,11 +6,12 @@
     "start": "node app.js"
   },
   "dependencies": {
-    "express": "3.4.4",
+    "connect-flash": "*",
+    "connect-mongo": "*",
     "ejs": "*",
-    "mongodb":"*",
-    "mongoose":"*",
-    "connect-mongo":"*",
-    "connect-flash":"*"
+    "express": "3.4.4",
+    "mongodb": "*",
+    "mongoose": "*",
+    "nodemailer": "^1.3.0"
   }
 }

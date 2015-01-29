@@ -14,11 +14,18 @@ userDao.prototype.save  = function(obj,callback){//save方法
 };
 
 userDao.prototype.ifExist = function(obj,callback){
-    var user = new User(obj);
+   // var user = new User(obj);
     User.find(obj,function(err,docs){
            //console.log(docs);
         callback(err,docs);
-    })
+    });
+};
+
+userDao.prototype.login = function(obj,callback){
+    //var user = new User(obj);
+    User.find(obj,function(err,docs){
+        callback(err,docs);
+    });
 }
 
 module.exports = new userDao();
