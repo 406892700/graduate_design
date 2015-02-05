@@ -40,7 +40,7 @@
     <a href="javascript:void(0)" class="get_valide_code">点击获取验证码</a>
     <label>验证码</label><input type="text" name="validate_code" clas="vd_code" data-valid-type="code">
     <label>密码</label><input type="password" name="password" class="psw"  data-valid-type="password">
-    <label>确认密码</label><input type="passowrd" data-valid-type="password">
+    <label>确认密码</label><input type="passowrd" data-valid-type="psw_same">
     <input type="submit" value="下一步">
 </form>
 <script>
@@ -69,11 +69,17 @@
                   return val1 == val2;
               }
             };
-            var temp = {};
+           // var temp = {};
+            var v_result = [];
             form_item.each(function(){
                 var v_type = $(this).data('validType');
-                eval("v"+v_type);
+                var v_val  = $(this).val();
+                v_result.push(eval("valid_fn.v_"+v_type+"("+v_val+")"));
             });
+            v_result.each(function(d,index){
+                alert('字段'+d+'有问题'+'顺序为：'+(index+1));
+            });
+
 
         }
     })();
