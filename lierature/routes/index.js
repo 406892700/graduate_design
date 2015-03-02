@@ -22,7 +22,7 @@ module.exports = function(app){
 
     //登陆页
     app.get("/login",function(req,res){
-        res.render('login/login',{'title':"登录"});
+        res.render('login/login1',{'title':"登录"});
     });
 
     //后台错误 500
@@ -35,6 +35,14 @@ module.exports = function(app){
     app.get('/error_404',function(req,res){
         res.render('error/404',{});
     });
+
+
+
+
+//    app.get('*',function(req,res){
+//       console.log(req.status);
+//        res.render('error/404',{})
+//    });
 
 
 

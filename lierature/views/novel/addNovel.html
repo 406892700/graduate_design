@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= name %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<form action = "/addNovel" method="post">
+    作品书名： <input type="text" name="novel_name"><br>
+    作品首字母： <input type="text" name="novel_char"><br>
+    作品标签：<input type="checkbox" name="novel_tags" value=""><input type="checkbox" name="novel_tags"><input type="checkbox" name="novel_tags">
+    作品分类：<select name="novel_type">
+                 <option value="武侠">武侠</option>
+                <option value="玄幻">玄幻</option>
+                <option value="修真">修真</option>
+                <option value="都市">都市</option>
+                <option value="科幻">科幻</option>
+                <option value="呵呵">呵呵</option>
+                <option value="顶顶顶">顶顶顶</option>
+                <option value="同人">同人</option>
+                <option value="不知道">不知道</option>
+              </select>
+
+    作品简介：<textarea name="novel_description"></textarea>
+    <!--作品封面：<input type="file" name="pic">-->
+
+    <input type="hidden" value="徐怀远" name="novel_author">
+    <input type="hidden" value="/pic/novel_pic/dp.jpg" name="novel_pic">
+    <!--<input type="hidden" value="徐怀远" name="novel_author">-->
+    <!--<input type="hidden" value="徐怀远" name="novel_author">-->
+    <!--<input type="hidden" value="徐怀远" name="novel_author">-->
+    <!--<input type="hidden" value="徐怀远" name="novel_author">-->
+    <input type="submit" value="提交作品">
+</form>
+</body>
+</html>

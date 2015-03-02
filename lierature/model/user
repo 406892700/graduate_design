@@ -5,7 +5,11 @@ var Schema = mongoose.Schema;
 var User = new Schema({
     id:String,
     username:String,
-    password:String
+    password:String,
+    role:String,//角色(注册的时候都是普通读者,读者可以通过申请成为作者)
+    status:String,//用户状态(可能因为发布不健康信息被禁言或者封号)
+    pic:String,//用户头像
+    sign:String//个性签名
 });
 var User = mongoose.model('User',User);
 module.exports = User;

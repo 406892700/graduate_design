@@ -1,4 +1,12 @@
-body{
-    font:normal normal 14px/25px 'Microsoft Yahei';
-    margin:0px;
-}
+/*共同部分css*/
+body{font:normal normal 12px/20px 'Microsoft Yahei';margin:0px;text-align: center;}
+div{margin:0;padding:0;}
+a{text-decoration: none;color:#7a7c80;}
+a:hover{color:#d00000;transition:0.5s;}
+ul{padding:0;margin:0;}
+.c_fix{clear:both;*zoom:1;}/*清除浮动*/
+.f_lt{float:left;}/*左浮动*/
+.f_rt{float:right;}/*右浮动*/
+.icon{display:inline-block;vertical-align: middle;}/*图标公用类*/
+.flex_wrap{width:1190px;}/*可调整容器。到时候可以用这个做响应式*/
+

@@ -1,0 +1,40 @@
+/*共同部分css*/
+body{font:normal normal 12px/20px 'Microsoft Yahei';margin:0px;text-align: center;}
+div{margin:0;padding:0;}
+a{text-decoration: none;color:#7a7c80;}
+a:hover{color:#0078D8;transition:0.5s;}
+ul{padding:0;margin:0;}
+input:focus{outline:none;}
+.c_fix{clear:both;*zoom:1;}/*清除浮动*/
+.f_lt{float:left;}/*左浮动*/
+.f_rt{float:right;}/*右浮动*/
+.icon{display:inline-block;vertical-align: middle;}/*图标公用类*/
+.flex_wrap{width:1190px;margin:0 auto;}/*可调整容器。到时候可以用这个做响应式*/
+
+
+.fixed_top{position: fixed;top:-300px;left:0px;width:100%;background-color: rgba(0,0,0,0.8);padding:5px 0px;box-shadow: 0px 0px 5px #000;transition:all 1s;z-index:99;}
+.show{top:0px;transition:all 1s;}
+.fixed_top  .search_box{margin-top: 0px !important;}
+.fixed_top input[type=text]{border-color:#fff !important;}
+.common_top{border:0px solid #aaa;background-color: #f5f5f5;height:30px;line-height: 30px;box-shadow: 0px -2px 2px #aaa;}
+.top_lt{}
+.top_rt{}
+.top_lt > div{float:left;width:80px;}
+.top_rt > div{float:right;width:80px;}
+
+
+.common_search{height:80px;border:0px solid #aaa;background-color: #fff;}
+.search_box{height:50px;line-height:50px;border:0px solid #aaa;margin-top: 10px;}
+.search_box  input[type='text']{border:2px solid #0078D8;width:600px;height:28px;display: inline-block;margin:0px !important;vertical-align: middle;font:normal normal 16px 'Microsoft Yahei';padding-left: 5px;}
+.search_box  a.search_btn{width:100px;height:30px;background-color: #0078D8;color:#fff;font-size:20px;display:inline-block;line-height: 30px;border:2px solid #0078D8;vertical-align: middle;margin-left:-5px;}
+.hot_word{width:500px;height:30px;border:0px solid #aaa;margin:0 auto;}
+.hot_word > dd{float:left;font-size:15px;margin-left:0px;padding:0px 5px; }
+.hot{color:#0078D8 !important;}
+
+.total_nav{height:35px;background-color: rgb(24,24,24);color:#fff;line-height: 35px;text-align: left;}
+.all_kind{width:190px;background-color:#0078D8;text-align: center;font-size:14px;}
+.icon_kind{width:16px;height:16px;background: url('./images/all_kind.png') no-repeat 0 0;background-size:cover;}
+.nav_tab{color:#fff;padding:0px 10px;font-size:14px;}
+
+
+

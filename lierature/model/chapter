@@ -5,8 +5,13 @@ var Schema = mongoose.Schema;
 
 var Chapter = new Schema({
     id:String,
-    Chapter_name:String,
-    Chapter_author:String
+    chapter_title:String,//章节名称
+    chapter_novel:String,//所属小说
+    update_date:Date,//更新日期
+    chapter_index:Number,//章节序号
+    if_free:String,//是否免费
+    chapter_status:String,//章节状态(是否通过审核)
+    chapter_content:String//章节正文
 });
 var Chapter = mongoose.model('Chapter',Chapter);
 module.exports = Chapter;

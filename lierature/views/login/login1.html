@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+ <head>
+  <title>关于利趣</title>
+  <link href="/login/css/login.css" rel="stylesheet">
+ </head>
+ <body>
+        <% include ../template/header.html %>
+        <div class="flex_wrap" style="padding-top: 60px;">
+	    	<div class="login_panel float_right">
+	   		<div class="login_panel_head">登录</div>
+	   		<!--<div class="status_info">-->
+	   	  		<!--<span class="icon danger float_left"></span>验证码错误，请重新输入!-->
+  		    <!--</div>-->
+  		    <form action = "/loginNow" method="post">
+  		    	<div class="form_control">
+  		    		<input type="text" class="" id="email" name="username">
+  		    	</div>
+  		    	<div class="form_control">
+  		    		<input type="text" class=""  id="psw" name="password">
+  		    	</div>
+  		    	<div class="form_control text_align_left">
+  		    		<input type="text" class="valide_code float_left" id="valide_code">
+  		    		 <img src="" width="60" height="30" class="float_left valide_code_img">
+  		    		 <a class="float_left refresh" href="#"></a>
+  		    	</div>
+  		    	<input type="submit" value="登录" class="login_submit float_left margin_top_10">
+  		    	<div class="forget_register float_left margin_top_10">
+  		    		<a href="#"> 忘记密码?</a>&nbsp;|&nbsp;<a href="#" class="light_blue">免费注册</a>
+  		    	</div>
+  		    	<div style="clear:both;"></div>
+  		    </form>
+  		    <script type="text/javascript">
+			    var placeholder = function(id,str){
+			    	var _element = document.getElementById(id);
+			    	_element.value = str;
+			    	var strShow = str;
+			    	var noop = function(){};
+			    	_element.onfocus = function(){
+			    		(strShow == this.value)?(this.value = ""):(noop());
+			    	}
+			    	_element.onblur = function(){
+			    		(this.value == "")?(this.value = strShow):(noop());
+			    	}
+			    }
+			    placeholder("email","请输入邮箱");
+			    placeholder("psw","密码");
+			    placeholder("valide_code","验证码");
+			 </script>
+  		    <div class="login_ways">
+  		    	其他登录方式:&nbsp;
+  		    	<span class="icon login_ways_platform login_taobao"></span><a href="#" class=""> 淘宝登录</a>
+  		    	<span class="icon login_ways_platform login_qq"></span><a href="#" class=""> QQ登录</a>
+  		    	<span class="icon login_ways_platform login_sina"></span><a href="#" class=""> 微博登录</a>
+  		    </div> 
+	   	</div>
+    </div>
+ </body>
+</html>

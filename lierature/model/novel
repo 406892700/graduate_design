@@ -4,8 +4,20 @@ var Schema = mongoose.Schema;
 //小说
 var Novel = new Schema({
     id:String,
-    novel_name:String,
-    novel_author:String
+    novel_name:String,//小说名
+    novel_author:String,//小说作者
+    novel_start:Date,//开更日期
+    novel_end:Date,//完结日期（未完结则为undefined）
+    novel_zan_num:Number,//被赞数量
+    novel_collection_num:Number,//收藏数量
+    novel_chapter_num:Number,//章节数目
+    novel_comment_num:Number,//评论数目
+    novel_tags:[String],//标签，可以有多个
+    novel_description:String,//小说简单描述
+    novel_type:String,//小说所属类型
+    if_end:String,//是否完结
+    novel_status:String,//小说状态，是否通过审核
+    novel_pic:String//小说封面
 });
 var Novel = mongoose.model('Novel',Novel);
 module.exports = Novel;

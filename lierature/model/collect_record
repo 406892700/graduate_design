@@ -4,8 +4,10 @@ var Schema = mongoose.Schema;
 //收藏记录
 var Collect_record = new Schema({
     id:String,
-    Collect_record_name:String,
-    Collect_record_author:String
+    collect_record_novel:String,//收藏小说名
+    collect_record_user:String,//收藏者
+    collect_record_date:Date,//收藏时间
+    collect_record_status:String//收藏状态(是否删除)
 });
 var Collect_record = mongoose.model('Collect_record',Collect_record);
 module.exports = Collect_record;

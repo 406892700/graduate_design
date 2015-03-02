@@ -1,4 +1,93 @@
+<link href="/template/css/common.css" rel="stylesheet" media="screen">
+<script src="/javascript/jquery-2.0.3.js" type="text/javascript"></script>
+<script>
+    $(function(){
+        $(window).scroll(function(){
+            if($(this).scrollTop() >= 200){
+                $(".fixed_top").addClass('show');
+            }
+            else{
+                $(".fixed_top").removeClass('show');
+            }
+        });
+    });
+</script>
+<div class="fixed_top">
+    <div class="flex_wrap">
+        <div class="search_box">
+            <form action="/search_novel" method="post" id="seach_form">
+                <input type="text" placeholder="在这里搜索书籍" id="search_param" name="novel_name">
+                <a class="search_btn" href="javascript:;">搜索</a>
+            </form>
+        </div>
+        <script>
+            $(function(){
+                $('.search_btn').bind('click',function(){
+                    $('#seach_form').submit();
+
+                })
+            });
+        </script>
+    </div>
+</div><!--fixed_top-->
 
 <header class="common_header">
- <h2>文学网站</h2>
+    <div class="common_top">
+        <div class="flex_wrap">
+            <div class="top_lt f_lt">
+                <div>
+                    欢迎来到xx
+                </div>
+                <div>
+                    <a href="#">请登录</a>
+                </div>
+                <div>
+                    <a href="#">免费注册</a>
+                </div>
+                <div class="c_fix"></div>
+            </div>
+            <div class="top_rt f_rt">
+
+            </div>
+            <div class="c_fix">
+
+            </div>
+        </div>
+    </div><!--common_top-->
+    <div class="common_search">
+        <div class="flex_wrap">
+            <div class="search_box">
+                <form action="/search_novel" method="post" id="seach_form1">
+                    <input type="text" placeholder="在这里搜索书籍" id="search_param1" name="novel_name">
+                    <a class="search_btn" href="javascript:;">搜索</a>
+                </form>
+            </div>
+            <script>
+                $(function(){
+                   $('.search_btn').bind('click',function(){
+                       $('#seach_form1').submit();
+
+                   })
+                });
+            </script>
+            <dl class="hot_word">
+                <dd><a href="#" class="hot">诛仙</a></dd>
+                <dd><a href="#">遮天</a></dd>
+                <dd><a href="#">完美世界</a></dd>
+                <dd><a href="#">长生界</a></dd>
+                <dd><a href="#" class="hot">星辰变</a></dd>
+                <dd><a href="#">昆仑</a></dd>
+            </dl>
+        </div>
+    </div>
+
+    <nav class="total_nav">
+        <div class="flex_wrap">
+            <div class="all_kind f_lt"><span class="icon icon_kind"></span> 全部分类</div>
+            <div class="f_lt nav_tab">读者专区</div>
+            <div class="f_lt nav_tab">热门区</div>
+            <div class="f_lt nav_tab">作者专区</div>
+        </div>
+
+    </nav>
 </header>

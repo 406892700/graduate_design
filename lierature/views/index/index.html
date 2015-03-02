@@ -1,11 +1,84 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <title>主页</title>
+      <link href="/index/css/index.css" rel="stylesheet" media="screen">
   </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %>,<%= user.username %></p>
+  <body style="height:2000px;">
+  <% include ../template/header.html %>
+    <!--<p>Welcome to <%= title %>,<%= user.username %></p>-->
+    <div class="index_banner">
+        <div class="flex_wrap" style="overflow:hidden;">
+            <div class="nav_left">
+                <a href="#" class="current">武侠/仙侠 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+                <a href="#">修真/玄幻 </a>
+            </div>
+            <div class="top_ten">
+                <div class="ttl">
+                    <span class="icon icon_top"></span> Top 10
+                </div>
+                <div class="body">
+                    <a class="no1" href="#">
+                        <img src="/index/images/banner_bg.jpg" width="50" height="60">
+                        <div class="top_index">1</div>
+                        <div class="top_info">
+                            <div class="top_ttl">斗破苍穹</div>
+                            <div class="top_author">天蚕土豆</div>
+                            <div class="top_zan"><span class="icon icon_star"></span> 1190</div>
+                        </div>
+                    </a>
+                    <a href="#"><span>2</span> 遮天 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>3</span> 完美世界 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>4</span> 灵飞经 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>5</span> 沧海 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>6</span> 昆仑 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>7</span> 盗墓笔记 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>8</span> 鬼吹灯 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>9</span> 遮天 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                    <a href="#"><span>10</span> 遮天 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
+                </div>
+            </div>
+            <div class="banner_img">
+                <img alt="" src="/index/images/banner_bg.jpg" width="100%" height="100%">
+            </div>
+        </div>
+    </div>
+
+    <div class="recommend_wrap">
+        <div class="flex_wrap" style="border:1px solid #aaa;">
+            <div class="recommend_ttl">推荐</div>
+            <div>
+                <div class="recommend_novel_idt">
+                    <img alt="" src="/pic/novel_pic/dp.jpg">
+                </div>
+
+                <div class="recommend_novel_idt">
+                    <img alt="" src="/pic/novel_pic/dp.jpg">
+                </div>
+
+                <div class="recommend_novel_idt">
+                    <img alt="" src="/pic/novel_pic/dp.jpg">
+                </div>
+
+                <div class="recommend_novel_idt">
+                    <img alt="" src="/pic/novel_pic/dp.jpg">
+                </div>
+
+                <div class="recommend_novel_idt">
+                    <img alt="" src="/pic/novel_pic/dp.jpg">
+                </div>
+            </div>
+        </div>
+    </div>
+  <% include ../template/footer.html %>
   </body>
 </html>

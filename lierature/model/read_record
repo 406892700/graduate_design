@@ -4,8 +4,11 @@ var Schema = mongoose.Schema;
 //阅读记录
 var Read_record = new Schema({
     id:String,
-    Read_record_name:String,
-    Read_record_author:String
+    read_record_novel:String,//记录所属小说
+    read_record_novel_index:Number,//记录所属小说的章节
+    read_record_from:String,//记录所属用户
+    read_date:Date,//阅读时间
+    read_record_status:String//记录状态(是否被用户删除)
 });
 var Read_record = mongoose.model('Read_record',Read_record);
 module.exports = Read_record;

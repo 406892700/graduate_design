@@ -4,8 +4,12 @@ var Schema = mongoose.Schema;
 //站内公告
 var Notice = new Schema({
     id:String,
-    Notice_name:String,
-    Notice_author:String
+    notice_title:String,//通知标题
+    notice_content:String,//通知内容
+    notice_date:Date,//通知时间
+    notice_from:Object,//发通知的人
+    notice_to:Object,//接收通知的人
+    notice_deg:String//通知等级(普通，紧急)
 });
 var Notice = mongoose.model('Notice',Notice);
 module.exports = Notice;

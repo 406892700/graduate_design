@@ -36,7 +36,7 @@ module.exports = function(app){
     app.post("/regnow",function(req,res){
         var username = req.body.username;
         var password;
-        var md5 = crypto.createHash('md5');
+        var md5 = crypto.createHash('md5');//md5加密
         password = md5.update(req.body.password).digest('hex');
         var obj = {'username':username,'password':password};
         userDao.save(obj,function(err){

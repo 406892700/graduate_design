@@ -1,0 +1,195 @@
+﻿<!doctype html>
+<html>
+<head>
+	<title>小说信息</title>
+</head>
+<link rel="stylesheet" type="text/css" href="/novel/chapter_detail/css/chapter.css">
+<style type="text/css">
+ #facebox{
+ 	background-color: #fff;
+ 	padding:5px;
+ 	border:1px solid #0078D8;
+ }
+</style>
+<script type="text/javascript" src="/javascript/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/javascript/jquery.qqFace.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('.emotion').qqFace({
+		id : 'facebox', 
+		assign:'comment', 
+		path:'arclist/'	//表情存放的路径
+	});
+	$(".sub_btn").click(function(){
+		var str = $("#comment").val();
+		$("#show").html(replace_em(str));
+	});
+});
+//查看结果
+function replace_em(str){
+	str = str.replace(/\</g,'&lt;');
+	str = str.replace(/\>/g,'&gt;');
+	str = str.replace(/\n/g,'<br/>');
+	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="arclist/$1.gif" border="0" />');
+	return str;
+}
+</script>
+
+<script type="text/javascript">
+	$(function(){
+		var $tips = $('.show_tip');
+		$('.look_author_icon').hover(function(){
+			//alert('ddd');
+			$tips.animate({'width':'170px'});
+		},function(){
+			$tips.animate({'width':'0px'});
+		});
+        //获取章节
+        $.ajax({
+            url:'/get_chapters'+window.location.search+"&rd="+Math.random(),
+            success:function(data){
+                var str = "";
+                for(var i=0;i< data.length;i++){
+                    str +="<a href='/go_to_read?indexx="+data[i].chapter_index+"&novel="+data[i].chapter_novel+"' class='chapter'><span>第"+data[i].chapter_index+"章</span>"+data[i].chapter_title+"</a>"
+                }
+
+                $(str).insertAfter($('.chapter_ttl'));
+            },
+            error:function(error){
+
+            },
+            method:'get'
+        });
+
+        $.ajax({
+            url:'/get_comments'+window.location.search+"&rd="+Math.random(),
+            success:function(data){
+                var str = "";
+                for(var i=0;i<data.length;i++){
+                    str += "	<div class=\"comment_idt\">" +
+                            "<div class=\"user_pic\">" +
+                            "<img alt=\"\" src=\"./images/100.jpg\">" +
+                            "</div>" +
+                            "<div class=\"comment_content\">" +
+                            "<div class=\"word\">" +
+                            "<div class=\"user_info\">" +
+                            "<a class=\"username\" href=\"\">"+data[i].comment_author+"</a>"+
+                            "<span class=\"comment_date\">"+data[i].comment_date+"</span>" +
+                            "</div>" +
+                            "<div class=\"arrow_left\"></div>" +
+                            "<p>"+data[i].comment_content+"</p>" +
+                            "</div>" +
+                            "</div>" +
+                            "<div style=\"clear:both;\"></div>" +
+                            "</div>";
+                }
+
+                var page = "<div class='page_ctrl'>"+
+                                "<a href='javascript:;' class='prev_page'> &nbsp;</a>"+
+                                "<a href='javascript:;' class='current_page'>1</a>"+
+                                "<a href='javascript:;'>2</a>"+
+                                "<a href='javascript:;'>3</a>"+
+                                "<a href='javascript:;' class='next_page'> &nbsp;</a>"+
+                            "</div>";
+                $(".comment_wrap").append(str).append(page);
+            },
+            error:function(error){
+
+            },
+            method:'get'
+        })
+	});
+</script>
+<body>
+	<header class="chapter_head">
+		<div class="flex_wrap">
+			<div class="head_left">
+				<div style="position:relative;">
+                    <% if (!res.if_end) { %>
+					    <div class="novel_status ing"></div>
+                    <%} else{%>
+                        <div class="novel_status end"></div>
+                    <%}%>
+					<img alt="pic" src="<%= res.novel_pic %>" width="170" height="240">
+				</div>
+			</div>
+			<div class="head_right">
+				<div class="novel_name"><%= res.novel_name %> <a class="zan_icon" href="#"></a><span> <%= res.novel_zan_num %>次</span> <a class="sc_icon" href="#"></a><span> <%= res.novel_collection_num %>次</span></div>
+				<div class="novel_author"><%= res.novel_author %> <a href="#" class="look_author_icon"></a><span class="show_tip">去作者的空间看看</span></div>
+				<div class="novel_type">分类:<%= res.novel_type %></div>
+				<div class="novel_des">
+                    <%= res.novel_description %>
+				</div>
+				<div class="novel_tags">
+                    <% for(var i = 0;i < res.novel_tags.length;i++){%>
+                        <a class="tag" href="#"><b class="icon icon_tag"></b> <%= res.novel_tags[i] %></a>
+                    <%}%>
+				</div>
+			</div> 
+		</div>
+	</header>
+	<div class="chapter_body">
+		<div class="flex_wrap">
+			<div class="chapter_preview">
+				<div class="ttl"><span class="icon_new"></span> 最新章节阅读<span class="update_date">更新于 2015-12-1 12:23</span></div>
+				<div class="content">
+					“斗之力，三段！”
+					<p>　　望着测验魔石碑上面闪亮得甚至有些刺眼的五个大字，少年面无表情，唇角有着一抹自嘲，紧握的手掌，因为大力，而导致略微尖锐的指甲深深的刺进了掌心之中，带来一阵阵钻心的疼痛…</p>
+					<p>　　“萧炎，斗之力，三段！级别：低级！”测验魔石碑之旁，一位中年男子，看了一眼碑上所显示出来的信息，语气漠然的将之公布了出来…</p>
+					<p>　　中年男子话刚刚脱口，便是不出意外的在人头汹涌的广场上带起了一阵嘲讽的骚动。</p>
+					<p>　　“三段？嘿嘿，果然不出我所料，这个“天才”这一年又是在原地踏步！”</p>
+					<p>　　“哎，这废物真是把家族的脸都给丢光了。”</p>
+					<p>　　“要不是族长是他的父亲，这种废物，早就被驱赶出家族，任其自生自灭了，哪还有机会待在家族中白吃白喝。”</p>
+					<p>　　“唉，昔年那名闻乌坦城的天才少年，如今怎么落魄成这般模样了啊？”</p>
+					<p>　　“谁知道呢，或许做了什么亏心事，惹得神灵降怒了吧…”</p>
+					<p>　　周围传来的不屑嘲笑以及惋惜轻叹，落在那如木桩待在原地的少年耳中，恍如一根根利刺狠狠的扎在心脏一般，让得少年呼吸微微急促。</p>
+					<p>　　少年缓缓抬起头来，露出一张有些清秀的稚嫩脸庞，漆黑的眸子木然的在周围那些嘲讽的同龄人身上扫过，少年嘴角的自嘲，似乎变得更加苦涩了。</p>
+				</div>
+				<a href="#" class="look_detail">查看全文 <span class="icon_arrow_right"></span></a>
+			</div>
+			<div class="chapter_wrap">
+				<div class="chapter_ttl"><div>章节汇总</div></div>
+
+				<!--分页器-->
+				<div class="page_ctrl">
+					<a href="javascript:;" class="prev_page"> &nbsp;</a>
+					<a href="javascript:;" class="current_page">1</a>
+					<a href="javascript:;">2</a>
+					<a href="javascript:;">3</a>
+					<a href="javascript:;" class="next_page"> &nbsp;</a>
+				</div>
+				<!--分页器-->
+			</div>
+		</div>
+	</div><!--chapter_body-->
+	<div class="comment_body">
+		<div class="flex_wrap">
+			<div class="ttl"><span class="icon_comment"></span> 书评</div>
+			<div class="comment_wrap">
+				<!--分页器-->
+
+				<!--分页器-->
+			</div><!--comment_wrap-->
+
+			<div class="comment_form">
+				<div class="tool_bar">
+					<span class="emotion icon_emotion"></span>
+				</div>
+				<div class="form_content">
+					<form action="/add_comment" method="post">
+						<textarea id="comment" name="comment_content"></textarea>
+						<div class="valide_area">
+							<input type="text">	
+							<img src="" alt="" width="80" height="32">
+						</div>
+                        <input type="hidden" name="comment_date" value="2015-1-2 12:23">
+                        <input type="hidden" name="comment_from" value="<%= res._id%>">
+                        <input type="hidden" name="comment_author" value="xhy">
+						<button type="submit">提交评论</button>
+					</form>
+				</div>
+			</div>
+		</div><!--flex_wrap-->
+	</div><!--comment_body-->
+</body>
+</html>

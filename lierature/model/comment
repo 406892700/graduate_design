@@ -4,8 +4,10 @@ var Schema = mongoose.Schema;
 //评论
 var Comment = new Schema({
     id:String,
-    Comment_name:String,
-    Comment_author:String
+    comment_author:String,//评论用户
+    comment_date:Date,//评论时间
+    comment_from:String,//评论所属对象(可能是章节，也可能是小说)
+    comment_content:String//评论内容
 });
 var Comment = mongoose.model('Comment',Comment);
 module.exports = Comment;

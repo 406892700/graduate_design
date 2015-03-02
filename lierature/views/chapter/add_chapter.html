@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="/javascript/jquery-2.0.3.js"></script>
+    <script>
+        $(function(){
+            $.ajax({
+                url:'',
+                success:function(data){
+                    alert(data);
+                },
+                error:function(error){
+
+                },
+                method:'get'
+            })
+        });
+    </script>
+</head>
+<body>
+chapter_title:String,//章节名称
+chapter_novel:Object,//所属小说
+update_date:Date,//更新日期
+chapter_index:Number,//章节序号
+if_free:String,//是否免费
+chapter_status:String//章节状态(是否通过审核)
+    <form action="/add_chapter" method="post">
+        章节名称：<input type="text" name="chapter_title">
+        章节正文：<textarea name="chapter_content"></textarea>
+        <input type="hidden" value="54efdfcc4976b25016085ebb" name="chapter_novel">
+        <input type="hidden" value="free" name="if_free">
+        <button type="submit">更新章节</button>
+    </form>
+</body>
+</html>

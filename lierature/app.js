@@ -4,10 +4,14 @@
  */
 
 var express = require('express');
+
 var routes = require('./routes');//index.js主要用于控制页面之间的跳转
 var validate = require('./routes/validate');//用于各种验证
 var log_reg = require('./routes/log_reg');//登录注册
-var novel= require("./routes/novel")
+var novel= require("./routes/novel");
+var chapter = require("./routes/chapter");
+var comment = require("./routes/comment");
+
 var http = require('http');
 var path = require('path');
 ejs = require('ejs');
@@ -27,8 +31,10 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(express.cookieParser('your secret here'));
 app.use(express.session());
-app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'views')));
+app.use(app.router);
+
 
 
 // development only
@@ -44,6 +50,8 @@ routes(app);
 validate(app);
 log_reg(app);
 novel(app);
+chapter(app);
+comment(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('监听了localhost: ' + app.get('port')+

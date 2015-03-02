@@ -36,14 +36,16 @@
     <!--password <input type="password" name="password"><br>-->
     <!--repeat password <input type="password"><br>-->
     <!--<input type="submit" value="register">-->
-    <label>邮箱地址</label><input type="text" name="username" class="email" data-valid-type="email">
-    <a href="javascript:void(0)" class="get_valide_code">点击获取验证码</a>
-    <label>验证码</label><input type="text" name="validate_code" clas="vd_code" data-valid-type="code">
-    <label>密码</label><input type="password" name="password" class="psw"  data-valid-type="password">
-    <label>确认密码</label><input type="passowrd" data-valid-type="psw_same">
-    <input type="submit" value="下一步">
+    <label>用户名</label><input type="text" name="username" data-valid-type="email" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info"></span>
+    <!--<label>验证码</label><input type="text" name="validate_code" clas="vd_code" data-valid-type="code" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info"></span>-->
+    <label>密码</label><input type="password" name="password" class="psw"  data-valid-type="password" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info"></span>
+    <label>确认密码</label><input type="password" data-valid-type="psw_same" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info" ></span>
+    <button type="button">下一步</button>
 </form>
 <script>
+
+
+    //----------------半成品表单验证，有时间再来完善-------------------------
     ;(function(){
         $.fn.formvalid = function(){
             var form = $(this);//全局表单对象
@@ -65,24 +67,45 @@
               v_code:function(val){
                   return valid_rule.validate_code.test(val);
              },
-              v_psw_same:function(val1,val2){
-                  return val1 == val2;
+              v_psw_same:function(val1){
+                  alert($('.psw').val());
+                  return val1 == $('.psw').val();
               }
             };
            // var temp = {};
-            var v_result = [];
-            form_item.each(function(){
-                var v_type = $(this).data('validType');
-                var v_val  = $(this).val();
-                v_result.push(eval("valid_fn.v_"+v_type+"("+v_val+")"));
-            });
-            v_result.each(function(d,index){
-                alert('字段'+d+'有问题'+'顺序为：'+(index+1));
-            });
+            var v_result = [];//存储验证结果
 
+            $('button[type="button"]',form).bind('click',function(e){
+                form_item.each(function(){//验证函数
+                    var v_type = $(this).data('validType');
+                    var v_val  = $(this).val();
+//                    alert("valid_fn.v_"+v_type+"("+v_val+")");
+                    v_result.push(eval("valid_fn.v_"+v_type+"('"+v_val+"')"));
+                });
+                var flag = true;
+                for(var i = 0;i < v_result.length;i++ ){
+                    var item_obj = form_item.eq(i);
+                    var success_info =  item_obj.data('validSuccess');
+                    var faild_info =  item_obj.data('validFaild');
+                    alert(v_result[i]);
+                    if(v_result[i]){
+                        item_obj.next('span.valid_info').text(success_info).css('color','green');
+                    }else{
+                        item_obj.next('span.valid_info').text(faild_info).css('color','red');
+                        flag = false;
+                    }
+                }
 
+                //flag?form.submit(): e.preventDefault();
+            });
         }
     })();
+
+    $(function(){
+        $('.reg_form').formvalid();
+    });
+
+    //----------------半成品表单验证，有时间再来完善-------------------------
 </script>
 </body>
 </html>
