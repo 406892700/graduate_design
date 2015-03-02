@@ -38,3 +38,16 @@ input:focus{outline:none;}
 
 
 
+.right_toolbar{position:fixed;width:35px;height: 100%;right:0px;top:0px;background-color: #000}
+.right_toolbar > a{display: inline-block;position: relative;}
+.right_toolbar > a > span.explain{padding:0px 10px;height: 30px;line-height: 30px;background-color: #000;position: absolute;top:2px;right:-200px;color:#fff;display:block;width:110px;transition:all 0.5s;}
+.right_toolbar > a:hover span{right:50px;transition:all 0.5s;}
+.right_toolbar > a > span.explain > .right_detla{width:20px;height: 20px;background:url('./images/iconfont-yousanjiaoxing.png') no-repeat 0 0 ;background-size: cover;margin-right:-25px;float:right;margin-top:5px;}
+.right_toolbar > a.icon:hover{background-color: #0078d8;}
+.right_toolbar > a.icon{width:35px;height: 35px;}
+.right_toolbar > a.zan{background: url('./images/zan.png') no-repeat 0 0; margin-top:400px;}
+.right_toolbar > a.shoucang{background: url('./images/shoucang.png') no-repeat 0 0;}
+.right_toolbar > a.record{background: url('./images/record.png') no-repeat 0 0;}
+
+
+

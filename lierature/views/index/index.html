@@ -47,38 +47,160 @@
                     <a href="#"><span>10</span> 遮天 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
                 </div>
             </div>
-            <div class="banner_img">
-                <img alt="" src="/index/images/banner_bg.jpg" width="100%" height="100%">
+            <div class="banner_img" style="overflow:hidden;">
+                <div class="banner_idt">
+                    <img  alt="" src="/index/images/banner_bg.jpg">
+                </div>
+                <div class="banner_idt">
+                    <img  alt="" src="/index/images/banner_bg.jpg">
+                </div>
+                <div class="banner_idt">
+                    <img  alt="" src="/index/images/banner_bg.jpg">
+                </div>
+                <div class="banner_idt">
+                    <img  alt="" src="/index/images/banner_bg.jpg">
+                </div>
+                <div class="banner_idt">
+                    <img  alt="" src="/index/images/banner_bg.jpg">
+                </div>
+                <style type="text/css">
+                    .banner_ctrl{
+                        border:1px solid #aaa;
+                        position: absolute;
+                        bottom:10px;
+                        left:50%;
+                        margin-left: -120px;
+                    }
+
+                    .banner_ctrl > a{
+                        display: inline-block;
+                        background-color: #000;
+                        width:20px;
+                        height: 20px;
+                        border-radius: 20px;
+                        box-shadow: 0px 0px 5px #0078d8;
+                        color:#fff;
+                    }
+
+                    .banner_ctrl > a.current{
+                        background-color: #0078d8;
+                    }
+                </style>
+                <div class="banner_ctrl">
+                    <a href= "javascript:;">1</a>
+                    <a href= "javascript:;">2</a>
+                    <a href= "javascript:;" class="current">3</a>
+                    <a href= "javascript:;">4</a>
+                    <a href= "javascript:;">5</a>
+                </div>
             </div>
+
+            <script type="text/javascript">
+                ;(function(global,$){
+                    $.fn.banner_toggle = function(config){
+                        var that = this;//全局插件指向的对象
+                        var default_config = {'freq':'5s','scale_rate':'1.05'};//默认配置参数
+                        var config = $.extend({},default_config,config);//合并配置参数
+
+                        var scale_init = function(obj){//初始化形变函数
+                            obj.bind('mouseover',function(e){
+                                $('img',obj).css({'transform':'scale('+config.scale_rate+')','transition':'transform '+config.freq+' linear'})
+                            });
+                            obj.trigger('mouseover');
+                        };
+
+
+
+
+                    }
+                })(window,$);
+            </script>
         </div>
     </div>
 
     <div class="recommend_wrap">
-        <div class="flex_wrap" style="border:1px solid #aaa;">
+        <div class="flex_wrap">
             <div class="recommend_ttl">推荐</div>
             <div>
                 <div class="recommend_novel_idt">
                     <img alt="" src="/pic/novel_pic/dp.jpg">
+                    <div class="novel_info">
+                        <div class="novel_name">斗破苍穹</div>
+                        <div class="novel_author">天蚕土豆 <span class="icon icon_star"></span> 1000</div>
+                    </div>
                 </div>
 
                 <div class="recommend_novel_idt">
                     <img alt="" src="/pic/novel_pic/dp.jpg">
+                     <div class="novel_info">
+                        <div class="novel_name">斗破苍穹</div>
+                        <div class="novel_author">天蚕土豆 <span class="icon icon_star"></span> 1000</div>
+                    </div>
                 </div>
 
                 <div class="recommend_novel_idt">
                     <img alt="" src="/pic/novel_pic/dp.jpg">
+                     <div class="novel_info">
+                        <div class="novel_name">斗破苍穹</div>
+                        <div class="novel_author">天蚕土豆 <span class="icon icon_star"></span> 1000</div>
+                    </div>
                 </div>
 
                 <div class="recommend_novel_idt">
                     <img alt="" src="/pic/novel_pic/dp.jpg">
+                     <div class="novel_info">
+                        <div class="novel_name">斗破苍穹</div>
+                        <div class="novel_author">天蚕土豆 <span class="icon icon_star"></span> 1000</div>
+                    </div>
                 </div>
 
                 <div class="recommend_novel_idt">
                     <img alt="" src="/pic/novel_pic/dp.jpg">
+                     <div class="novel_info">
+                        <div class="novel_name">斗破苍穹</div>
+                        <div class="novel_author">天蚕土豆 <span class="icon icon_star"></span> 1000</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="c_fix page_2">
+                <a href="#" class="current"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+            </div>
+        </div><!--flex_wrap-->
+    </div><!--recommend_wrap-->
+
+    <div class="type_wrap">
+        <div class="flex_wrap">
+            <div class="type_idt">
+                <div class="left_part" style="border:1px solid #aaa;">
+                    <div class="type_logo">
+                    武侠/仙侠
+                    </div>
+                    <div class="type_description">
+                        呵呵呵呵呵呵呵呵呵呵呵呵
+                    </div>
+                </div>
+                <div class="right_part" style="border:1px solid #aaa;">
+                    <div class="novel_idt"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                    <div class="novel_idt"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                    <div class="novel_idt"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                    <div class="novel_idt"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                    <div class="novel_idt idt_bottom"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                    <div class="novel_idt idt_bottom"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                    <div class="novel_idt idt_bottom"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                    <div class="novel_idt idt_bottom"><img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%"></div>
+                </div>
+
+                <div class="center_part" style="border:1px solid #aaa;">
+                    <img alt="" src="/index/images/wmsj.jpg" width="100%" height="100%">
+                    <div class="novel_description">
+                        和你一脸
+                    </div>
+                </div>
+            </div><!--type_idt-->
+        </div><!--flex_wrap-->
+    </div><!--type_wrap-->
   <% include ../template/footer.html %>
   </body>
 </html>

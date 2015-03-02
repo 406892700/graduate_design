@@ -139,6 +139,7 @@
 .index_banner .banner_img{
     margin:0px 200px 0px 190px;
     height: 400px;
+    position: relative;
 }
 
 .banner_img > img{
@@ -150,10 +151,19 @@
 .recommend_wrap{
     border:1px solid #aaa;
     background-color: #f5f5f5;
+    padding-top: 15px;
 }
 
 .recommend_wrap > .flex_wrap{
     overflow:hidden;
+}
+
+.recommend_wrap .recommend_ttl{
+    color:#7a7c80;
+    text-align: left;
+    font-size:30px;
+    height: 40px;
+    line-height: 40px;
 }
 
 .recommend_wrap  .recommend_novel_idt{
@@ -166,8 +176,120 @@
     box-shadow: 0px 0px 3px #aaa;
 }
 
+.recommend_novel_idt:hover{
+    /*outline: 1px solid #0078d8;*/
+    box-shadow: 0px 0px 5px #000;
+    transition:all 0.5s;
+}
+
 .recommend_novel_idt > img{
     display: block;
     width:216px;
     height:220px;
+}
+
+.recommend_novel_idt > .novel_info{
+}
+
+.novel_info > div{
+    margin:0px 10px;
+    text-align: left;
+}
+
+.novel_info > div.novel_name{
+    color:#666;
+    font-size: 16px;
+    padding:5px 0px;
+}
+
+.novel_info > div.novel_author{
+
+}
+
+
+.page_2{
+}
+
+.page_2 > a{
+    display: inline-block;
+    width: 20px;
+    height: 15px;
+    background-color: #fff;
+    box-shadow: 0px 0px 2px #aaa;
+}
+
+.page_2 > a.current{
+    background-color: #0078d8;
+}
+
+
+
+
+/*---------------分类开始--------------------*/
+.type_wrap{
+
+}
+
+.type_wrap .type_idt{
+    border:1px solid #aaa;
+    overflow: hidden;
+}
+
+.type_idt img{
+    display: block;
+}
+
+.type_idt > .left_part{
+    float:left;
+    width:150px;
+}
+
+.type_idt > .right_part{
+    float:right;
+    width:740px;
+}
+
+.type_idt > .center_part{
+    margin:0px 741px 0px 151px;
+}
+
+
+.left_part > .type_logo{
+    background-color: #0078d8;
+    height: 80px;
+    font-size: 25px;
+    color:#fff;
+    line-height:80px;
+}
+
+.center_part{
+    position: relative;
+}
+
+.center_part > .novel_description{
+    position: absolute;
+    width:220px;
+    height: 80px;
+    background-color: rgba(255,255,255,0.8);
+    top:250px;
+    left:50%;
+    margin-left: -110px;
+}
+
+
+.right_part > .novel_idt{
+    /*border:1px solid #aaa;*/
+    float:left;
+    width:25%;
+    background-color: #e8e8e8;
+    height: 220px;
+    outline: 2px solid #fff;
+}
+
+.right_part > .novel_idt > img{
+
+}
+
+.idt_bottom {
+    height: 150px !important;
 }
