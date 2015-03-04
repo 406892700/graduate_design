@@ -1,0 +1,85 @@
+[33mcommit c9ffbd4ca7c8ddf6d494322f770f6d993c27d8a8[m
+Author: 406892700 <406892700@qq.com>
+Date:   Wed Mar 4 09:38:00 2015 +0800
+
+    ddddd
+
+[33mcommit 1fa4eec0ab120eb1cf7639d55e2b514cd305a0a8[m
+Author: 406892700 <406892700@qq.com>
+Date:   Mon Mar 2 18:17:08 2015 +0800
+
+    做了主页
+
+[33mcommit 6536a84837ec6284fa2ec30565dc13b472218375[m
+Author: 406892700 <406892700@qq.com>
+Date:   Mon Mar 2 11:57:09 2015 +0800
+
+    好久没改了
+
+[33mcommit d34d36c31d340ad0fe3e67d422559177026f73b1[m
+Merge: ed6aafe 90557ac
+Author: 406892700 <406892700@qq.com>
+Date:   Thu Feb 5 20:14:17 2015 +0800
+
+    ddd
+
+[33mcommit ed6aafe4ade1f78fbde737d7a5eb64d6d35b8ab5[m
+Author: 406892700 <406892700@qq.com>
+Date:   Thu Feb 5 20:06:14 2015 +0800
+
+    hehe
+
+[33mcommit 90557ac80a684412d97723f5e72cec031b47842e[m
+Merge: 4fa772f 60b1a9b
+Author: 406892700 <406892700@qq.com>
+Date:   Thu Jan 29 21:16:42 2015 +0800
+
+    处理冲突
+
+[33mcommit 4fa772f20737bfbfbb5e4821f1ed598ebed7f691[m
+Author: 406892700 <406892700@qq.com>
+Date:   Thu Jan 29 21:13:07 2015 +0800
+
+    123
+
+[33mcommit 60b1a9b10b8de6361564b3adea806875b2b42de1[m
+Author: 406892700 <406892700@qq.com>
+Date:   Thu Jan 29 18:01:26 2015 +0800
+
+    今天就加了一些辅助性的功能
+
+[33mcommit 5fc5a765f818ecde79a1c0a9ee39da7cac8b1072[m
+Author: 406892700 <406892700@qq.com>
+Date:   Wed Jan 28 19:29:54 2015 +0800
+
+    今天没做什么东西，就加了一点session
+
+[33mcommit 07225aac49b063182ffdcfee3321647d112611f7[m
+Author: 406892700 <406892700@qq.com>
+Date:   Tue Jan 27 18:35:55 2015 +0800
+
+    加入了登录和注册，还有注册的唯一性验证
+
+[33mcommit b1fb8d864500c8453fefaaaeebc448a86977972c[m
+Author: 406892700 <406892700@qq.com>
+Date:   Mon Jan 26 18:04:59 2015 +0800
+
+    2015-1-16 改了一点点
+
+[33mcommit 24defafb678d8809ab307c3aaab3e76c07299ed0[m
+Author: 406892700 <406892700@qq.com>
+Date:   Sun Jan 25 21:49:30 2015 +0800
+
+    工程加进来了
+
+[33mcommit 6bb800065a6c5f5b3059e77b91dd3804f439113b[m
+Author: 406892700 <406892700@qq.com>
+Date:   Sun Jan 25 21:43:51 2015 +0800
+
+    把项目先加进来
+
+[33mcommit 8387693442e4d92e70c42d8c6eebf2397c4bf75d[m
+Author: 406892700 <406892700@qq.com>
+Date:   Sun Jan 25 20:40:34 2015 +0800
+
+    :neckbeard: Added .gitattributes
