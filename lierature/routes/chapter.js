@@ -40,4 +40,5 @@ module.exports = function(app){
             res.render("chapter/read_chapter/page",{'res':docs[0]});
         });
     });
+
 }

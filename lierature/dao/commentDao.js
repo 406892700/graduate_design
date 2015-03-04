@@ -21,3 +21,5 @@ commentDao.prototype.findByNovel  = function(_id,callback){//save方法
 
 
 module.exports = new commentDao();
+
+

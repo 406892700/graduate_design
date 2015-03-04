@@ -1,9 +1,14 @@
 ;$(function(){
-      var get_new_page = function(config){
+      var get_new_page = function(url){
         $('.mask').show();//遮罩层，用于显示滚动条
+        if(!url){
+          alert('ddd');
+          return;
+        }
 
           $.ajax({        //ajax请求一个新章节
-          url:'/chapter/read_chapter/new_page.html',
+          // url:'/chapter/read_chapter/new_page.html',
+          url:url,
           success:function(data){
             $('.mask').hide();
             $('.read_area').append(data).fadeIn('slow');
@@ -15,8 +20,12 @@
         });
         
       }
-      $.fn.page = function(config){
+
+      $.fn.page = function(url){
         var evt_obj = $(this);//获取全局文章对象
+        var url_arg = window.location.search;//获取url参数
+        var chapter_index = url_arg.split("&")[0].split('=')[1];//获取当前index值
+        alert(chapter_index);
         evt_obj.fadeIn('0.5s');//fadeIn效果
          $(document).on('contextmenu',function(evt){
           return false;
