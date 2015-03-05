@@ -10,8 +10,10 @@ module.exports = function(app){
         var user = req.body;
         var md5 = crypto.createHash('md5');
         var password = md5.update(user.password).digest('hex');
+        user.password = password;
+        //console.log(req.body.username);
         userDao.login(user,function(err,docs){
-            console.log(docs.length);
+            //console.log(docs.length);
             if(err)
                 res.redirect('/error_500');
             else if(docs.length == 0){
@@ -40,7 +42,13 @@ module.exports = function(app){
         password = md5.update(req.body.password).digest('hex');
         var obj = {'username':username,'password':password};
         userDao.save(obj,function(err){
-            err?res.json('info','register faild!'):res.json({'info':'register success!'});
+            //err?res.json('info','register faild!'):res.json({'info':'register success!'});
+            if(err){
+                res.json('info','register faild!');
+            }else{
+                req.session.user = req.body;//写入session
+                res.redirect('/');
+            }
         });
     });
 

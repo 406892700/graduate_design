@@ -12,17 +12,30 @@ var userDao = require('../dao/userDao');
 module.exports = function(app){
     //首页
     app.get("/",function(req,res){
-        console.log(req.session.user.username);
-        res.render("index/index",{'title':'1234s','user':req.session.user});
+        //console.log(req.session.user.username);
+        // if(req.session.user){
+        //     res.render("index/index",{'title':'1234s','user':req.session.user});
+        // }else{
+        //     res.render('index/index',{'title':'1234s','user':''});
+        // }
+        res.render("index/index",
+            {'title':'1234s',
+            'user':req.session.user});
+        
     });
     //注册页
     app.get("/reg",function(req,res){
-        res.render('register/reg',{'name':'欢迎注册本站'});
+        res.render('register/reg',{'name':'欢迎注册本站','user':req.session.user});
     });
 
     //登陆页
     app.get("/login",function(req,res){
-        res.render('login/login1',{'title':"登录"});
+        res.render('login/login1',{'title':"登录",'user':req.session.user});
+    });
+
+    //作者专区
+    app.get('/author',function(req,res){
+        res.render('author/author',{'title':'作者专区','user':req.session.user})
     });
 
     //后台错误 500

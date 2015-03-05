@@ -23,6 +23,7 @@ userDao.prototype.ifExist = function(obj,callback){
 
 userDao.prototype.login = function(obj,callback){
     //var user = new User(obj);
+    console.log("密码"+obj.password);
     User.find(obj,function(err,docs){
         callback(err,docs);
     });

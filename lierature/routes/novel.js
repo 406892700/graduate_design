@@ -21,7 +21,7 @@ module.exports = function(app){
         var param =  req.body.novel_name;
         console.log('novel name is '+param);
         novelDao.findByName(param,function(err,docs){
-            res.render('search_result/result',{'res':docs});//把数据库获取的数据直接返回给前台
+            res.render('search_result/result',{'res':docs,'user':req.session.user});//把数据库获取的数据直接返回给前台
         });
     });
 
@@ -29,7 +29,7 @@ module.exports = function(app){
         var id = req.query._id;
         console.log(id);
         novelDao.findById(id,function(err,docs){
-            res.render('novel/chapter_detail/chapter',{'res':docs[0]});//肯定只有一个
+            res.render('novel/chapter_detail/chapter',{'res':docs[0],'user':req.session.user});//肯定只有一个
         });
 
     });

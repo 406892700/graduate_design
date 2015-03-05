@@ -1,0 +1,96 @@
+body{
+	margin:0px;
+/*	background-color: #0078d8;*/
+	text-align: center;
+}
+.mainContent{
+}
+
+.reg_panel{
+	width:400px;
+/*	height: 450px;*/
+	background-color: #fff;
+/*	box-shadow: 0px 0px 10px #fff;*/
+	margin:200px auto;
+/*	border-radius:30px;*/
+	border:2px solid #0078d8;
+	padding:0px 0px 30px 0px;
+}
+
+.reg_panel > .reg_ttl{
+	font-size: 25px;
+	padding:15px 0px;
+	color:#7a7c80;
+}
+
+.form_contrl{
+	margin:10px 0px;
+}
+
+.form_contrl > .form_label{
+	width:100px;
+	float:left;
+	text-align: right;
+	height: 30px;
+	line-height: 30px;
+}
+
+.form_contrl > .form_label > label{
+	font-size:14px;
+	color:#7a7c80;
+}
+
+.form_contrl > .form_cpt{
+	margin-left: 120px;
+	text-align: left;
+	position: relative;
+}
+
+.form_contrl > .form_cpt > input[type='text'],
+.form_contrl > .form_cpt > input[type='password']{
+	border:none;
+	border:1px solid #e8e8e8; 
+	height:30px;
+	width:190px;
+	font-size:14px;
+	padding:0px 5px;
+}
+
+.reg_submit{
+	width:180px;
+	height: 30px;
+	line-height: 30px;
+	border:none;
+	background-color: #0078d8;
+	color:#fff;
+	font-size:16px;
+	font-family:'Microsoft Yahei';
+	margin-top:10px;
+}
+
+.form_contrl > .form_cpt > .valid_info{
+	display: inline-block;
+	position: absolute;
+	left:230px;
+	/*background-color: #0078d8;*/
+	color:#fff;
+	font-size: 12px;
+	padding:5px 10px;
+	background-color: #0078d8;
+	min-width: 200px;
+	display: none;
+}
+
+.form_contrl > .form_cpt > .valid_info > .v_arrow_left{
+	width:20px;
+	height: 20px;
+	background: url('./images/iconfont-zuoshixinjiantou.png') no-repeat 0 0;
+	background-size: cover;
+	margin-left: -24px;
+	display: inline-block;
+	float:left;	
+}
+
+.success_bg{
+	background: url('./images/iconfont-dui1icon.png') no-repeat 95% 8px;
+}

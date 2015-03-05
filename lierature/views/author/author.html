@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>主页</title>
+      <link href="/author/css/author.css" rel="stylesheet" media="screen">
+  </head>
+  <body>
+  <% include ../template/header.html %>
+    <div class="mainContent">
+        <div class="flex_wrap">
+            <div class="left_bar">
+                <div class="ttl">作者排行</div>
+                <div class="top_ten">
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+
+
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+
+                    <div class="top_item">
+                        <img alt="" src="/author/images/100.jpg">
+                        <div class="star">15111</div>
+                        <div class="name">辰东</div>
+                    </div><!--top_item-->
+                </div>
+            </div><!--left_bar-->
+            <div class="main_board">
+                <div class="main_info">
+                    <div class="main_info_ttl">您还是不是作者，是否申请成为作者</div>
+                    <div class="toggle_panel">
+                        <a href="javascript:;" class="form_toggle">立刻申请</a>
+                    </div>
+                    <script type="text/javascript">
+                        $(function(){
+                            $('.form_toggle').bind('click',function(){
+                                $('.main_info_body').toggle('0.5s');
+                            });
+                        });
+                    </script>
+                    <div  class="main_info_body" style="display:none;">
+                        <div class="notice_info">
+                            申请成为作者之前，你需要完善自己的个人信息，并提交超过5000字的作品章节！
+                        </div>
+                        <form action="/" class="main_form">
+                            <div class="form_item">
+                                <div class="form_label"><label>作品名称</label></div>
+                                <div class="form_cpt"><input type="text"></div>
+                                <div class="c_fix"></div>
+                            </div>
+
+                            <div class="form_item">
+                                <div class="form_label"><label>作品类别</label></div>
+                                <div class="form_cpt">
+                                    <select>
+                                        <option value="武侠">武侠</option>
+                                        <option value="仙侠">仙侠</option>
+                                        <option value="武侠">武侠</option>
+                                        <option value="武侠">武侠</option>
+                                        <option value="武侠">武侠</option>
+                                    </select>
+                                </div>
+                                <div class="c_fix"></div>
+                            </div>
+
+                            <div class="form_item">
+                                <div class="form_label"><label>作品章节(选段)</label></div>
+                                <div class="form_cpt">
+                                    <textarea class="form_article"></textarea><br>
+                                    <label class="count_words"><span class="word_num">533</span>个字</label>
+                                </div>
+                                <div class="c_fix"></div>
+                            </div>
+
+                            <div class="form_item">
+                                <div class="form_label"><label>作者协议</label></div>
+                                <div class="form_cpt"><input type="radio" value="同意" name="hehe"> 同意 <input type="radio" value="不同意" name="hehe"> 不同意 
+                                    &nbsp;&nbsp;&nbsp;<a href="#" >作者协议</a>
+                                </div>
+                                <div class="c_fix"></div>
+                            </div>
+
+                            <div class="form_item" style="border:none;">
+                                <div class="form_label"></div>
+                                <div class="form_cpt"><button type="submit" class="form_submit">确认申请</button></div>
+                                <div class="c_fix"></div>
+                            </div>
+
+                            <script type="text/javascript">
+                                $.fn.count_word = function(){
+                                    var that = this;
+                                    var init = function(){
+                                        that.bind('keyup',function(e){
+                                            var $word_num = $('.word_num');
+                                            $word_num.text($(this).val().length);
+                                        });
+                                    }
+
+                                    return this.each(function(){
+                                        init();
+                                    });
+                                }
+
+                                $(function(){
+                                    $('.form_article').count_word();
+                                });
+                            </script>
+
+                            <!-- <div class="form_item">
+                                <textarea></textarea>
+                            </div> -->
+                        </form>
+                    </div><!--main_info_body-->
+
+                </div><!--main_info-->
+            </div><!--main_board-->
+            <div class="c_fix"></div>
+        </div><!--flex_wrap-->
+    </div>
+  <% include ../template/footer.html %>
+  </body>
+</html>

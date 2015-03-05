@@ -25,6 +25,7 @@
         var evt_obj = $(this);//获取全局文章对象
         var url_arg = window.location.search;//获取url参数
         var chapter_index = url_arg.split("&")[0].split('=')[1];//获取当前index值
+        var chapter_id = url_arg.split('&')[1].split('=')[1];//获取当前小说id
         alert(chapter_index);
         evt_obj.fadeIn('0.5s');//fadeIn效果
          $(document).on('contextmenu',function(evt){
@@ -45,12 +46,12 @@
               if(parseInt(evt_obj.css('left')) > screen_width*0.9){
                      evt_obj.animate({left:screen_width+'px'},'5s','linear',function(){
                     $(this).remove();
-                    get_new_page();
+                    get_new_page('/go_to_read?indexx='+(chapter_index++)+'&novel='+chapter_id);
                   });
               }else if(parseInt(evt_obj.css('left')) < screen_width*0.1){
                 evt_obj.animate({left:-evt_obj.width()+'px'},'5s','linear',function(){
                     $(this).remove();
-                    get_new_page();
+                    get_new_page('/go_to_read?indexx='+(chapter_index++)+'&novel='+chapter_id);
                   });
               }
 

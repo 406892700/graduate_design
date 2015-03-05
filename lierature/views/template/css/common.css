@@ -11,6 +11,8 @@ input:focus{outline:none;}
 .icon{display:inline-block;vertical-align: middle;}/*图标公用类*/
 .flex_wrap{width:1190px;margin:0 auto;}/*可调整容器。到时候可以用这个做响应式*/
 
+input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft Yahei';}
+
 
 .fixed_top{position: fixed;top:-300px;left:0px;width:100%;background-color: rgba(0,0,0,0.8);padding:5px 0px;box-shadow: 0px 0px 5px #000;transition:all 1s;z-index:99;}
 .show{top:0px;transition:all 1s;}
@@ -24,9 +26,10 @@ input:focus{outline:none;}
 
 
 .common_search{height:80px;border:0px solid #aaa;background-color: #fff;}
-.search_box{height:50px;line-height:50px;border:0px solid #aaa;margin-top: 10px;}
+.search_box{height:50px;line-height:50px;border:0px solid #aaa;/*padding-top: 10px;*/}
 .search_box  input[type='text']{border:2px solid #0078D8;width:600px;height:28px;display: inline-block;margin:0px !important;vertical-align: middle;font:normal normal 16px 'Microsoft Yahei';padding-left: 5px;}
-.search_box  a.search_btn{width:100px;height:30px;background-color: #0078D8;color:#fff;font-size:20px;display:inline-block;line-height: 30px;border:2px solid #0078D8;vertical-align: middle;margin-left:-5px;}
+.search_box  a.search_btn{width:100px;height:32px;background-color: #0078D8;color:#fff;font-size:20px;display:inline-block;line-height: 32px;vertical-align: middle;margin-left:-5px;}
+.search_box  a.search_btn:hover{background-color: #0099FF;transition:all 1s;}
 .hot_word{width:500px;height:30px;border:0px solid #aaa;margin:0 auto;}
 .hot_word > dd{float:left;font-size:15px;margin-left:0px;padding:0px 5px; }
 .hot{color:#0078D8 !important;}
@@ -35,6 +38,7 @@ input:focus{outline:none;}
 .all_kind{width:190px;background-color:#0078D8;text-align: center;font-size:14px;}
 .icon_kind{width:16px;height:16px;background: url('./images/all_kind.png') no-repeat 0 0;background-size:cover;}
 .nav_tab{color:#fff;padding:0px 10px;font-size:14px;}
+.nav_tab a{color:#fff;}
 
 
 

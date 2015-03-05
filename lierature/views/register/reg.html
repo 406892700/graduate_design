@@ -2,46 +2,65 @@
 <html>
 <head>
     <title><%= name %></title>
+    <link rel="stylesheet" type="text/css" href="/register/css/register.css">
     <script src="javascript/jquery-2.0.3.js"></script>
-    <script>
-        $(function(){
-            $("#username").bind("focus",function(){
-                $(".user_info").text("");
-            });
-            $("#username").bind('blur',function(){
-                var $info = $(".user_info");
-                var that = $(this);
-                $.ajax({
-                    url:'/check_exist',
-                    data:{'username':that.val()},
-                    success:function(data){
-                        //alert(data.code);
-                        if(data.code == 1){
-                            $info.text('该用户名已经存在');
-                        }else{
-                            $info.text('该用户名可以使用');
-                        }
-                    },
-                    error:function(xhr){
-                        alert('网络错误！'+xhr.readyState);
-                    }
-                });
-            });
-        });
-    </script>
+
 </head>
 <body>
-<form action = "/regnow" method="post" class="reg_form">
-    <!--username <input type="text" name="username" id="username"> <span class="user_info"></span><br>-->
-    <!--password <input type="password" name="password"><br>-->
-    <!--repeat password <input type="password"><br>-->
-    <!--<input type="submit" value="register">-->
-    <label>用户名</label><input type="text" name="username" data-valid-type="email" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info"></span>
-    <!--<label>验证码</label><input type="text" name="validate_code" clas="vd_code" data-valid-type="code" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info"></span>-->
-    <label>密码</label><input type="password" name="password" class="psw"  data-valid-type="password" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info"></span>
-    <label>确认密码</label><input type="password" data-valid-type="psw_same" data-valid-success="输入正确" data-valid-faild="输入错误"><span class="valid_info" ></span>
-    <button type="button">下一步</button>
-</form>
+    <% include ../template/header.html %>
+    <div class="mainContent">
+        <div class="reg_panel">
+            <div class="reg_ttl">用户注册</div>
+            <form action = "/regnow" method="post" class="reg_form">
+                <!--username <input type="text" name="username" id="username"> <span class="user_info"></span><br>-->
+                <!--password <input type="password" name="password"><br>-->
+                <!--repeat password <input type="password"><br>-->
+                <!--<input type="submit" value="register">-->
+                <div class="form_contrl">
+                    <div class="form_label"><label>用户名</label></div>
+                    <div class="form_cpt">
+                        <input type="text" name="username" id="username" data-valid-type="email" data-valid-success="输入正确" data-valid-faild="邮箱格式错误" placeholder="输入有效邮箱地址">
+                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                    </div>
+                    <div class="c_fix"></div>
+                </div>
+
+                <div class="form_contrl">
+                    <div class="form_label"><label>密码</label></div>
+                    <div class="form_cpt">
+                        <input type="password" name="password" class="psw"  data-valid-type="password" data-valid-success="输入正确" data-valid-faild="密码格式错误" placeholder="输入密码">
+                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                    </div>
+                    <div class="c_fix"></div>
+                </div>
+
+                <div class="form_contrl">
+                    <div class="form_label"><label>确认密码</label></div>
+                    <div class="form_cpt">
+                        <input type="password" data-valid-type="psw_same" data-valid-success="输入正确" data-valid-faild="两次密码不一致" placeholder="再次输入密码">
+                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                    </div>
+                    <div class="c_fix"></div>
+                </div>
+
+                 <div class="form_contrl">
+                    <div class="form_label"><label>验证码</label></div>
+                    <div class="form_cpt">
+                        <input type="text" data-valid-type="vd_code" data-valid-success="输入正确" data-valid-faild="验证码输入错误" placeholder="输入验证码">
+                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                    </div>
+                    <div class="c_fix"></div>
+                </div>
+                <button type="button" class="reg_submit">确认注册</button>
+
+                <div class="reg_other">
+                    <a href="/login">已有账号,立即登录</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    <% include ../template/footer.html %>
+
 <script>
 
 
@@ -49,7 +68,7 @@
     ;(function(){
         $.fn.formvalid = function(){
             var form = $(this);//全局表单对象
-            var form_item= form.children('input');//表单字段列表
+            var form_item= form.find('input');//表单字段列表
 
             var valid_rule = {//字段的验证规则正则表达式
               email:/^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/,
@@ -64,22 +83,21 @@
               v_password:function(val){
                   return valid_rule.password.test(val);
             },
-              v_code:function(val){
+              v_vd_code:function(val){
                   return valid_rule.validate_code.test(val);
              },
               v_psw_same:function(val1){
-                  alert($('.psw').val());
                   return val1 == $('.psw').val();
               }
             };
-           // var temp = {};
             var v_result = [];//存储验证结果
 
+
             $('button[type="button"]',form).bind('click',function(e){
+                v_result.length = 0;//清空验证结果数组
                 form_item.each(function(){//验证函数
                     var v_type = $(this).data('validType');
                     var v_val  = $(this).val();
-//                    alert("valid_fn.v_"+v_type+"("+v_val+")");
                     v_result.push(eval("valid_fn.v_"+v_type+"('"+v_val+"')"));
                 });
                 var flag = true;
@@ -87,21 +105,49 @@
                     var item_obj = form_item.eq(i);
                     var success_info =  item_obj.data('validSuccess');
                     var faild_info =  item_obj.data('validFaild');
-                    alert(v_result[i]);
                     if(v_result[i]){
-                        item_obj.next('span.valid_info').text(success_info).css('color','green');
+                        // item_obj.next('span.valid_info').find('label').text(success_info);
+                        item_obj.addClass('success_bg');
+                        item_obj.next('span.valid_info').fadeOut('0.5s')
                     }else{
-                        item_obj.next('span.valid_info').text(faild_info).css('color','red');
+
+                        item_obj.removeClass('success_bg').next('span.valid_info').fadeIn('0.5s').find('label').text(faild_info);
                         flag = false;
                     }
                 }
 
-                //flag?form.submit(): e.preventDefault();
+                flag?form.submit(): e.preventDefault();
             });
         }
     })();
 
     $(function(){
+         $(function(){
+            // $("#username").bind("focus",function(){
+            //     $(".user_info").text("");
+            // });
+            $("#username").bind('blur',function(){
+                //var $info = $(".user_info");
+                var that = $(this);
+                $.ajax({
+                    url:'/check_exist',
+                    data:{'username':that.val()},
+                    success:function(data){
+                        //alert(data.code);
+                        if(data.code == 1){
+                            that.removeClass('success_bg').next('span.valid_info').fadeIn('0.5s').find('label').text('该用户名已经存在');
+                        }else{
+                            that.addClass('success_bg');
+                        that.next('span.valid_info').fadeOut('0.5s')
+                        }
+                    },
+                    error:function(xhr){
+                        alert('网络错误！'+xhr.readyState);
+                    }
+                });
+            });
+        });
+
         $('.reg_form').formvalid();
     });
 

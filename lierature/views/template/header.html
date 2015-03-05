@@ -35,15 +35,18 @@
     <div class="common_top">
         <div class="flex_wrap">
             <div class="top_lt f_lt">
+                <% if(user){ %> 
+                <div style="width:200px;overflow:hidden;text-overflow:ellipsis;height:100%;">
+                    <%= user.username%>,欢迎来到
+                </div>
+                <%}else {%>
                 <div>
-                    欢迎来到xx
+                    <a href="login">请登录</a>
                 </div>
                 <div>
-                    <a href="#">请登录</a>
+                    <a href="/reg">免费注册</a>
                 </div>
-                <div>
-                    <a href="#">免费注册</a>
-                </div>
+                <%}%>
                 <div class="c_fix"></div>
             </div>
             <div class="top_rt f_rt">
@@ -84,9 +87,9 @@
     <nav class="total_nav">
         <div class="flex_wrap">
             <div class="all_kind f_lt"><span class="icon icon_kind"></span> 全部分类</div>
-            <div class="f_lt nav_tab">读者专区</div>
-            <div class="f_lt nav_tab">热门区</div>
-            <div class="f_lt nav_tab">作者专区</div>
+            <div class="f_lt nav_tab"><a href="/">读者专区</a></div>
+            <div class="f_lt nav_tab"><a href="/">热门区</a></div>
+            <div class="f_lt nav_tab"><a href="/author">作者专区</a></div>
         </div>
     </nav>
 
