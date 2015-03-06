@@ -54,4 +54,16 @@ input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft
 .right_toolbar > a.record{background: url('./images/record.png') no-repeat 0 0;}
 
 
+.form_contrl{padding:10px 0px;}
+.form_contrl > .form_label{width:100px;float:left;text-align: right;height: 30px;line-height: 30px;}
+
+.form_contrl > .form_label > label{font-size:14px;color:#7a7c80;}
+
+.form_contrl > .form_cpt{margin-left: 120px;text-align: left;position: relative;}
+
+.form_contrl > .form_cpt > input[type='text'],
+.form_contrl > .form_cpt > input[type='password']{border:none;border:1px solid #e8e8e8; height:30px;width:190px;font-size:14px;padding:0px 5px;}
+
+
+
 

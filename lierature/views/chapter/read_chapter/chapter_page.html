@@ -1,0 +1,60 @@
+﻿<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus庐">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>小说阅读</title>
+  <link rel="stylesheet" type="text/css" href="/chapter/read_chapter/css/styles.css">
+ </head>
+ <body>
+<!--   <div class="load"></div> -->
+  <% include ../../template/header.html %>
+  <div class="flex_wrap">
+    <div class="art_header"><h3></h3></div>
+    <div class="art_body">
+    </div>
+    <div class="pageing">
+    </div>
+  </div>
+  <% include ../../template/footer.html %>
+   <script type="text/javascript">
+  ;(function(global,$){
+    $.fn.getData = function(url){
+      var that = this;
+      var init = function(){
+        var chapter_index = url.split("?")[1].split("&")[0].split('=')[1];//获取当前index值
+        var chapter_id = url.split("?")[1].split('&')[1].split('=')[1];//获取当前小说id
+        $.ajax({
+          url:url,
+          success:function(data){
+            $('.art_header > h3').text(data.data.chapter_title);
+            $('.art_body').text(data.data.chapter_content);
+            var next_index = chapter_index*1+1;
+            var pre_index = chapter_index-1;
+            console.log('current='+chapter_index+',next='+next_index+",pre="+pre_index);
+            $('.pageing').html("");
+            data.if_first?(""):$('.pageing').append("<a class='pre_next' href='/read_chapter_page?indexx="+pre_index+"&novel="+chapter_id+"'>上一章</a>");
+            data.if_last?(""):$('.pageing').append("<a class='pre_next' href='/read_chapter_page?indexx="+next_index+"&novel="+chapter_id+"'>下一章</a>");
+            console.log(data.if_first+","+data.if_last);
+          },
+          error:function(error){
+
+          },
+          method:'get'
+        });
+      }
+
+      init();
+      return this;
+    }
+  })(window,$);
+      $(function(){
+        $(window).getData('/go_to_read'+window.location.search);
+      });
+    // });
+  </script>
+ </body>
+</html>

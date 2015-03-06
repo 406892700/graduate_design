@@ -12,16 +12,8 @@ var userDao = require('../dao/userDao');
 module.exports = function(app){
     //首页
     app.get("/",function(req,res){
-        //console.log(req.session.user.username);
-        // if(req.session.user){
-        //     res.render("index/index",{'title':'1234s','user':req.session.user});
-        // }else{
-        //     res.render('index/index',{'title':'1234s','user':''});
-        // }
         res.render("index/index",
-            {'title':'1234s',
-            'user':req.session.user});
-        
+            {'title':'1234s','user':req.session.user});
     });
     //注册页
     app.get("/reg",function(req,res){
@@ -35,7 +27,17 @@ module.exports = function(app){
 
     //作者专区
     app.get('/author',function(req,res){
-        res.render('author/author',{'title':'作者专区','user':req.session.user})
+        res.render('author/author',{'title':'作者专区','user':req.session.user});
+    });
+
+    //读者个人中心
+    app.get('/reader_center',function(req,res){
+        res.render('reader_center/reader_center',{'title':'作者个人中心','user':req.session.user});
+    });
+
+    //作者个人中心
+    app.get('/author_center',function(req,res){
+        res.render('author_center/author_center',{'title':'作者个人中心','user':req.session.user});
     });
 
     //后台错误 500
@@ -48,16 +50,6 @@ module.exports = function(app){
     app.get('/error_404',function(req,res){
         res.render('error/404',{});
     });
-
-
-
-
-//    app.get('*',function(req,res){
-//       console.log(req.status);
-//        res.render('error/404',{})
-//    });
-
-
 
     //test
 

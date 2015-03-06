@@ -30,15 +30,18 @@ module.exports = function(app){
     });
 
     app.get('/read_chapter_page',function(req,res){
-        res.render('chapter/read_chapter/page.html',{});
+        res.render('chapter/read_chapter/chapter_page.html',{'user':req.session.user});
     });
 
     app.get('/go_to_read',function(req,res){
         var obj = req.query;
         chapterDao.findByIndex_novel(obj,function(err,docs){
-            console.log("++++++++++++++++++++++++++"+docs);
-            res.render("chapter/read_chapter/page",{'res':docs[0]});
+            var doc1 = docs;
+            chapterDao.findByNovel(obj.novel,function(err,docs){
+                res.json({'data':doc1[0],'if_first':obj.indexx == 1,'if_last':obj.indexx == docs.length});
+            });
         });
+            
     });
 
 }

@@ -50,7 +50,7 @@ function replace_em(str){
             success:function(data){
                 var str = "";
                 for(var i=0;i< data.length;i++){
-                    str +="<a href='/go_to_read?indexx="+data[i].chapter_index+"&novel="+data[i].chapter_novel+"' class='chapter'><span>第"+data[i].chapter_index+"章</span>"+data[i].chapter_title+"</a>"
+                    str +="<a href='/read_chapter_page?indexx="+data[i].chapter_index+"&novel="+data[i].chapter_novel+"' class='chapter'><span>第"+data[i].chapter_index+"章</span>"+data[i].chapter_title+"</a>"
                 }
 
                 $(str).insertAfter($('.chapter_ttl'));
