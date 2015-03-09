@@ -65,5 +65,87 @@ input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft
 .form_contrl > .form_cpt > input[type='password']{border:none;border:1px solid #e8e8e8; height:30px;width:190px;font-size:14px;padding:0px 5px;}
 
 
+.page_ctrl{height:30px;clear:both;text-align: center;margin-top:40px;}
+
+.page_ctrl > a{display: inline-block;text-decoration: none;color:#7a7c80;width:30px;height: 30px;background-size: cover;line-height: 30px;text-align: center;}
+
+.page_ctrl > a:hover{background-color: #e8e8e8;}
+
+.page_ctrl > a.current_page{background-color: #0078D8;color:#fff;}
+
+.prev_page{background:url('./images/iconfont-qianyiye.png') no-repeat 0 0;background-size: cover;}
+
+.next_page{background:url('./images/iconfont-houyiye.png') no-repeat 0 0;background-size: cover;}
+
+
+
+
+/*表单元素*/
+.main_form{
+    margin-top: 15px;
+}
+
+.form_item{
+    /*border:1px solid #aaa;*/
+    overflow: hidden;
+    padding:10px 0px;
+    border-bottom: 1px dashed #ccc;
+    margin:0px 60px;
+}
+
+.form_item input[type="text"]{
+    border:1px solid #0078d8;
+    width:200px;
+    height: 25px;
+}
+.form_item select{
+    border:1px solid #0078d8;
+    height: 25px;
+    width: 60px;
+
+}
+
+.form_item textarea{
+    border:1px solid #0078d8;
+    padding:5px;
+    font-size:14px;
+    width:600px;
+    height: 400px;
+    font-family: 'Microsoft Yahei';
+}
+
+.form_item .count_words{
+    font-size: 16px;
+    color:#7a7c80;
+}
+
+.form_item > .form_label{
+    float:left;
+    width:80px;
+    text-align: right;
+    font-size:16px;
+    color:#7a7c80;
+}
+
+.form_item > .form_cpt{
+    margin-left: 90px;
+    text-align: left;
+}
+
+.form_item  button[type="submit"]{
+    background-color: #0078d8;
+    color:#fff;
+    display: inline-block;
+    line-height: 30px;
+    font-size:16px;
+    width:100px;
+    height: 30px;
+    border:none;
+    font-family: 'Microsoft yahei';
+    cursor:pointer;
+}
+
+
+
 
 

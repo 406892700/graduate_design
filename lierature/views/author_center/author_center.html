@@ -2,274 +2,7 @@
 <html>
  <head>
   <title>关于利趣</title>
-  <link href="/login/css/login.css" rel="stylesheet">
-  <style type="text/css">
-    .main_content{
-      background-color: #f5f5f5;
-      padding-top: 10px;
-    }
-    .r_ct_ttl{
-      height: 200px;
-      border:1px solid #e8e8e8;
-      background-color: #fff;
-    }
-
-    .r_ct_ttl > .ttl_lft{
-      float:left;
-      width:250px;
-      /*border-right:1px solid #aaa;*/
-      height: 100%;
-      text-align: right;
-    }
-
-    .r_ct_ttl > .ttl_lft > img{
-      display: block;
-      box-shadow: 0px 0px 5px #aaa;
-      padding:5px;
-      background-color: #fff;
-      width:150px;
-      height: 150px;
-      margin:20px auto;
-    }
-
-
-    .r_ct_ttl > .ttl_rgt{
-      margin-left: 250px;
-      height: 100%;
-      margin-right: 50px;
-      position: relative;
-    }
-
-    .ttl_rgt > .rgt_top_pnl{
-      height: 50px;
-      width: 200px;
-      position: absolute;
-      right:0px;
-      top:20px;
-
-    }
-
-    .rgt_top_pnl > a{
-      display: inline-block;
-      width:90px;
-      height: 30px;
-      background-color: #fff;
-      color:#0078d8;
-      font-size:20px;
-      /*border:1px solid #0078d8;*/
-      font-size:16px !important;
-    }
-
-    .rgt_top_pnl > a > span.icon{
-      display: inline-block;
-      width:30px;
-      height: 30px;
-      background-size: cover !important;
-      vertical-align: text-bottom;
-    }
-
-    .rgt_top_pnl > a > span.zan{
-      background: url('/stylesheets/images/iconfont-zan-b.png') no-repeat 0 0;
-    }
-
-    .rgt_top_pnl > a > span.focus{
-      background: url('/stylesheets/images/iconfont-guanzhu.png') no-repeat 0 0;
-    }
-
-    .r_ct_ttl > .ttl_rgt > .ttl_rgt_top{
-      height: 50%;
-      border-bottom: 1px solid #0078d8;
-      /*background-color: #e8e8e8;*/
-    }
-
-
-    .ttl_rgt_top > .host_name{
-      font-size: 50px;
-      color: #0078d8;
-      text-align: left;
-      line-height: 110px;
-      padding-left: 50px;
-    }
-
-    .r_ct_ttl > .ttl_rgt > .ttl_rgt_bottom{
-      height: 50%;
-      /*background-color: #f5f5f5;*/
-    }
-
-    .ttl_rgt_bottom > .host_sign{
-      text-align: left;
-      background-color: #f5f5f5;
-      width: 600px;
-      margin-top: 15px;
-      margin-left: 52px;
-      font-size: 16px;
-      color: #7a7c80;
-      padding:5px 15px;
-      border-left: 2px solid #0078d8;
-      line-height: 30px;
-      height: 60px;
-    }
-
-    
-
-    .r_ct_bd{
-      /*height: 400px;*/
-      /*border:1px solid #e8e8e8;*/
-      margin-top: 10px;
-    }
-
-    .r_ct_bd > .left_pt{
-      float:left;
-      /*border:1px solid #e8e8e8;*/
-      width:900px;
-      height: 100%;
-    }
-
-    .r_ct_bd > .right_pt{
-      margin-left: 910px;
-      height: 100%;
-      /*border:1px solid #e8e8e8;*/
-    }
-
-    .left_operation{
-      border:1px solid #e8e8e8;
-      height: 600px;
-      background-color: #fff;
-    }
-
-    .left_operation > .lft_opt_nav{
-      background-color: #0078d8;
-      overflow: hidden;
-    }
-
-    .left_operation > .lft_opt_nav > a{
-      display: block;
-      float: left;
-      height: 40px;
-      line-height: 40px;
-      padding:0px 30px;
-      color:#fff;
-      font-size:18px;
-      line-height: 40px;
-    }
-
-    .left_operation > .lft_opt_nav > a.current,.left_operation > .lft_opt_nav > a:hover{
-      /*background-color: #336699;*/
-      border-top: 2px solid #0078d8;
-      background-color: #fff;
-      color:#0078d8;
-    }
-
-    .left_operation > .lft_opt_bd{
-      background-color: #e8e8e8;
-      height: 500px;
-      padding-top: 15px;
-    }
-
-    .left_operation > .lft_opt_bd > .lft_opt_bd_pl{
-    }
-
-    .lft_opt_bd > .lft_opt_bd_pl > .novel_idt{
-      /*border:1px solid #aaa;*/
-      background-color: #0078d8;
-      height: 200px;
-      margin:15px 50px;
-      position: relative;
-      box-shadow: 0px 0px 5px #aaa;
-    }
-
-    .novel_idt > .info_pl{
-      height: 100%;
-      position: absolute;
-      width:750px;
-      background-color: #fff;
-      left:0px;
-      top:0px;
-      transition:left 1s;
-      box-shadow: 0px 0px 5px #aaa;
-    }
-
-    .info_pl > .lft_pt{
-      width:180px;
-      height: 100%;
-      float: left;
-    }
-
-    .info_pl > .rgt_pt{
-      margin-left: 200px;
-      color:#7a7c80;
-      font-size:16px;
-      height: 100%;
-    }
-
-    .toggle_slide{
-      left:-150px !important;
-      transition:left 1s;
-    }
-
-
-    .novel_idt > .novel_opt{
-      float:right;
-      height: 100%;
-      overflow:hidden;
-      width:200px;
-    }
-
-    .novel_opt > .lft_pt{
-      width:150px;
-      height: 100%;
-      float:left;
-      /*background-color:red;*/
-      color:#fff;
-    }
-
-    .novel_opt > .lft_pt > a{
-      display: inline-block;
-      width: 120px;
-      height: 30px;
-      background-color: #fff;
-      color:#0078d8;
-      font-size:16px;
-      line-height: 30px;
-      margin: 10px;
-    }
-
-    .novel_opt > .lft_pt > a:hover{
-      background-color: #336599;
-      transition:all 0.5s;
-      color:#fff;
-    }
-
-    .novel_opt > .rgt_pt{
-      width:50px;
-      height: 100%;
-      float: right;
-    }
-
-
-    .novel_opt > .rgt_pt > a{
-      height: 40px;
-      width: 40px;
-      display: inline-block;
-      background: url('/stylesheets/images/iconfont-shezhi.png') no-repeat 0 0;
-      background-size: cover;
-      margin-top: 80px;
-    }
-
-
-    .host_weibo{
-      height: 160px;
-      border:1px solid #e8e8e8;
-      background-color: #fff;
-    }
-
-    .recent_access{
-      height: 400px;
-      border:1px solid #e8e8e8;
-      background-color: #fff;
-      margin-top: 10px;
-    }
-  </style>
+  <link href="/author_center/css/author_center.css" rel="stylesheet">
  </head>
  <body>
     <% include ../template/header.html %>
@@ -299,12 +32,29 @@
       <div class="r_ct_bd">
         <div class="left_pt">
           <div class="left_operation">
-            <header class="lft_opt_nav">
-              <a href="javascript:;" class="current">作品列表</a>
-              <a href="javascript:;">个人资料</a>
+            <header class="lft_opt_nav">  
+              <a href="javascript:;" class="current">作品列表
+                <div class="drop_down">
+                  <span class="icon icon_arrow_down"></span>
+                  <div class="drop_down_list">
+                    <label data-href="/addNovel_page" class="fake_a">新开作品</label>
+                  </div><!--drop_down_list-->
+                </div><!--drop_down-->
+              </a>
+              <a href="javascript:;">个人资料
+                 <div class="drop_down">
+                  <span class="icon icon_arrow_down"></span>
+                  <div class="drop_down_list">
+                    <label href="#">修改资料</label>
+                    <label href="#">密码管理</label>
+                    <!-- <label href="#">修改资料</label> -->
+                  </div><!--drop_down_list-->
+                </div><!--drop_down-->
+              </a>
               <a href="javascript:;">我的微博</a>
               <a href="javascript:;">我的动态</a>
               <a href="javascript:;">账号管理</a>
+              <div class="c_fix"></div>
             </header><!--lft_opt_nav-->
             <div class="lft_opt_bd">
               <div class="lft_opt_bd_pl work_list">
@@ -314,22 +64,27 @@
                     <div class="lft_pt">
                       <img alt="" src="/images/zt.jpg" width="100%" height="100%" style="display:block"> 
                     </div>
-                    <div class="rgt_pt" style="background-color:#aaa;">
-                      <table style="text-align:left;">
-                        <tr>
-                          <td>书名</td><td>遮天</td><td></td><td>作者</td><td>辰东</td>
-                        </tr>
-                        <tr>
-                          <td>开更时间</td><td>2014-5-12</td><td></td><td>完结时间</td><td>2015-1-1</td>
-                        </tr>
-                        <tr>
-                          <td>赞</td><td>1190</td><td></td><td>推荐</td><td>1902</td>
-                        </tr>
-                        <tr>
-                          <td>书名</td><td>遮天</td><td></td><td>作者</td><td>辰东</td>
-                        </tr>
-                      </table>
-                    </div>
+                    <div class="rgt_pt">
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>书名: </label>遮天</div>
+                        <div class="item_item_sub"><label>作者: </label>辰东</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>开更日期: </label>2015-1-15</div>
+                        <div class="item_item_sub"><label>完结日期: </label>2015-12-1</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>分类: </label>武侠仙侠</div>
+                        <div class="item_item_sub"><label>标签: </label>热血 奋斗 励志</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>小说描述: </label></div>
+                        <div class="info_des_pl">回家第三方会计电风扇的方式将快乐男宝宝很疯狂娄底市进口量的方式加快了第三方框架第三方地方上看见了第三款绝地逢生...</div>
+                      </div><!--info_item-->
+                    </div> 
                   </div><!--info_pl-->
                   <div class="novel_opt">
                     <div class="lft_pt">
@@ -342,6 +97,89 @@
                   </div><!--novel_opt-->
                 </div><!--novel_idt-->
 
+                  <div class="novel_idt">
+                  <div class="info_pl">
+                    <div class="lft_pt">
+                      <img alt="" src="/images/zt.jpg" width="100%" height="100%" style="display:block"> 
+                    </div>
+                    <div class="rgt_pt">
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>书名: </label>遮天</div>
+                        <div class="item_item_sub"><label>作者: </label>辰东</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>开更日期: </label>2015-1-15</div>
+                        <div class="item_item_sub"><label>完结日期: </label>2015-12-1</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>分类: </label>武侠仙侠</div>
+                        <div class="item_item_sub"><label>标签: </label>热血 奋斗 励志</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>小说描述: </label></div>
+                        <div class="info_des_pl">回家第三方会计电风扇的方式将快乐男宝宝很疯狂娄底市进口量的方式加快了第三方框架第三方地方上看见了第三款绝地逢生...</div>
+                      </div><!--info_item-->
+                    </div> 
+                  </div><!--info_pl-->
+                  <div class="novel_opt">
+                    <div class="lft_pt">
+                      <a href="/add_chapter_page" style="margin-top:60px;">更新章节</a>
+                      <a href="/novel_detail?_id=54efdfcc4976b25016085ebb">查看小说</a>
+                    </div>
+                    <div class="rgt_pt">
+                      <a href="javascript:;" class="novel_config"></a>
+                    </div>
+                  </div><!--novel_opt-->
+                </div><!--novel_idt-->
+
+                  <div class="novel_idt">
+                  <div class="info_pl">
+                    <div class="lft_pt">
+                      <img alt="" src="/images/zt.jpg" width="100%" height="100%" style="display:block"> 
+                    </div>
+                    <div class="rgt_pt">
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>书名: </label>遮天</div>
+                        <div class="item_item_sub"><label>作者: </label>辰东</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>开更日期: </label>2015-1-15</div>
+                        <div class="item_item_sub"><label>完结日期: </label>2015-12-1</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>分类: </label>武侠仙侠</div>
+                        <div class="item_item_sub"><label>标签: </label>热血 奋斗 励志</div>
+                      </div><!--info_item-->
+
+                      <div class="info_item">
+                        <div class="item_item_sub"><label>小说描述: </label></div>
+                        <div class="info_des_pl">回家第三方会计电风扇的方式将快乐男宝宝很疯狂娄底市进口量的方式加快了第三方框架第三方地方上看见了第三款绝地逢生...</div>
+                      </div><!--info_item-->
+                    </div> 
+                  </div><!--info_pl-->
+                  <div class="novel_opt">
+                    <div class="lft_pt">
+                      <a href="javascript:;" style="margin-top:60px;">更新章节</a>
+                      <a href="javascript:;">查看小说</a>
+                    </div>
+                    <div class="rgt_pt">
+                      <a href="javascript:;" class="novel_config"></a>
+                    </div>
+                  </div><!--novel_opt-->
+                </div><!--novel_idt-->
+
+                <div class="page_ctrl">
+                  <a href="javascript:;" class="prev_page"> &nbsp;</a>
+                  <a href="javascript:;" class="current_page">1</a>
+                  <a href="javascript:;">2</a>
+                  <a href="javascript:;">3</a>
+                  <a href="javascript:;" class="next_page"> &nbsp;</a>
+                </div>
               </div><!--lft_opt_bd_pl-->
               <script type="text/javascript">
                 $(function(){
@@ -368,6 +206,13 @@
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+     $(function(){
+      $('.fake_a').bind('click',function(){
+        window.location = $(this).data('href');
+      });
+     });
+  </script>
     
     <% include ../template/footer.html %>
  </body>

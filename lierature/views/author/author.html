@@ -128,19 +128,19 @@
                             </div>
 
                             <script type="text/javascript">
-                                $.fn.count_word = function(){
-                                    var that = this;
-                                    var init = function(){
-                                        that.bind('keyup',function(e){
-                                            var $word_num = $('.word_num');
-                                            $word_num.text($(this).val().length);
-                                        });
-                                    }
+                                // $.fn.count_word = function(){
+                                //     var that = this;
+                                //     var init = function(){
+                                //         that.bind('keyup',function(e){
+                                //             var $word_num = $('.word_num');
+                                //             $word_num.text($(this).val().length);
+                                //         });
+                                //     }
 
-                                    return this.each(function(){
-                                        init();
-                                    });
-                                }
+                                //     return this.each(function(){
+                                //         init();
+                                //     });
+                                // }
 
                                 $(function(){
                                     $('.form_article').count_word();

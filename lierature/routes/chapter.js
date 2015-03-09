@@ -6,7 +6,7 @@ var chapterDao = require('../dao/chapterDao');
 
 module.exports = function(app){
     app.get('/add_chapter_page',function(req,res){
-        res.render('chapter/add_chapter',{'title':'添加章节'})
+        res.render('chapter/add_chapter',{'title':'添加章节','user':req.session.user})
     });
     app.post('/add_chapter',function(req,res){
         var obj = req.body;

@@ -1,36 +1,113 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
-    <script src="/javascript/jquery-2.0.3.js"></script>
-    <script>
-        $(function(){
-            $.ajax({
-                url:'',
-                success:function(data){
-                    // alert(data);
-                },
-                error:function(error){
+    <title>添加章节</title>
+    <style type="text/css">
+        .add_ttl{
+            color:#fff;
+            background-color: #0078d8;
+            height: 60px;
+            font-size: 26px;
+            margin-top:15px;
+            line-height: 60px;
+            text-align: left;
+            padding-left:40px;
+        }
 
-                },
-                method:'get'
-            })
-        });
-    </script>
+        .main_form{
+            border: 1px solid #e8e8e8;
+            border-top: none;
+            margin-top: 0px !important;
+            padding-top: 25px;
+        }
+
+        .add_novel_icon{
+            background:url('/stylesheets/images/iconfont-tianjia.png') no-repeat 0 0;
+            width:40px;
+            height: 40px;
+            vertical-align: text-bottom;
+            background-size: cover;
+        }
+
+    </style>
 </head>
 <body>
-chapter_title:String,//章节名称
+    <% include ../template/header.html %>
+<!-- chapter_title:String,//章节名称
 chapter_novel:Object,//所属小说
 update_date:Date,//更新日期
 chapter_index:Number,//章节序号
 if_free:String,//是否免费
-chapter_status:String//章节状态(是否通过审核)
+chapter_status:String//章节状态(是否通过审核) -->
     <form action="/add_chapter" method="post">
         章节名称：<input type="text" name="chapter_title">
         章节正文：<textarea name="chapter_content"></textarea>
-        <input type="hidden" value="54efdfcc4976b25016085ebb" name="chapter_novel">
+        <input type="hidden" value="54f9374150e276300f8c4de4" name="chapter_novel">
         <input type="hidden" value="free" name="if_free">
         <button type="submit">更新章节</button>
     </form>
+
+
+    <div class="flex_wrap">
+        <div class="add_ttl">
+            <span class="icon add_novel_icon"></span> 更新章节
+        </div>
+        <form action="/add_chapter" class="main_form" method="post">
+            <div class="form_item">
+                <div class="form_label"><label>章节名称</label></div>
+                <div class="form_cpt"><input type="text" name="chapter_title"></div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item">
+                <div class="form_label"><label>是否免费</label></div>
+                <div class="form_cpt">
+                    <select name="if_free">
+                        <option value="free">免费</option>
+                        <option value="no_free">收费</option>
+                    </select>
+                </div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item">
+                <div class="form_label"><label>章节正文</label></div>
+                <div class="form_cpt">
+                    <textarea class="form_article"></textarea><br>
+                    <label class="count_words"><span class="word_num">0</span>个字</label>
+                </div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item">
+                <div class="form_label"><label>作者协议</label></div>
+                <div class="form_cpt"><input type="radio" value="同意" name="hehe"> 同意 <input type="radio" value="不同意" name="hehe"> 不同意 
+                    &nbsp;&nbsp;&nbsp;<a href="#" >作者协议</a>
+                </div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item" style="border:none;">
+                <div class="form_label"></div>
+                <div class="form_cpt"><button type="submit" class="form_submit">确认更新</button></div>
+                <div class="c_fix"></div>
+            </div>
+
+            <!--隐藏域-->
+            <input type="hidden" value="54f9374150e276300f8c4de4" name="chapter_novel">
+
+
+            <!-- <div class="form_item">
+                <textarea></textarea>
+            </div> -->
+        </form>
+    </div>
+
+    <% include ../template/footer.html %>
+    <script type="text/javascript">
+        $(function(){
+            $('.form_article').count_word();
+        });
+    </script>
 </body>
 </html>

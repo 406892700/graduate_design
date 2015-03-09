@@ -7,7 +7,7 @@ var chapterDao = require('../dao/chapterDao');
 
 module.exports = function(app){
     app.get("/addNovel_page",function(req,res){
-        res.render('novel/addNovel',{'name':"请添加小说"});
+        res.render('novel/add_novel/addNovel',{'name':'dd','user':req.session.user});
     });
 
     app.post('/addNovel',function(req,res){
