@@ -52,6 +52,7 @@ input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft
 .right_toolbar > a.zan{background: url('./images/zan.png') no-repeat 0 0; margin-top:400px;}
 .right_toolbar > a.shoucang{background: url('./images/shoucang.png') no-repeat 0 0;}
 .right_toolbar > a.record{background: url('./images/record.png') no-repeat 0 0;}
+.right_toolbar > a.gotop{background: url('./images/top.png') no-repeat 0 0;}
 
 
 .form_contrl{padding:10px 0px;}
@@ -113,6 +114,7 @@ input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft
     height: 400px;
     font-family: 'Microsoft Yahei';
 }
+
 
 .form_item .count_words{
     font-size: 16px;

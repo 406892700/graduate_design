@@ -12,11 +12,14 @@ module.exports = function(app){
 
     app.post('/addNovel',function(req,res){
         var obj = req.body;
-        console.log("-------------------------------------------"+req.body.novel_pic);
+        console.log(obj.novel_name);
+        
+        //console.log("-------------------------------------------"+req.body.novel_pic);
         novelDao.save(obj,function(err){
            err?res.json('info','novel add faild!'):res.json('info','novel add successfully!');
         });
     });
+
     app.post('/search_novel',function(req,res){
         var param =  req.body.novel_name;
         console.log('novel name is '+param);
@@ -31,7 +34,14 @@ module.exports = function(app){
         novelDao.findById(id,function(err,docs){
             res.render('novel/chapter_detail/chapter',{'res':docs[0],'user':req.session.user});//肯定只有一个
         });
+    });
 
+    //根据作者来找小说
+    app.get('/getNovel_by_user',function(req,res){
+        var _user_id = req.session.user._id;
+        novelDao.findByUserId(_user_id,function(err,docs){
+            res.json(docs);
+        });
     });
 
 }

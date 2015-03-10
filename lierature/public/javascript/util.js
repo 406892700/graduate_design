@@ -7,7 +7,7 @@
         var that = this;
         var init = function(){
             that.bind('keyup',function(e){
-                var $word_num = $('.word_num');
+                var $word_num = that.parent().find('.word_num');
                 $word_num.text($(this).val().length);
             });
         }

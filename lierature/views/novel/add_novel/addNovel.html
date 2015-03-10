@@ -111,7 +111,7 @@
     <div class="add_ttl">
         <span class="icon add_novel_icon"></span> 新开小说
     </div>
-    <form action="/addNovel" class="main_form" method="post">
+    <form action="/addNovel" class="main_form" method="post" >
     <div class="form_item">
         <div class="form_label"><label>作品名称</label></div>
         <div class="form_cpt"><input type="text" name="novel_name"></div>
@@ -130,21 +130,21 @@
             <select name="novel_type">
                 <option value="武侠">武侠</option>
                 <option value="仙侠">仙侠</option>
-                <option value="武侠">武侠</option>
-                <option value="武侠">武侠</option>
-                <option value="武侠">武侠</option>
+                <option value="玄幻">玄幻</option>
+                <option value="科幻">科幻</option>
+                <option value="同人">同人</option>
             </select>
         </div>
         <div class="c_fix"></div>
     </div>
 
-     <div class="form_item">
+     <!-- <div class="form_item">
         <div class="form_label"><label>作品标签</label></div>
         <div class="form_cpt"><input type="text" name="novel_tags"></div>
         <div class="c_fix"></div>
-    </div>
+    </div> -->
 
-    <div class="form_item">
+    <!-- <div class="form_item">
         <div class="form_label"><label>作品封面</label></div>
         <div class="form_cpt" style="position:relative;"><input type="file" name="novel_pic" id="input" style="opacity:0;">
             <div class="upload_instead" onclick="$('#input').trigger('click');">
@@ -153,11 +153,10 @@
             </div>
         </div>
         <div class="pic_preview" id="img">
-            <!-- <img id="img" alt="如需预览，请使用支持Html5的浏览器"/> -->
         </div>
         <div class="c_fix"></div>
-    </div>
-    <script type="text/javascript">
+    </div> -->
+<!--   <script type="text/javascript">
         $(function(){
             $('#input').uploadPreview({
                 // scalingWidth : '150',
@@ -173,6 +172,16 @@
             });
         });
     </script>
+-->
+
+    <div class="form_item">
+        <div class="form_label"><label>作品章节描述</label></div>
+        <div class="form_cpt">
+            <textarea class="form_description" style="height:100px;" name="novel_description"></textarea><br>
+            <label class="count_words"><span class="word_num">0</span>个字</label>
+        </div>
+        <div class="c_fix"></div>
+    </div>
 
     <div class="form_item">
         <div class="form_label"><label>作品章节(选段)</label></div>
@@ -185,35 +194,28 @@
 
     <div class="form_item">
         <div class="form_label"><label>作者协议</label></div>
-        <div class="form_cpt"><input type="radio" value="同意" name="hehe"> 同意 <input type="radio" value="不同意" name="hehe"> 不同意 
+        <div class="form_cpt"><input type="radio" value="同意"> 同意 <input type="radio" value="不同意"> 不同意 
             &nbsp;&nbsp;&nbsp;<a href="#" >作者协议</a>
         </div>
         <div class="c_fix"></div>
     </div>
-
+    <input type="hidden" value="<%= user._id%>" name="novel_author">
+    <input type="hidden" value="0" name="novel_zan_num">
+    <input type="hidden" value="0" name="novel_collection_num">
+    <input type="hidden" value="0" name="novel_chapter_num">
+    <input type="hidden" value="0" name="novel_comment_num"> 
+    <input type="hidden" value="/pic/novel_pic/dp.jpg" name="novel_pic"> 
     <div class="form_item" style="border:none;">
         <div class="form_label"></div>
         <div class="form_cpt"><button type="submit" class="form_submit">确认提交</button></div>
         <div class="c_fix"></div>
     </div>
 
+    <input>
     <script type="text/javascript">
-        // $.fn.count_word = function(){
-        //     var that = this;
-        //     var init = function(){
-        //         that.bind('keyup',function(e){
-        //             var $word_num = $('.word_num');
-        //             $word_num.text($(this).val().length);
-        //         });
-        //     }
-
-        //     return this.each(function(){
-        //         init();
-        //     });
-        // }
-
         $(function(){
             $('.form_article').count_word();
+            $('.form_description').count_word();
         });
     </script>
 </form>

@@ -40,6 +40,9 @@
                 <div style="width:200px;overflow:hidden;text-overflow:ellipsis;height:100%;">
                     <%= user.username%>,欢迎来到
                 </div>
+                <div>
+                    <a href="/author_center">个人中心</a>
+                </div>
                 <%}else {%>
                 <div>
                     <a href="login">请登录</a>
@@ -54,7 +57,6 @@
 
             </div>
             <div class="c_fix">
-
             </div>
         </div>
     </div><!--common_top-->
@@ -105,5 +107,30 @@
         <a href="#" class="icon record">
             <span class="explain">我的阅读记录<b class="right_detla"></b></span>
         </a>
+        <a href="javascript:;" class="icon gotop" style="position:absolute;bottom:0px;right:0px;">
+            <span class="explain">回到顶部<b class="right_detla"></b></span>
+        </a>
     </div>
 </header>
+
+<script type="text/javascript">
+    function scrollTop(){
+        
+        var $window = $(window);
+        var currentOffset = $window.scrollTop();
+        
+        var timer = setInterval(function(){
+            //alert(currentOffset);
+            if(currentOffset <= 0){
+                clearInterval(timer);
+            }else{
+                $window.scrollTop(currentOffset -= 20);
+            }
+            
+        },10);
+    }
+
+    $(function(){
+        $('.gotop').bind('click',scrollTop);
+    })
+</script>

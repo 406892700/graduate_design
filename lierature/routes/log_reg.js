@@ -21,7 +21,9 @@ module.exports = function(app){
                 res.redirect('/login')
             }else{
                 //console.log('登录成功!');
-                req.session.user = user;//写入session
+                req.session.user = docs[0];//写入session
+                for(var i =0;i<Object.getOwnPropertyNames(docs[0]).length;i++)
+                    console.log('输出看看user'+Object.getOwnPropertyNames(docs[0])[i]);
                 res.redirect('/');
             }
         });

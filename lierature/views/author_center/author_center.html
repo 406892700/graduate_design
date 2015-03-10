@@ -6,6 +6,76 @@
  </head>
  <body>
     <% include ../template/header.html %>
+    <script type="text/javascript">
+      $(function(){
+        var author_center = {};
+        ;(function(){
+          author_center.init_page = function(){
+            $.ajax({
+              url:'/getNovel_by_user',
+              success:function(data){
+                //alert(data);
+                var idt_list = "";
+                for(var i = 0;i<data.length;i++){
+                  var pic_src = data[i].novel_pic || '/pic/novel_pic/dp.jpg';
+                idt_list = idt_list + "<div class=\"novel_idt\">"+
+                  "<div class=\"info_pl\">"+
+                    "<div class=\"lft_pt\">"+
+                      "<img alt=\"\" src='"+pic_src+"' width=100% height=100% style='display:block'>"+
+                    "</div>"+
+                    "<div class=\"rgt_pt\">"+
+                     " <div class=\"info_item\">"+
+                        "<div class=\"item_item_sub\"><label>书名: </label>"+data[i].novel_name+"</div>"+
+                        "<div class=\"item_item_sub\"><label>作者: </label>"+data[i].novel_author+"</div>"+
+                      "</div><!--info_item-->"+
+
+                      "<div class=\"info_item\">"+
+                        "<div class=\"item_item_sub\"><label>开更日期: </label>2015-1-15</div>"+
+                       " <div class=\"item_item_sub\"><label>完结日期: </label>2015-12-1</div>"+
+                     " </div><!--info_item-->"+
+
+                      "<div class=\"info_item\">"+
+                        "<div class=\"item_item_sub\"><label>分类: </label>"+data[i].novel_type+"</div>"+
+                        "<div class=\"item_item_sub\"><label>标签: </label>热血 奋斗 励志</div>"+
+                     " </div><!--info_item-->"+
+
+                     " <div class=\"info_item\">"+
+                        "<div class=\"item_item_sub\"><label>小说描述: </label></div>"+
+                        "<div class=\"info_des_pl\">"+data[i].novel_description+"</div>"+
+                      "</div><!--info_item-->"+
+                   " </div> "+
+                  "</div><!--info_pl-->"+
+                  "<div class=\"novel_opt\">"+
+                   " <div class=\"lft_pt\">"+
+                      "<a href=\"/add_chapter_page\" style=\"margin-top:60px;\">更新章节</a>"+
+                     " <a href='/novel_detail?_id="+data[i]._id+"'>查看小说</a>"+
+                   " </div>"+
+                    "<div class=\"rgt_pt\">"+
+                      "<a href=\"javascript:;\" class=\"novel_config\"></a>"+
+                    "</div>"+
+                  "</div><!--novel_opt-->"+
+                "</div><!--novel_idt-->";
+                }
+               // alert(idt_list);
+               idt_list += "<div class='page_ctrl'>"+
+                  "<a href='javascript:;' class='prev_page'> &nbsp;</a>"+
+                  "<a href='javascript:;' class='current_page'>1</a>"+
+                  "<a href='javascript:;'>2</a>"+
+                  "<a href='javascript:;'>3</a>"+
+                  "<a href='javascript:;' class='next_page'> &nbsp;</a>"+
+                "</div>";
+                 $('.work_list').append(idt_list);
+              },
+              error:function(error){
+
+              }
+            });
+          }
+        })();
+
+        author_center.init_page();
+      });
+    </script>
     <div class="main_content"> 
     <div class="flex_wrap">
       <div class="r_ct_ttl">
@@ -18,7 +88,7 @@
             <a href="javascript:;"><span class="icon focus"></span> 关注</a>
           </div>
           <div class="ttl_rgt_top">
-            <div class="host_name">辰东</div>
+            <div class="host_name"><%= user.username %></div>
           </div><!--ttl_rgt_top-->
           <div class="ttl_rgt_bottom">
             <div class="host_sign">
@@ -58,136 +128,7 @@
             </header><!--lft_opt_nav-->
             <div class="lft_opt_bd">
               <div class="lft_opt_bd_pl work_list">
-
-                <div class="novel_idt">
-                  <div class="info_pl">
-                    <div class="lft_pt">
-                      <img alt="" src="/images/zt.jpg" width="100%" height="100%" style="display:block"> 
-                    </div>
-                    <div class="rgt_pt">
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>书名: </label>遮天</div>
-                        <div class="item_item_sub"><label>作者: </label>辰东</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>开更日期: </label>2015-1-15</div>
-                        <div class="item_item_sub"><label>完结日期: </label>2015-12-1</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>分类: </label>武侠仙侠</div>
-                        <div class="item_item_sub"><label>标签: </label>热血 奋斗 励志</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>小说描述: </label></div>
-                        <div class="info_des_pl">回家第三方会计电风扇的方式将快乐男宝宝很疯狂娄底市进口量的方式加快了第三方框架第三方地方上看见了第三款绝地逢生...</div>
-                      </div><!--info_item-->
-                    </div> 
-                  </div><!--info_pl-->
-                  <div class="novel_opt">
-                    <div class="lft_pt">
-                      <a href="javascript:;" style="margin-top:60px;">更新章节</a>
-                      <a href="javascript:;">查看小说</a>
-                    </div>
-                    <div class="rgt_pt">
-                      <a href="javascript:;" class="novel_config"></a>
-                    </div>
-                  </div><!--novel_opt-->
-                </div><!--novel_idt-->
-
-                  <div class="novel_idt">
-                  <div class="info_pl">
-                    <div class="lft_pt">
-                      <img alt="" src="/images/zt.jpg" width="100%" height="100%" style="display:block"> 
-                    </div>
-                    <div class="rgt_pt">
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>书名: </label>遮天</div>
-                        <div class="item_item_sub"><label>作者: </label>辰东</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>开更日期: </label>2015-1-15</div>
-                        <div class="item_item_sub"><label>完结日期: </label>2015-12-1</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>分类: </label>武侠仙侠</div>
-                        <div class="item_item_sub"><label>标签: </label>热血 奋斗 励志</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>小说描述: </label></div>
-                        <div class="info_des_pl">回家第三方会计电风扇的方式将快乐男宝宝很疯狂娄底市进口量的方式加快了第三方框架第三方地方上看见了第三款绝地逢生...</div>
-                      </div><!--info_item-->
-                    </div> 
-                  </div><!--info_pl-->
-                  <div class="novel_opt">
-                    <div class="lft_pt">
-                      <a href="/add_chapter_page" style="margin-top:60px;">更新章节</a>
-                      <a href="/novel_detail?_id=54efdfcc4976b25016085ebb">查看小说</a>
-                    </div>
-                    <div class="rgt_pt">
-                      <a href="javascript:;" class="novel_config"></a>
-                    </div>
-                  </div><!--novel_opt-->
-                </div><!--novel_idt-->
-
-                  <div class="novel_idt">
-                  <div class="info_pl">
-                    <div class="lft_pt">
-                      <img alt="" src="/images/zt.jpg" width="100%" height="100%" style="display:block"> 
-                    </div>
-                    <div class="rgt_pt">
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>书名: </label>遮天</div>
-                        <div class="item_item_sub"><label>作者: </label>辰东</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>开更日期: </label>2015-1-15</div>
-                        <div class="item_item_sub"><label>完结日期: </label>2015-12-1</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>分类: </label>武侠仙侠</div>
-                        <div class="item_item_sub"><label>标签: </label>热血 奋斗 励志</div>
-                      </div><!--info_item-->
-
-                      <div class="info_item">
-                        <div class="item_item_sub"><label>小说描述: </label></div>
-                        <div class="info_des_pl">回家第三方会计电风扇的方式将快乐男宝宝很疯狂娄底市进口量的方式加快了第三方框架第三方地方上看见了第三款绝地逢生...</div>
-                      </div><!--info_item-->
-                    </div> 
-                  </div><!--info_pl-->
-                  <div class="novel_opt">
-                    <div class="lft_pt">
-                      <a href="javascript:;" style="margin-top:60px;">更新章节</a>
-                      <a href="javascript:;">查看小说</a>
-                    </div>
-                    <div class="rgt_pt">
-                      <a href="javascript:;" class="novel_config"></a>
-                    </div>
-                  </div><!--novel_opt-->
-                </div><!--novel_idt-->
-
-                <div class="page_ctrl">
-                  <a href="javascript:;" class="prev_page"> &nbsp;</a>
-                  <a href="javascript:;" class="current_page">1</a>
-                  <a href="javascript:;">2</a>
-                  <a href="javascript:;">3</a>
-                  <a href="javascript:;" class="next_page"> &nbsp;</a>
-                </div>
               </div><!--lft_opt_bd_pl-->
-              <script type="text/javascript">
-                $(function(){
-                  $('.novel_config').bind('click',function(){
-                    $(this).parent().parent().parent().find('.info_pl').toggleClass('toggle_slide');
-                  })
-                });
-              </script>
             </div><!--lft_opt_bd-->
           </div><!--left_operation-->
 
@@ -206,6 +147,14 @@
       </div>
     </div>
   </div>
+   <script type="text/javascript">
+    $(function(){
+      $('.work_list').on('click','.novel_config',function(){
+        $(this).parent().parent().parent().find('.info_pl').toggleClass('toggle_slide');
+      })
+    });
+  </script>
+
   <script type="text/javascript">
      $(function(){
       $('.fake_a').bind('click',function(){

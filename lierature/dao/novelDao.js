@@ -22,7 +22,13 @@ novelDao.prototype.findByName = function(novel_name,callback){
 novelDao.prototype.findById = function(_id,callback){
     Novel.find({'_id':_id},function(err,docs){
         callback(err,docs);
-    })
+    });
+}
+
+novelDao.prototype.findByUserId = function(user_id,callback){
+    Novel.find({'novel_author':user_id},function(err,docs){
+        callback(err,docs);
+    });
 }
 
 module.exports = new novelDao();
