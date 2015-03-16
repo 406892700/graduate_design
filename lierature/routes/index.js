@@ -90,56 +90,32 @@ module.exports = function(app){
         });
     });
 
-    var  formidable = require('formidable');
-    var  fs = require('fs');
+    // var  fs = require('fs');
 
-    app.get('/upload_demo',function(req,res){
-        res.render('upload_demo',{});
-    });
+    // app.get('/upload_demo',function(req,res){
+    //     res.render('upload_demo',{});
+    // });
 
-    app.post('/upload_image',function(req,res){
-         var form = new formidable.IncomingForm();   //创建上传表单
-         form.encoding = 'utf-8';        //设置编辑
-         form.uploadDir = '/public/pic/novel_pic';    //设置上传目录
-         form.keepExtensions = true;  //保留后缀
-         form.maxFieldsSize = 2 * 1024 * 1024;   //文件大小
-         form.parse(req, function(err, fields, files) {
-            // console.log('fuck you!');
-                if (err) {
-                    console.log('哟错误！');
-                  return;       
-                }  
-                 
-                var extName = '';  //后缀名
-                switch (files.upload.type) {
-                  case 'image/pjpeg':
-                    extName = 'jpg';
-                    break;
-                  case 'image/jpeg':
-                    extName = 'jpg';
-                    break;       
-                  case 'image/png':
-                    extName = 'png';
-                    break;
-                  case 'image/x-png':
-                    extName = 'png';
-                    break;       
-                }
+    // app.post('/upload_image',function(req,res){
+    //       for(var i in req.files){
+    //         if(req.files[i].size == 0){
+    //             fs.fs.unlinkSync(req.files[i].path);
+    //             console.log('删了一个空的文件');
+    //         }else{
+    //             var target_path = 'public/pic/'+req.files[i].name;
+    //             console.log(req.files[i].path);
+    //             var readStream=fs.createReadStream(req.files[i].path);
+    //             var writeStream=fs.createWriteStream(target_path);
+    //             readStream.pipe(writeStream);
+    //             readStream.on('end',function(){
+    //                 fs.unlinkSync(req.files[i].path);
+    //              });
 
-                if(extName.length == 0){
-                    console.log('只支持png和jpg格式图片');
-                    return;                
-                }
+    //             console.log('重命名了一个文件');
+    //         }
+    //       }
+    //       res.json('info','success!');
 
-                var fileName = Math.random() + '.' + extName;//生成随机数来当做文件名
-                var newPath = form.uploadDir + fileName;
-
-                console.log(newPath);
-                fs.renameSync(files.upload.path, newPath);  //重命名
-              });
-
-              res.json('info','success');
-
-    });
+    // });
 
 }

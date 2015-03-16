@@ -6,6 +6,7 @@ var Novel = new Schema({
     id:String,
     novel_name:String,//小说名
     novel_author:String,//小说作者
+    novel_author_name:String,//小说作者名字
     novel_start:String,//开更日期
     novel_end:String,//完结日期（未完结则为undefined）
     novel_zan_num:Number,//被赞数量

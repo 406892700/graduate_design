@@ -33,6 +33,7 @@ app.use(express.cookieParser('your secret here'));
 app.use(express.session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'views')));
+app.use(express.bodyParser({keepExtensions:true,uploadDir:'./public/images'}));
 app.use(app.router);
 
 

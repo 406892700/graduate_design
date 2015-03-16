@@ -44,4 +44,29 @@ module.exports = function(app){
         });
     });
 
+    var  fs = require('fs');
+
+    //小说封面上传
+    app.post('/upload_image',function(req,res){
+          for(var i in req.files){
+            if(req.files[i].size == 0){
+                fs.fs.unlinkSync(req.files[i].path);
+                console.log('删了一个空的文件');
+            }else{
+                var target_path = 'public/pic/novel_pic/'+req.files[i].name;
+                console.log(req.files[i].path);
+                var readStream=fs.createReadStream(req.files[i].path);
+                var writeStream=fs.createWriteStream(target_path);
+                readStream.pipe(writeStream);
+                readStream.on('end',function(){
+                    fs.unlinkSync(req.files[i].path);
+                 });
+
+                console.log('重命名了一个文件');
+            }
+          }
+          res.json('info','success!');
+
+    });
+
 }

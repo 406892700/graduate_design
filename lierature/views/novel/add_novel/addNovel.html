@@ -144,38 +144,8 @@
         <div class="c_fix"></div>
     </div> -->
 
-    <!-- <div class="form_item">
-        <div class="form_label"><label>作品封面</label></div>
-        <div class="form_cpt" style="position:relative;"><input type="file" name="novel_pic" id="input" style="opacity:0;">
-            <div class="upload_instead" onclick="$('#input').trigger('click');">
-                <div class="fake_btn">上传图片</div>
-                <div class="fake_text"></div>
-            </div>
-        </div>
-        <div class="pic_preview" id="img">
-        </div>
-        <div class="c_fix"></div>
-    </div> -->
-<!--   <script type="text/javascript">
-        $(function(){
-            $('#input').uploadPreview({
-                // scalingWidth : '150',
-                // scalingHeight : '100',
-                imgPreview : "#img",
-                imgType : [ "bmp", "gif", "png", "jpg" ],
-                callback : function() {
-                }
-            });
-
-             $('#input').bind('change',function(){
-                $('.fake_text').text($(this).val());
-            });
-        });
-    </script>
--->
-
     <div class="form_item">
-        <div class="form_label"><label>作品章节描述</label></div>
+        <div class="form_label"><label>作品描述</label></div>
         <div class="form_cpt">
             <textarea class="form_description" style="height:100px;" name="novel_description"></textarea><br>
             <label class="count_words"><span class="word_num">0</span>个字</label>
@@ -200,26 +170,80 @@
         <div class="c_fix"></div>
     </div>
     <input type="hidden" value="<%= user._id%>" name="novel_author">
+    <input type="hidden" value="<%= user.username%>" name="novel_author_name">
     <input type="hidden" value="0" name="novel_zan_num">
     <input type="hidden" value="0" name="novel_collection_num">
     <input type="hidden" value="0" name="novel_chapter_num">
     <input type="hidden" value="0" name="novel_comment_num"> 
-    <input type="hidden" value="/pic/novel_pic/dp.jpg" name="novel_pic"> 
-    <div class="form_item" style="border:none;">
+    <!-- <input type="hidden" value="/pic/novel_pic/dp.jpg" name="novel_pic"> -->
+</form>
+
+<form action="/upload_image" method="post" enctype="multipart/form-data" class="upload_form">
+        <div class="form_item">
+            <div class="form_label"><label>作品封面</label></div>
+            <div class="form_cpt" style="position:relative;">
+                <input type="file" name="novel_picx" id="input" style="opacity:0;">
+                <div class="upload_instead" onclick="$('#input').trigger('click');">
+                    <div class="fake_btn">上传图片</div>
+                    <div class="fake_text"></div>
+                </div>
+            </div>
+            <div class="pic_preview" id="img">
+            </div>
+            <div class="c_fix"></div>
+        </div>
+    </form>
+
+     <div class="form_item" style="border:none;">
         <div class="form_label"></div>
-        <div class="form_cpt"><button type="submit" class="form_submit">确认提交</button></div>
+        <div class="form_cpt"><button type="button" class="form_submit">确认提交</button></div>
         <div class="c_fix"></div>
     </div>
+    
+  <script type="text/javascript">
+        $(function(){
+            $('#input').uploadPreview({
+                // scalingWidth : '150',
+                // scalingHeight : '100',
+                imgPreview : "#img",
+                imgType : [ "bmp", "gif", "png", "jpg" ],
+                callback : function() {
+                }
+            });
 
-    <input>
-    <script type="text/javascript">
+             $('#input').bind('change',function(){
+                $('.fake_text').text($(this).val());
+                //$("input[name='novel_pic']").val($('.fake_text').text());
+                //alert($("input[name='novel_pic']").html());
+                if($('input[name="novel_pic"]')){
+                    $('input[name="novel_pic"]').remove();
+                }
+                var pic_name = $('.fake_text').text().split('\\');
+                console.log(pic_name);
+                 $('.main_form').append("<input type='hidden' value=/pic/novel_pic/"+pic_name[pic_name.length-1]+" name='novel_pic'>");
+            });
+        });
+    </script>
+</div>
+<script type="text/javascript">
         $(function(){
             $('.form_article').count_word();
             $('.form_description').count_word();
+            $('.form_submit').bind('click',function(){
+                $('.upload_form').submit();
+                $.ajax({
+                    url:'',
+                    success:function(data){
+                        $('.main_form').submit();
+                        alert(1);
+                    },
+                    error:function(error){
+                        alert('error!');
+                    }
+                })
+            });
         });
     </script>
-</form>
-</div>
 <% include ../../template/footer.html %>
 </body>
 </html>
