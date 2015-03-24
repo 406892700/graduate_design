@@ -24,8 +24,9 @@ module.exports = function(app){
                 req.session.user = docs[0];//写入session
                 for(var i =0;i<Object.getOwnPropertyNames(docs[0]).length;i++)
                     console.log('输出看看user'+Object.getOwnPropertyNames(docs[0])[i]);
+                console.log("看看头像+"+req.session.user.pic);
                 res.redirect('/');
-            }
+            } 
         });
     });
 

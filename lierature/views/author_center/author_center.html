@@ -47,7 +47,7 @@
                   "</div><!--info_pl-->"+
                   "<div class=\"novel_opt\">"+
                    " <div class=\"lft_pt\">"+
-                      "<a href=\"/add_chapter_page\" style=\"margin-top:60px;\">更新章节</a>"+
+                      "<a href=\"/add_chapter_page?_id="+data[i]._id+"\" style=\"margin-top:60px;\">更新章节</a>"+
                      " <a href='/novel_detail?_id="+data[i]._id+"'>查看小说</a>"+
                    " </div>"+
                     "<div class=\"rgt_pt\">"+
@@ -163,6 +163,6 @@
      });
   </script>
     
-    <% include ../template/footer.html %>
+    <% include ../template/footer.html %> 
  </body>
 </html>

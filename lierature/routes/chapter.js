@@ -6,7 +6,8 @@ var chapterDao = require('../dao/chapterDao');
 
 module.exports = function(app){
     app.get('/add_chapter_page',function(req,res){
-        res.render('chapter/add_chapter',{'title':'添加章节','user':req.session.user})
+        var novel_id = req.query._id;
+        res.render('chapter/add_chapter',{'title':'添加章节','user':req.session.user,'novel_id':novel_id})
     });
     app.post('/add_chapter',function(req,res){
         var obj = req.body;
@@ -18,14 +19,14 @@ module.exports = function(app){
             chapterDao.save(obj,function(err){
                 err?res.json('info','chapter add faild!'):res.json('info','chapter add successfully!');
             });
-        });
+        }); 
 
     });
 
     app.get('/get_chapters',function(req,res){
         var id = req.query._id;
         chapterDao.findByNovel(id,function(err,docs){
-            res.json(docs);
+            res.json(docs); 
         });
     });
 

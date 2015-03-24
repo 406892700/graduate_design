@@ -30,7 +30,8 @@ module.exports = function(app){
 
     app.get('/novel_detail',function(req,res){
         var id = req.query._id;
-        console.log(id);
+        //console.log(id);
+        console.log("++++++++"+req.session.user.pic);
         novelDao.findById(id,function(err,docs){
             res.render('novel/chapter_detail/chapter',{'res':docs[0],'user':req.session.user});//肯定只有一个
         });

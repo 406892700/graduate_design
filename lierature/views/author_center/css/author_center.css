@@ -188,6 +188,8 @@
       width:100%;
       display: block;
       cursor:pointer;
+      height: 25px;
+      line-height: 25px;
      }
      .drop_down_list > label:hover{
       text-decoration: underline;

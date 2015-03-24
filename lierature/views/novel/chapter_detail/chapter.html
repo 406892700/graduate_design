@@ -68,12 +68,12 @@ function replace_em(str){
                 for(var i=0;i<data.length;i++){
                     str += "	<div class=\"comment_idt\">" +
                             "<div class=\"user_pic\">" +
-                            "<img alt=\"\" src=\"./images/100.jpg\">" +
+                            "<img alt=\"\" src=\""+data[i].comment_author_pic+"\">" +
                             "</div>" +
                             "<div class=\"comment_content\">" +
                             "<div class=\"word\">" +
                             "<div class=\"user_info\">" +
-                            "<a class=\"username\" href=\"\">"+data[i].comment_author+"</a>"+
+                            "<a class=\"username\" href=\"\">"+data[i].comment_author_name+"</a>"+
                             "<span class=\"comment_date\">"+data[i].comment_date+"</span>" +
                             "</div>" +
                             "<div class=\"arrow_left\"></div>" +
@@ -184,7 +184,9 @@ function replace_em(str){
 						</div>
                         <input type="hidden" name="comment_date" value="2015-1-2 12:23">
                         <input type="hidden" name="comment_from" value="<%= res._id%>">
-                        <input type="hidden" name="comment_author" value="xhy">
+                        <input type="hidden" name="comment_author" value="<%= user._id%>">
+                        <input type="hidden" name="comment_author_name" value="<%= user.username %>">
+                        <input type="hidden" name="comment_author_pic" value="<%= user.pic %>">
 						<button type="submit">提交评论</button>
 					</form>
 				</div>

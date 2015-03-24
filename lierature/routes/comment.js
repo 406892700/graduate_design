@@ -17,6 +17,6 @@ module.exports = function(app){
         var id = req.query._id;
         commentDao.findByNovel(id,function(err,docs){
             res.json(docs);
-        });
+        }); 
     });
 }

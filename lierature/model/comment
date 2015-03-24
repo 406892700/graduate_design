@@ -5,6 +5,8 @@ var Schema = mongoose.Schema;
 var Comment = new Schema({
     id:String,
     comment_author:String,//评论用户
+    comment_author_name:String,//评论用户名
+    comment_author_pic:String,//评论用户头像
     comment_date:Date,//评论时间
     comment_from:String,//评论所属对象(可能是章节，也可能是小说)
     comment_content:String//评论内容
