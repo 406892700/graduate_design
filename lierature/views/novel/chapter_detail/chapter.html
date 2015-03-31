@@ -4,15 +4,19 @@
 	<title>小说信息</title>
 </head>
 <link rel="stylesheet" type="text/css" href="/novel/chapter_detail/css/chapter.css">
+<link rel="stylesheet" type="text/css" href="/stylesheets/tips.css">
+
 <style type="text/css">
  #facebox{
  	background-color: #fff;
  	padding:5px;
  	border:1px solid #0078D8;
  }
+
 </style>
 <script type="text/javascript" src="/javascript/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/javascript/jquery.qqFace.js"></script>
+<script type="text/javascript" src="/javascript/jquery.tips.js"></script>
 <script type="text/javascript">
 $(function(){
 	$('.emotion').qqFace({
@@ -100,6 +104,89 @@ function replace_em(str){
         })
 	});
 </script>
+
+<script type="text/javascript">
+	$(function(){
+		var tips = function(){
+			  //var tips = $.tips(undefined,{width:'300px',height:'140px'}).show();
+			  return $.tips(undefined,{width:'300px',height:'140px'});
+		}
+		$('.zan_icon').bind('click',function(e){
+			e.preventDefault();
+			//$(this).next('span').text("2次");
+			var $that = $(this);
+			var href = $(this).data('href'),if_can_zan = false,href1 = href.replace(/\w{0,9}_novel/,'if_zan');
+			$.ajax({
+				url:href1,
+				success:function(data){
+					if(data.flag == true)
+						if_can_zan = true;
+					else
+						 return;
+				},
+				error:function(error){
+					alert('数据获取错误！1');
+				},
+				async:false
+			});
+
+			if(!if_can_zan){
+				//alert('你已经赞过了！');
+				tips().setText('<span style="color:#999;font-size:16px;display:table-cell;vertical-align:middle;">你已经赞过了！</span>').show();
+				return;
+			}
+				
+
+			$.ajax({
+				url:href,
+				success:function(data){
+					$that.next('span').text(" "+data.current_num+"次");
+				},
+				error:function(error){
+					alert('数据获取错误！2');
+				},
+				method:'get'
+			});
+		});
+
+		$('.sc_icon').bind('click',function(e){
+			e.preventDefault();
+			var $that = $(this);
+			var href = $(this).data('href'),if_can_collect = false,href1 = href.replace(/\w{0,9}_novel/,'if_collect');
+			$.ajax({
+				url:href1,
+				success:function(data){
+					if(data.flag == true)
+						if_can_collect = true;
+					else
+						 return;
+				},
+				error:function(error){
+					alert('数据获取错误！1');
+				},
+				async:false
+			});
+
+			if(!if_can_collect){
+				//alert('你已经收藏过了！');
+				tips().setText('<span style="color:#999;font-size:16px;display:table-cell;vertical-align:middle;">你已经收藏过了！</span>').show();
+				return;
+			}
+				
+
+			$.ajax({
+				url:href,
+				success:function(data){
+					$that.next('span').text(" "+data.current_num+"次");
+				},
+				error:function(error){
+					alert('数据获取错误！2');
+				},
+				method:'get'
+			});
+		});
+	})
+</script>
 <body>
 	<header class="chapter_head">
 		<div class="flex_wrap">
@@ -114,7 +201,7 @@ function replace_em(str){
 				</div>
 			</div>
 			<div class="head_right">
-				<div class="novel_name"><%= res.novel_name %> <a class="zan_icon" href="#"></a><span> <%= res.novel_zan_num %>次</span> <a class="sc_icon" href="#"></a><span> <%= res.novel_collection_num %>次</span></div>
+				<div class="novel_name"><%= res.novel_name %> <a href="javascript:void(0)" class="zan_icon" data-href="/zan_novel?novel_id=<%= res._id %>&user_id=<%= user._id%>"></a><span> <%= res.novel_zan_num %>次</span> <a href="javascript:void(0)" class="sc_icon" data-href="/collect_novel?novel_id=<%= res._id %>&user_id=<%= user._id%>"></a><span> <%= res.novel_collection_num %>次</span></div>
 				<div class="novel_author"><%= res.novel_author_name %> <a href="#" class="look_author_icon"></a><span class="show_tip">去作者的空间看看</span></div>
 				<div class="novel_type">分类:<%= res.novel_type %></div>
 				<div class="novel_des">

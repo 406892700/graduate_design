@@ -75,6 +75,17 @@
             width: 100%;
             height:100%;
         }
+
+        .form_submit{
+            border:none;
+            color:#fff;
+            background-color: #0078d8;
+            width:80px;
+            height: 30px;
+            font-size: 16px;
+            line-height: 30px;
+            font-family: 'Microsoft Yahei';
+        }
     </style>
 </head>
 <body>
@@ -84,7 +95,8 @@
     <div class="add_ttl">
         <span class="icon add_novel_icon"></span> 新开小说
     </div>
-    <form action="/addNovel" class="main_form" method="post" >
+    <div class="main_form">
+    <form action="/addNovel"  method="post" >
     <div class="form_item">
         <div class="form_label"><label>作品名称</label></div>
         <div class="form_cpt"><input type="text" name="novel_name"></div>
@@ -172,7 +184,7 @@
         <div class="form_cpt"><button type="button" class="form_submit">确认提交</button></div>
         <div class="c_fix"></div>
     </div>
-    
+ </div>   
   <script type="text/javascript">
         $(function(){
             $('#input').uploadPreview({

@@ -4,6 +4,8 @@
 
 var novelDao = require('../dao/novelDao');
 var chapterDao = require('../dao/chapterDao');
+var zanDao = require('../dao/zanDao');
+var collectDao = require('../dao/collectDao');
 
 module.exports = function(app){
     app.get("/addNovel_page",function(req,res){
@@ -68,6 +70,88 @@ module.exports = function(app){
           }
           res.json('info','success!');
 
+    });
+
+
+    //小说赞
+    app.get('/zan_novel',function(req,res){
+        var novel_id = req.query.novel_id,
+        user_id = req.query.user_id;
+        console.log("novel_id   "+novel_id);
+        console.log("user_id   "+user_id);
+        novelDao.updateZan(novel_id,function(err,docs){
+            if(!err){
+                zanDao.save({'collect_record_novel_id':novel_id,'collect_record_user_id':user_id,'collect_record_date':new Date()},function(err,docs){
+                    if(err){
+                         console.log('插入赞记录时候出错');
+                    }
+                    else{
+                    novelDao.findById(novel_id,function(err,docs){
+                        console.log(docs[0]);
+                        res.json({'current_num':docs[0].novel_zan_num});
+                    });
+                    
+                }
+            });
+            }
+        });
+    });
+
+
+    //小说收藏
+    app.get('/collect_novel',function(req,res){
+        var novel_id = req.query.novel_id,
+        user_id = req.query.user_id;
+        novelDao.updateCollect(novel_id,function(err,docs){
+            if(!err){
+                collectDao.save({'collect_record_novel_id':novel_id,'collect_record_user_id':user_id,'collect_record_date':new Date()},function(err,docs){
+                    //console.log(docs);
+                    if(err){
+                        console.log('插入收藏记录时候出错');
+                    }
+                    else{
+                        novelDao.findById(novel_id,function(err,docs){
+                            console.log(docs[0]);
+                            res.json({'current_num':docs[0].novel_collection_num});
+                        });
+                        
+                    }
+                       
+            });
+            }
+        });
+    });
+
+
+    //是否可赞
+
+    app.get('/if_zan',function(req,res){
+        var novel_id = req.query.novel_id,
+        user_id = req.query.user_id;
+        zanDao.ifExist({'novel_id':novel_id,'user_id':user_id},function(err,docs){
+            if(err){
+                console.log('获取是否存在出错！');
+            }
+            else{
+                docs.length?res.json({'flag':false}):res.json({'flag':true});
+            }
+                
+        });
+    });
+
+    //是否可以收藏
+    app.get('/if_collect',function(req,res){
+        var novel_id = req.query.novel_id,
+        user_id = req.query.user_id;
+        collectDao.ifExist({'novel_id':novel_id,'user_id':user_id},function(err,docs){
+            if(err){
+                console.log('获取是否存在出错！');
+            }
+            else{
+                docs.length?res.json({'flag':false}):res.json({'flag':true});
+            }
+                
+        });
     });
 
 }
