@@ -23,4 +23,10 @@ zanDao.prototype.ifExist = function(obj,callback){
 }
 
 
+zanDao.prototype.findRecordById = function(user_id,callback){
+	Zan.find({'collect_record_user_id':user_id},function(err,docs){
+		callback(err,docs);
+	});
+}
+
 module.exports = new zanDao();

@@ -6,7 +6,9 @@
 		mask:true,//遮罩层
 		dnd:false,//是否可拖放
 		position:'center'//弹窗位置
-	},template = ['<div class="tips">','<span class="close">','</span>','<div class="content">','</div>','</div>'].join('\n'),//弹窗框架
+	},template = ['<div class="tips">','<span class="close">','</span>','<div class="content">','</div>',
+	'<div class="button_pl"><a class="btn_done" onclick="$(\'.close\').trigger(\'click\')">确定</a><a class="btn_dismiss" onclick="$(\'.close\').trigger(\'click\')">取消</a></div>',
+	'</div>'].join('\n'),//弹窗框架
 	mask_template = ['<div style="width:100%;height:100%;position:fixed;z-index:1024;background-color:rgba(0,0,0,0.3);margin:0px;display:none;">','</div>'].join("\n"),
 	global_config = {},//全局配置对象
 	tips_obj = $(template),//弹窗对象

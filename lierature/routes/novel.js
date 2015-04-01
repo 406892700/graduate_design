@@ -154,4 +154,24 @@ module.exports = function(app){
         });
     });
 
+
+    // //获取记录
+    // app.get('/getCollectRecord',function(req,res){
+    //     console.log('getCollectRecord');
+    //     res.json('info','dsdfs');
+    //        var user_id = req.query.user_id,
+    //            record_pageNum = req.query.record_pageNum,
+    //            record_pageSize = req.query.record_pageSize;
+    //        collect_recordDao.findRecordById(user_id,function(err,docs){
+    //          var start_p = (record_pageNum-1)*record_pageSize;
+    //          var end_p = record_pageNum*record_pageSize;
+    //          console.log(start_p +"mmmmmmmmmmmmm" +end_p)
+    //          if(!err){
+    //               end_p = (end_p > docs.length)?(docs.length):(end_p);
+    //               res.json(docs.slice(start_p,end_p));
+    //          }
+           
+    //        });
+    //  });
+
 }

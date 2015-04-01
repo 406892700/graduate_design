@@ -25,6 +25,12 @@ novelDao.prototype.findById = function(_id,callback){
     });
 }
 
+novelDao.prototype.findByIdArray = function(id_array,callback){
+    Novel.find({'_id':{'$in':id_array}},function(err,docs){
+        callback(err,docs);
+    });
+}
+
 novelDao.prototype.findByUserId = function(user_id,callback){
     Novel.find({'novel_author':user_id},function(err,docs){
         callback(err,docs);

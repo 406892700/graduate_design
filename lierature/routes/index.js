@@ -27,11 +27,15 @@ module.exports = function(app){
 
     //作者专区
     app.get('/author',function(req,res){
+        if(!req.session.user)
+            res.render('login/login1',{'title':"登录",'user':req.session.user});
         res.render('author/author',{'title':'作者专区','user':req.session.user});
     });
 
     //读者个人中心
     app.get('/reader_center',function(req,res){
+        if(!req.session.user)
+            res.render('login/login1',{'title':"登录",'user':req.session.user});
         res.render('reader_center/reader_center',{'title':'作者个人中心','user':req.session.user});
     });
 

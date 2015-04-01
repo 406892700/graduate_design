@@ -11,7 +11,7 @@ var log_reg = require('./routes/log_reg');//登录注册
 var novel= require("./routes/novel");
 var chapter = require("./routes/chapter");
 var comment = require("./routes/comment");
-
+var record = require("./routes/record");
 var http = require('http');
 var path = require('path');
 ejs = require('ejs');
@@ -53,6 +53,7 @@ log_reg(app);
 novel(app);
 chapter(app);
 comment(app);
+record(app);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('监听了localhost: ' + app.get('port')+

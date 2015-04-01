@@ -19,6 +19,13 @@ collectDao.prototype.ifExist = function(obj,callback){
 	Collect.find({'collect_record_novel_id':obj.novel_id,'collect_record_user_id':obj.user_id},function(err,docs){
 		callback(err,docs);
 	});
+};
+
+
+collectDao.prototype.findRecordById = function(user_id,callback){
+	Collect.find({'collect_record_user_id':user_id},function(err,docs){
+		callback(err,docs);
+	});
 }
 
 

@@ -6,76 +6,6 @@
  </head>
  <body>
     <% include ../template/header.html %>
-    <script type="text/javascript">
-      // $(function(){
-      //   var author_center = {};
-      //   ;(function(){
-      //     author_center.init_page = function(){
-      //       $.ajax({
-      //         url:'/getNovel_by_user',
-      //         success:function(data){
-      //           //alert(data);
-      //           var idt_list = "";
-      //           for(var i = 0;i<data.length;i++){
-      //             var pic_src = data[i].novel_pic || '/pic/novel_pic/dp.jpg';
-      //           idt_list = idt_list + "<div class=\"novel_idt\">"+
-      //             "<div class=\"info_pl\">"+
-      //               "<div class=\"lft_pt\">"+
-      //                 "<img alt=\"\" src='"+pic_src+"' width=100% height=100% style='display:block'>"+
-      //               "</div>"+
-      //               "<div class=\"rgt_pt\">"+
-      //                " <div class=\"info_item\">"+
-      //                   "<div class=\"item_item_sub\"><label>书名: </label>"+data[i].novel_name+"</div>"+
-      //                   "<div class=\"item_item_sub\"><label>作者: </label>"+data[i].novel_author_name+"</div>"+
-      //                 "</div><!--info_item-->"+
-
-      //                 "<div class=\"info_item\">"+
-      //                   "<div class=\"item_item_sub\"><label>开更日期: </label>2015-1-15</div>"+
-      //                  " <div class=\"item_item_sub\"><label>完结日期: </label>2015-12-1</div>"+
-      //                " </div><!--info_item-->"+
-
-      //                 "<div class=\"info_item\">"+
-      //                   "<div class=\"item_item_sub\"><label>分类: </label>"+data[i].novel_type+"</div>"+
-      //                   "<div class=\"item_item_sub\"><label>标签: </label>热血 奋斗 励志</div>"+
-      //                " </div><!--info_item-->"+
-
-      //                " <div class=\"info_item\">"+
-      //                   "<div class=\"item_item_sub\"><label>小说描述: </label></div>"+
-      //                   "<div class=\"info_des_pl\">"+data[i].novel_description+"</div>"+
-      //                 "</div><!--info_item-->"+
-      //              " </div> "+
-      //             "</div><!--info_pl-->"+
-      //             "<div class=\"novel_opt\">"+
-      //              " <div class=\"lft_pt\">"+
-      //                 "<a href=\"/add_chapter_page\" style=\"margin-top:60px;\">更新章节</a>"+
-      //                " <a href='/novel_detail?_id="+data[i]._id+"'>查看小说</a>"+
-      //              " </div>"+
-      //               "<div class=\"rgt_pt\">"+
-      //                 "<a href=\"javascript:;\" class=\"novel_config\"></a>"+
-      //               "</div>"+
-      //             "</div><!--novel_opt-->"+
-      //           "</div><!--novel_idt-->";
-      //           }
-      //          // alert(idt_list);
-      //          idt_list += "<div class='page_ctrl'>"+
-      //             "<a href='javascript:;' class='prev_page'> &nbsp;</a>"+
-      //             "<a href='javascript:;' class='current_page'>1</a>"+
-      //             "<a href='javascript:;'>2</a>"+
-      //             "<a href='javascript:;'>3</a>"+
-      //             "<a href='javascript:;' class='next_page'> &nbsp;</a>"+
-      //           "</div>";
-      //            $('.work_list').append(idt_list);
-      //         },
-      //         error:function(error){
-
-      //         }
-      //       });
-      //     }
-      //   })();
-
-      //   author_center.init_page();
-      // });
-    </script>
     <div class="main_content"> 
     <div class="flex_wrap">
       <div class="r_ct_ttl">
@@ -83,10 +13,6 @@
           <img src="<%= user.pic %>">
         </div><!--ttl_lft-->
         <div class="ttl_rgt">
-          <!-- <div class="rgt_top_pnl">
-            <a href="javascript:;"><span class="icon zan"></span> 点赞</a>
-            <a href="javascript:;"><span class="icon focus"></span> 关注</a>
-          </div> -->
           <div class="ttl_rgt_top">
             <div class="host_name"><%= user.username %></div>
           </div><!--ttl_rgt_top-->
@@ -103,14 +29,6 @@
         <div class="left_pt">
           <div class="left_operation">
             <header class="lft_opt_nav">  
-              <a href="javascript:;" class="current">作品列表
-                <div class="drop_down">
-                  <span class="icon icon_arrow_down"></span>
-                  <div class="drop_down_list">
-                    <label data-href="/addNovel_page" class="fake_a">新开作品</label>
-                  </div><!--drop_down_list-->
-                </div><!--drop_down-->
-              </a>
               <a href="javascript:;">个人资料
                  <div class="drop_down">
                   <span class="icon icon_arrow_down"></span>
@@ -122,9 +40,9 @@
                   </div><!--drop_down_list-->
                 </div><!--drop_down-->
               </a>
-              <a href="javascript:;">我读过的</a>
-              <a href="javascript:;">我赞过的</a>
-              <a href="javascript:;">我收藏的</a>
+              <a href="javascript:;" data-href="" id="i_read">我读过的</a>
+              <a href="javascript:;" data-href="/getZanRecord?record_pageNum=2&record_pageSize=3" id="i_zan">我赞过的</a>
+              <a href="javascript:;" data-href="/getCollectRecord?record_pageNum=2&record_pageSize=3" id="i_collect">我收藏的</a>
               <div class="c_fix"></div>
             </header><!--lft_opt_nav-->
             <div class="lft_opt_bd">
@@ -148,19 +66,81 @@
       </div>
     </div>
   </div>
-   <script type="text/javascript">
-    $(function(){
-      $('.work_list').on('click','.novel_config',function(){
-        $(this).parent().parent().parent().find('.info_pl').toggleClass('toggle_slide');
-      })
-    });
-  </script>
-
   <script type="text/javascript">
      $(function(){
-      $('.fake_a').bind('click',function(){
-        window.location = $(this).data('href');
+      var r_getData = function(url){
+        $.ajax({
+          url:url,
+          success:function(data){
+            var idt_tpl = "";
+            for(var i = 0;i<data.length;i++){
+              var pic_src = data[i].novel_pic || '/pic/novel_pic/dp.jpg';
+             idt_tpl +="<div class=\"r_novel_idt\">"+
+                  "<div class=\"info_pl\" style=\"height:230px;\">"+
+                    "<div class=\"lft_pt\">"+
+                      "<img alt='' src="+pic_src+" width=\"100%\" height=\"100%\" style=\"display:block\">"+
+                    "</div>"+
+                    "<div class=\"rgt_pt\" style=\"overflow:hidden;position:relative;\"> "+
+                      "<div class=\"r_opt_time\">收藏于<br>2015-12-12 12:13</div>"+
+                      "<div class=\"info_item\">"+
+                        "<div class=\"item_item_sub\"><label>书名: </label>"+data[i].novel_name+"</div>"+
+                        "<div class=\"item_item_sub\"><label>作者: </label>"+data[i].novel_author_name+"</div>"+
+                      "</div><!--info_item-->"+
+                      "<div class=\"info_item\">"+
+                        "<div class=\"item_item_sub\">"+
+                          "<label>开更日期: </label>2015-1-15"+
+                        "</div> "+
+                        "<div class=\"item_item_sub\">"+
+                          "<label>完结日期: </label>2015-12-1"+
+                        "</div> "+
+                      "</div><!--info_item-->"+
+                      "<div class=\"info_item\">"+
+                        "<div class=\"item_item_sub\">"+
+                          "<label>分类: </label>武侠"+
+                        "</div>"+
+                        "<div class=\"item_item_sub\"><label>标签: </label>热血 奋斗 励志</div>"+
+                        "</div><!--info_item--> "+
+                        "<div class=\"info_item\">"+
+                          "<div class=\"item_item_sub\"><label>小说描述: </label>"+
+                          "</div>"+
+                          "<div class=\"info_des_pl\">"+data[i].novel_description+
+                          "</div>"+
+                          "<div class=\"r_btn_pl\" >"+
+                            "<a href=\"/novel_detail?_id="+data[i]._id+"\">开始阅读</a>"+
+                            "<a href=\"/quit_collect?_id="+data[i]._id+"\">取消收藏</a>"+
+                          "</div>"+
+                        "</div><!--info_item--> "+
+                      "</div> "+
+                    "</div>"+
+                "</div><!--r_novel_idt-->";
+
+               
+              }
+               $('.work_list').html("").append(idt_tpl);
+
+          },
+          error:function(error){
+            alert('数据获取错误！');
+          }
+        })
+      }
+
+     // r_getData('/getCollectRecord?record_pageNum=2&record_pageSize=3');
+
+
+      $('#i_zan,#i_collect,#i_read').bind('click',function(e){
+         $('.lft_opt_nav').children('a.current').removeClass('current');
+         $(this).addClass('current');
+         r_getData($(this).data('href'));
       });
+
+      ;(function(global,$){
+        var tab = window.location.search.split('=')[1] || undefined;
+        if(!tab)
+          return;
+        $('.lft_opt_nav').children('a').eq(tab).trigger('click');
+        //r_getData(tab);
+      })(window,$);
      });
   </script>
     
