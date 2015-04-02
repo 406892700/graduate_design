@@ -16,4 +16,15 @@
             init();
         });
     }
+
+
+    Date.format = function(date){
+        if(!date)
+            return;
+        date = (typeof date == 'object')?(date):(new Date(date));
+
+        var dateList = [date.getFullYear(),'-',date.getMonth()+1,'-',date.getDate(),' ',date.getHours(),':',new String(date.getMinutes()).length == 2?date.getMinutes():"0"+date.getMinutes()];
+
+        return dateList.join("");
+        }
 })(window,$)

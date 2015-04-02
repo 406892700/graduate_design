@@ -40,9 +40,9 @@
                   </div><!--drop_down_list-->
                 </div><!--drop_down-->
               </a>
-              <a href="javascript:;" data-href="" id="i_read">我读过的</a>
-              <a href="javascript:;" data-href="/getZanRecord?record_pageNum=2&record_pageSize=3" id="i_zan">我赞过的</a>
-              <a href="javascript:;" data-href="/getCollectRecord?record_pageNum=2&record_pageSize=3" id="i_collect">我收藏的</a>
+              <a href="javascript:;" data-href="/getReadRecord?record_pageNum=1&record_pageSize=5" data-type="read" id="i_read">我读过的</a>
+              <a href="javascript:;" data-href="/getZanRecord?record_pageNum=1&record_pageSize=5" data-type="zan" id="i_zan">我赞过的</a>
+              <a href="javascript:;" data-href="/getCollectRecord?record_pageNum=1&record_pageSize=5" data-type="sc" id="i_collect">我收藏的</a>
               <div class="c_fix"></div>
             </header><!--lft_opt_nav-->
             <div class="lft_opt_bd">
@@ -68,20 +68,31 @@
   </div>
   <script type="text/javascript">
      $(function(){
-      var r_getData = function(url){
+      var r_getData = function(url,type){
         $.ajax({
           url:url,
           success:function(data){
-            var idt_tpl = "";
+            var idt_tpl = "",pic_src,type_url;
+
             for(var i = 0;i<data.length;i++){
-              var pic_src = data[i].novel_pic || '/pic/novel_pic/dp.jpg';
+              pic_src = data[i].novel_pic || '/pic/novel_pic/dp.jpg';
+              type_url = (function(type){
+                                if(type == "sc")
+                                  return "<a href=\"/quitCollect?_id="+data[i].collect_id+"\">取消收藏</a>";
+                                if(type == "zan")
+                                  return "<a href=\"/quitZan?_id="+data[i].collect_id+"\">取消赞</a>";
+                                if(type == "read")
+                                  return "<a href=\"/quitRead?_id="+data[i].collect_id+"\">删除记录</a>";
+                                else
+                                  return "";
+                              })(type);
              idt_tpl +="<div class=\"r_novel_idt\">"+
                   "<div class=\"info_pl\" style=\"height:230px;\">"+
                     "<div class=\"lft_pt\">"+
                       "<img alt='' src="+pic_src+" width=\"100%\" height=\"100%\" style=\"display:block\">"+
                     "</div>"+
                     "<div class=\"rgt_pt\" style=\"overflow:hidden;position:relative;\"> "+
-                      "<div class=\"r_opt_time\">收藏于<br>2015-12-12 12:13</div>"+
+                      "<div class=\"r_opt_time\">&nbsp;<br>"+Date.format(data[i].collect_time)+"</div>"+
                       "<div class=\"info_item\">"+
                         "<div class=\"item_item_sub\"><label>书名: </label>"+data[i].novel_name+"</div>"+
                         "<div class=\"item_item_sub\"><label>作者: </label>"+data[i].novel_author_name+"</div>"+
@@ -107,7 +118,7 @@
                           "</div>"+
                           "<div class=\"r_btn_pl\" >"+
                             "<a href=\"/novel_detail?_id="+data[i]._id+"\">开始阅读</a>"+
-                            "<a href=\"/quit_collect?_id="+data[i]._id+"\">取消收藏</a>"+
+                            type_url+
                           "</div>"+
                         "</div><!--info_item--> "+
                       "</div> "+
@@ -131,7 +142,7 @@
       $('#i_zan,#i_collect,#i_read').bind('click',function(e){
          $('.lft_opt_nav').children('a.current').removeClass('current');
          $(this).addClass('current');
-         r_getData($(this).data('href'));
+         r_getData($(this).data('href'),$(this).data('type'));
       });
 
       ;(function(global,$){

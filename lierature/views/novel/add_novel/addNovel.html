@@ -96,7 +96,7 @@
         <span class="icon add_novel_icon"></span> 新开小说
     </div>
     <div class="main_form">
-    <form action="/addNovel"  method="post" >
+    <form action="/addNovel"  method="post"  class="main_form1">
     <div class="form_item">
         <div class="form_label"><label>作品名称</label></div>
         <div class="form_cpt"><input type="text" name="novel_name"></div>
@@ -205,7 +205,7 @@
                 }
                 var pic_name = $('.fake_text').text().split('\\');
                 console.log(pic_name);
-                 $('.main_form').append("<input type='hidden' value=/pic/novel_pic/"+pic_name[pic_name.length-1]+" name='novel_pic'>");
+                 $('.main_form1').append("<input type='hidden' value=/pic/novel_pic/"+pic_name[pic_name.length-1]+" name='novel_pic'>");
             });
         });
     </script>
@@ -219,7 +219,7 @@
                 $.ajax({
                     url:'',
                     success:function(data){
-                        $('.main_form').submit();
+                        $('.main_form1').submit();
                         alert(1);
                     },
                     error:function(error){

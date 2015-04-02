@@ -26,7 +26,13 @@ collectDao.prototype.findRecordById = function(user_id,callback){
 	Collect.find({'collect_record_user_id':user_id},function(err,docs){
 		callback(err,docs);
 	});
-}
+};
+
+collectDao.prototype.deleteRecord = function(_id,callback){
+	Collect.remove({'_id':_id},function(err,docs){
+		callback(err,docs);
+	});
+};
 
 
 module.exports = new collectDao();

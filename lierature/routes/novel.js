@@ -6,6 +6,7 @@ var novelDao = require('../dao/novelDao');
 var chapterDao = require('../dao/chapterDao');
 var zanDao = require('../dao/zanDao');
 var collectDao = require('../dao/collectDao');
+var readDao = require('../dao/readDao');
 
 module.exports = function(app){
     app.get("/addNovel_page",function(req,res){
@@ -70,6 +71,19 @@ module.exports = function(app){
           }
           res.json('info','success!');
 
+    });
+
+
+    //添加&更新阅读记录
+    app.get('/addReadRecord',function(req,res){
+        var novel_id = req.query.novel_id,
+            user_id = req.query.user_id || req.session.user._id;
+        console.log("novel_id   "+novel_id);
+        console.log("user_id   "+user_id);
+        readDao.save({'read_record_novel_id':novel_id,'read_record_from_id':user_id,'read_date':new Date()},function(err,docs){
+            if(!err)
+                res.json({'info':'添加成功'})
+        });
     });
 
 
@@ -153,25 +167,5 @@ module.exports = function(app){
                 
         });
     });
-
-
-    // //获取记录
-    // app.get('/getCollectRecord',function(req,res){
-    //     console.log('getCollectRecord');
-    //     res.json('info','dsdfs');
-    //        var user_id = req.query.user_id,
-    //            record_pageNum = req.query.record_pageNum,
-    //            record_pageSize = req.query.record_pageSize;
-    //        collect_recordDao.findRecordById(user_id,function(err,docs){
-    //          var start_p = (record_pageNum-1)*record_pageSize;
-    //          var end_p = record_pageNum*record_pageSize;
-    //          console.log(start_p +"mmmmmmmmmmmmm" +end_p)
-    //          if(!err){
-    //               end_p = (end_p > docs.length)?(docs.length):(end_p);
-    //               res.json(docs.slice(start_p,end_p));
-    //          }
-           
-    //        });
-    //  });
 
 }

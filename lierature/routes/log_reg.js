@@ -55,5 +55,11 @@ module.exports = function(app){
         });
     });
 
+    //注销登录
+    app.get('/quit_log',function(req,res){
+        req.session.user = null;
+        res.redirect('/login');
+    });
+
 
 }

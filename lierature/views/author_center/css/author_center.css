@@ -391,7 +391,8 @@
       top: 25px;
       -webkit-transform-origin: center;
       -webkit-transform: rotate(45deg);
-      font-size: 12px;
+      font-size: 13px;
+      line-height: 15px;
     }
 
     .r_novel_idt{
