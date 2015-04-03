@@ -15,6 +15,7 @@ module.exports = function(app){
 
     app.post('/addNovel',function(req,res){
         var obj = req.body;
+        
         console.log(obj.novel_name);
         
         //console.log("-------------------------------------------"+req.body.novel_pic);
@@ -80,10 +81,25 @@ module.exports = function(app){
             user_id = req.query.user_id || req.session.user._id;
         console.log("novel_id   "+novel_id);
         console.log("user_id   "+user_id);
-        readDao.save({'read_record_novel_id':novel_id,'read_record_from_id':user_id,'read_date':new Date()},function(err,docs){
-            if(!err)
-                res.json({'info':'添加成功'})
+        var obj = {'read_record_novel_id':novel_id,'read_record_from_id':user_id};
+        readDao.ifExist(obj,function(err,docs){
+            if(err){
+                res.json('数据获取错误！');
+                return;
+            }
+            if(docs.length > 0){
+                readDao.updateDate(obj,function(err,docs){
+                    res.json('info','阅读记录已更新');
+                });
+            }else{
+                obj.read_date = new Date();
+                readDao.save(obj,function(err,docs){
+                    if(!err)
+                        res.json({'info':'添加成功'});
+                });
+            }
         });
+        
     });
 
 
@@ -93,7 +109,7 @@ module.exports = function(app){
         user_id = req.query.user_id;
         console.log("novel_id   "+novel_id);
         console.log("user_id   "+user_id);
-        novelDao.updateZan(novel_id,function(err,docs){
+        novelDao.updateZan(novel_id,1,function(err,docs){
             if(!err){
                 zanDao.save({'collect_record_novel_id':novel_id,'collect_record_user_id':user_id,'collect_record_date':new Date()},function(err,docs){
                     if(err){
@@ -116,7 +132,7 @@ module.exports = function(app){
     app.get('/collect_novel',function(req,res){
         var novel_id = req.query.novel_id,
         user_id = req.query.user_id;
-        novelDao.updateCollect(novel_id,function(err,docs){
+        novelDao.updateCollect(novel_id,1,function(err,docs){
             if(!err){
                 collectDao.save({'collect_record_novel_id':novel_id,'collect_record_user_id':user_id,'collect_record_date':new Date()},function(err,docs){
                     //console.log(docs);

@@ -37,14 +37,14 @@ novelDao.prototype.findByUserId = function(user_id,callback){
     });
 }
 
-novelDao.prototype.updateZan = function(novel_id,callback){
-    Novel.update({'_id':novel_id},{'$inc':{'novel_zan_num':1}},{'upsert': false},function(err){
+novelDao.prototype.updateZan = function(novel_id,num,callback){
+    Novel.update({'_id':novel_id},{'$inc':{'novel_zan_num':num}},{'upsert': false},function(err){
         callback(err);
     });
 }
 
-novelDao.prototype.updateCollect = function(novel_id,callback){
-    Novel.update({'_id':novel_id},{'$inc':{'novel_collection_num':1}},{'upsert':false},function(err){
+novelDao.prototype.updateCollect = function(novel_id,num,callback){
+    Novel.update({'_id':novel_id},{'$inc':{'novel_collection_num':num}},{'upsert':false},function(err){
         callback(err);
     });
 }

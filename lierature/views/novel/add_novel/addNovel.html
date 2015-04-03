@@ -2,90 +2,9 @@
 <html>
 <head>
     <title><%= name %></title>
+    <link rel="stylesheet" href="/novel/add_novel/css/add_novel.css">
     <style>
-        .add_ttl{
-            color:#fff;
-            background-color: #0078d8;
-            height: 60px;
-            font-size: 26px;
-            margin-top:15px;
-            line-height: 60px;
-            text-align: left;
-            padding-left:40px;
-        }
 
-        .main_form{
-            border: 1px solid #e8e8e8;
-            border-top: none;
-            margin-top: 0px !important;
-            padding-top: 25px;
-        }
-
-        .add_novel_icon{
-            background:url('/stylesheets/images/iconfont-tianjia.png') no-repeat 0 0;
-            width:40px;
-            height: 40px;
-            vertical-align: text-bottom;
-            background-size: cover;
-        }
-
-        .upload_instead{
-            border:1px solid #0078d8;
-            height: 25px;
-            width: 210px;
-            position: absolute;
-            left:0px;
-            top:0px;
-            background-color: #fff;
-        }
-
-        .upload_instead > .fake_btn{
-            float:right;
-            height: 25px;
-            background-color: #0078d8;
-            color:#fff;
-            line-height: 25px;
-            width: 60px;
-            text-align:center;
-            cursor:pointer;
-        }
-
-        .upload_instead > .fake_text{
-            float:left;
-            margin-left: 5px;
-            margin-right: 5px;
-            height:25px;
-            width:140px;
-            overflow: hidden;
-            text-overflow:ellipsis;
-            white-space:nowrap;
-        }
-
-        .pic_preview{
-            width:150px;
-            height: 200px;
-            border:1px solid #aaa;
-            margin-top: 10px;
-            margin-left: 90px;
-            background-size: 150px 200px !important;
-        }
-
-        .pic_preview > img{
-            display: block;
-            width: 100%;
-            height:100%;
-        }
-
-        .form_submit{
-            border:none;
-            color:#fff;
-            background-color: #0078d8;
-            width:80px;
-            height: 30px;
-            font-size: 16px;
-            line-height: 30px;
-            font-family: 'Microsoft Yahei';
-        }
     </style>
 </head>
 <body>
@@ -113,21 +32,44 @@
         <div class="form_label"><label>作品类别</label></div>
         <div class="form_cpt">
             <select name="novel_type">
+                <option value="玄幻">玄幻</option>
+                <option value="奇幻">奇幻</option>
                 <option value="武侠">武侠</option>
                 <option value="仙侠">仙侠</option>
-                <option value="玄幻">玄幻</option>
+                <option value="都市">都市</option>
+                <option value="职业">职业</option>
+                <option value="历史">历史</option>
+                <option value="军事">军事</option>
+                <option value="游戏">游戏</option>
+                <option value="竞技">竞技</option>
                 <option value="科幻">科幻</option>
+                <option value="灵异">灵异</option>
                 <option value="同人">同人</option>
+                <option value="潜力">潜力</option>
             </select>
         </div>
         <div class="c_fix"></div>
     </div>
 
-     <!-- <div class="form_item">
+     <div class="form_item">
         <div class="form_label"><label>作品标签</label></div>
-        <div class="form_cpt"><input type="text" name="novel_tags"></div>
+        <div class="form_cpt">
+            <div class="tag_factory">
+                <div class="tag_wrap">
+                    <div class="text_box">
+                        <input type="text">
+                    </div>
+                    <a href="javascript:void(0)" class="tag_btn">添加标签</a>
+                </div>
+                <div class="tag_list">
+                </div>
+                <div class="tag_info"></div>
+            </div><!--tag_factory-->
+
+            <input type="hidden" name="novel_tags">
+        </div>
         <div class="c_fix"></div>
-    </div> -->
+    </div>
 
     <div class="form_item">
         <div class="form_label"><label>作品描述</label></div>
@@ -212,8 +154,9 @@
 </div>
 <script type="text/javascript">
         $(function(){
-            $('.form_article').count_word();
-            $('.form_description').count_word();
+            $('.form_article').count_word();//统计字数
+            $('.form_description').count_word();//统计字数
+            $('.tag_factory').tag_factory('novel_tags');//标签插件
             $('.form_submit').bind('click',function(){
                 $('.upload_form').submit();
                 $.ajax({

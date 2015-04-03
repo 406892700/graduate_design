@@ -73,7 +73,6 @@ module.exports = function(app){
                               "collect_time":date_list[i],
                               "collect_id":record_id_list[i]
                         }
-                        console.log('-----------------------------------');
                     }
                     res.json(temp);
                  });
@@ -168,8 +167,8 @@ module.exports = function(app){
                               "collect_time":date_list[i],
                               "collect_id":record_id_list[i]
                         }
-                        console.log('-----------------------------------');
                     }
+                    console.log(temp);
                     res.json(temp);
                  });
             }
@@ -180,10 +179,19 @@ module.exports = function(app){
     app.get('/quitCollect',function(req,res){
         console.log('quitCollect');
         var _id = req.query._id;
-        collect_recordDao.deleteRecord(_id,function(err,docs){
-            if(!err){
-                res.json({'info':'删除成功！'});
-            }
+        console.log(_id);
+        collect_recordDao.findRecordByRecordId(_id,function(err,docs){//找到该条记录
+          console.log(docs);
+          if(!err){
+             novelDao.updateCollect(docs[0].collect_record_novel_id,-1,function(err,docs){//将小说的收藏数-1
+              if(!err){
+                 collect_recordDao.deleteRecord(_id,function(err,docs){//删除该条记录
+                  if(!err)
+                    res.json({'info':'删除成功！'});
+                });
+              }
+             });
+          }
         });
     });
 
@@ -191,10 +199,17 @@ module.exports = function(app){
     app.get('/quitZan',function(req,res){
         console.log('quitZan');
         var _id = req.query._id;
-        zan_recordDao.deleteRecord(_id,function(err,docs){
-            if(!err){
-                res.json({'info':'删除成功！'});
-            }
+        zan_recordDao.findRecordByRecordId(_id,function(err,docs){
+          console.log(docs);
+          if(!err){
+            novelDao.updateZan(docs[0].collect_record_novel_id,-1,function(err,docs){
+              zan_recordDao.deleteRecord(_id,function(err,docs){
+                  if(!err){
+                      res.json({'info':'删除成功！'});
+                  }
+              });
+            });
+          }
         });
     });
 

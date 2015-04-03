@@ -188,19 +188,19 @@ function replace_em(str){
 	});
 
 	$(function(){
-		//写入阅读记录
+		//写入&更新阅读记录
 		if("<%= user%>"){
 			$.ajax({
 				url:'addReadRecord?novel_id='+window.location.search.split("=")[1]+"&r="+Math.random(),
 				success:function(data){
-					alert('特么的已经加到阅读记录里面了！');
+					console.log('特么的已经加到阅读记录里面了！');
 				},
 				error:function(error){
 					alert('数据获取错误！3');
 				}
 			})
 		}
-	})
+	});
 </script>
 <body>
 	<header class="chapter_head">

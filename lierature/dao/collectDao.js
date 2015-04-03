@@ -28,6 +28,12 @@ collectDao.prototype.findRecordById = function(user_id,callback){
 	});
 };
 
+collectDao.prototype.findRecordByRecordId = function(_id,callback){
+	Collect.find({'_id':_id},function(err,docs){
+		callback(err,docs);
+	});
+}
+
 collectDao.prototype.deleteRecord = function(_id,callback){
 	Collect.remove({'_id':_id},function(err,docs){
 		callback(err,docs);
