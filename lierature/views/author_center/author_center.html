@@ -19,7 +19,7 @@
                 var idt_list = "";
                 for(var i = 0;i<data.length;i++){
                   var pic_src = data[i].novel_pic || '/pic/novel_pic/dp.jpg';
-                idt_list = idt_list + "<div class=\"novel_idt\">"+
+                  idt_list = idt_list + "<div class=\"novel_idt\">"+
                   "<div class=\"info_pl\">"+
                     "<div class=\"lft_pt\">"+
                       "<img alt=\"\" src='"+pic_src+"' width=100% height=100% style='display:block'>"+
@@ -31,13 +31,13 @@
                       "</div><!--info_item-->"+
 
                       "<div class=\"info_item\">"+
-                        "<div class=\"item_item_sub\"><label>开更日期: </label>2015-1-15</div>"+
-                       " <div class=\"item_item_sub\"><label>完结日期: </label>2015-12-1</div>"+
+                        "<div class=\"item_item_sub\"><label>开更日期: </label>"+Date.format(data[i].novel_start)+"</div>"+
+                       " <div class=\"item_item_sub\"><label>完结日期: </label>"+(data[i].novel_end == 'null'?'<span style=\"color:#FF4401\">连载中..</span>':Date.format(data[i].novel_end))+"</div>"+
                      " </div><!--info_item-->"+
 
                       "<div class=\"info_item\">"+
                         "<div class=\"item_item_sub\"><label>分类: </label>"+data[i].novel_type+"</div>"+
-                        "<div class=\"item_item_sub\"><label>标签: </label>热血 奋斗 励志</div>"+
+                        "<div class=\"item_item_sub\"><label>标签: </label>"+data[i].novel_tags+"</div>"+
                      " </div><!--info_item-->"+
 
                      " <div class=\"info_item\">"+

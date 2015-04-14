@@ -1,0 +1,38 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网站后台</title>
+	<link rel="stylesheet" type="text/css" href="/admin/css/admin.css">
+	<style type="text/css">
+		body{
+			background-color: #e8e8e8;
+			text-align: center;
+			/*background: url('/admin/images/log_bg.jpg') repeat 0 0;
+			background-size: 1920px 1080px;*/
+			/*background-size: cover;*/
+		}
+	</style>
+</head>
+<body>
+	<div class="a_login_panel">
+		<div class="ttl"> 
+			Login
+		</div>
+		<form action="/admin_login_now" method="post"> 
+			<div class="form_cpt">
+				<div class="ttl user"></div><input type="text" class="form_text" placeholder="用户名" name="username">
+			</div>
+			<div class="form_cpt">
+				<div class="ttl psw"></div><input type="text" class="form_text" placeholder="密码" name="password">
+			</div>
+			<div class="form_cpt2">
+				<div class="loading"></div>
+			</div>
+			<div class="form_cpt2">
+				<input type="submit" value="login">
+			</div>
+		</form>
+	</div>
+</body>
+</html>

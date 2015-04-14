@@ -83,17 +83,17 @@
                         <div class="notice_info">
                             申请成为作者之前，你需要完善自己的个人信息，并提交超过5000字的作品章节！
                         </div>
-                        <form action="/" class="main_form">
+                        <form action="/add_new_apply" class="main_form" method="post">
                             <div class="form_item">
                                 <div class="form_label"><label>作品名称</label></div>
-                                <div class="form_cpt"><input type="text"></div>
+                                <div class="form_cpt"><input type="text" name="Apply_record_title"></div>
                                 <div class="c_fix"></div>
                             </div>
 
                             <div class="form_item">
                                 <div class="form_label"><label>作品类别</label></div>
                                 <div class="form_cpt">
-                                    <select>
+                                    <select name="Apply_record_type">
                                         <option value="武侠">武侠</option>
                                         <option value="仙侠">仙侠</option>
                                         <option value="武侠">武侠</option>
@@ -107,7 +107,7 @@
                             <div class="form_item">
                                 <div class="form_label"><label>作品章节(选段)</label></div>
                                 <div class="form_cpt">
-                                    <textarea class="form_article"></textarea><br>
+                                    <textarea class="form_article" name="Apply_record_content"></textarea><br>
                                     <label class="count_words"><span class="word_num">533</span>个字</label>
                                 </div>
                                 <div class="c_fix"></div>

@@ -5,13 +5,17 @@
 
 var express = require('express');
 
+/*------------所有的路由控制 start-------------------*/
 var routes = require('./routes');//index.js主要用于控制页面之间的跳转
 var validate = require('./routes/validate');//用于各种验证
 var log_reg = require('./routes/log_reg');//登录注册
-var novel= require("./routes/novel");
-var chapter = require("./routes/chapter");
-var comment = require("./routes/comment");
-var record = require("./routes/record");
+var novel= require("./routes/novel");//小说相关
+var chapter = require("./routes/chapter");//章节相关
+var comment = require("./routes/comment");//评论相关
+var record = require("./routes/record");//各种记录相关
+var admin = require("./routes/admin")//后台相关
+/*------------所有的路由控制 end-------------------*/
+
 var http = require('http');
 var path = require('path');
 ejs = require('ejs');
@@ -54,7 +58,7 @@ novel(app);
 chapter(app);
 comment(app);
 record(app);
-
+admin(app);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('监听了localhost: ' + app.get('port')+
  "\n-------------------------------------------------------------------------------------------");

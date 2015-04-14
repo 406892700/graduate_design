@@ -1,0 +1,218 @@
+﻿body{
+	font:normal normal 12px/20px 'Microsoft Yahei';
+	text-align: center;
+	margin:0px;
+	background-color: rgb(242,242,242);
+}
+a{
+	text-decoration: none;
+}
+
+.a_top{
+	background-color: #0078d8;
+	height: 60px;
+	line-height: 60px;
+	color:#fff;
+}
+
+.a_top > .a_tab{
+	height: 100%;
+	line-height: 60px;
+	color:#fff;
+	font-size: 16px;
+	display: block;
+	padding:0px 10px;
+	width: 100px;
+	float: left;
+}
+
+.a_top > .a_tab.current, .a_top > .a_tab:hover{
+	background-color: rgba(0,0,0,0.2);
+	transition:all 0.5s;
+}
+
+.a_top > .left_logo{
+	float: left;
+	font-size: 25px;
+	width: 200px;
+	text-align: center;
+}
+
+.a_top > .right_info{
+	width: 600px;
+	border:1px solid #aaa;
+	height: 100%;
+	float: right;
+}
+
+
+.a_left{
+	float: left;
+	width: 250px;
+	/*background-color: rgb(242,242,242);*/
+	min-height:900px;
+}
+
+.a_left > a.item{
+	height: 55px;
+	text-align: center;
+	font-size: 14px;
+	color:#333;
+	background: url('/admin/css/images/icon_admin.png') no-repeat 8% 50%;
+	background-size: 25px 25px;
+	display: block;
+	padding-left:60px;
+	line-height: 55px;
+	color:#fff;
+	text-align: left;
+	/*background-color: rgb(225,225,225);*/
+	background-color: #0078d8;
+	margin:1px 0px;
+	border-left: 0px solid #aaa;
+	transition:border-left 0.5s;
+}
+
+.a_left > a.current,.a_left > a:hover{
+	background-color: #Fff;
+	border-right-color:#fff; 
+	transition:all 0.5s;
+	border-left: 5px solid #0078d8;
+	color:#333;
+}
+
+
+.a_main{
+	margin-left: 250px;
+	background-color: #fff;
+	/*border:1px solid #aaa;*/
+	min-height:900px ;
+}
+
+.a_footer{
+	background-color: rgb(230,230,230);
+	height: 40px;
+	clear: both;
+	text-align: center;
+	line-height: 40px;
+	color:#aaa;
+	font-size: 12px;
+}
+
+
+
+/*后台登录 样式*/
+.a_login_panel{
+	position: absolute;
+	width:400px;
+	height: 450px;
+	/*background-color: #0078d8;*/
+	background-color: rgba(0, 120, 216,0.2);
+	left:50%;
+	top:50%;
+	margin-left: -200px;
+	margin-top: -225px;
+	box-shadow: 0px 0px 5px #aaa;
+	border-radius: 5px;
+}
+
+.a_login_panel > .ttl{
+	color:#fff;
+	font-size:30px;
+	text-align: left;
+	margin: 20px 30px;
+	height: 60px;
+	line-height: 60px;
+	text-shadow:2px 2px 5px rgba(0, 120, 216,0.8);
+}
+
+.form_cpt{
+	margin: 20px 20px;
+	border:5px solid #fff;
+	height: 50px;
+}
+
+.form_cpt2{
+	margin: 0px 20px;
+	height: 50px;
+	text-align: center;
+}
+
+.form_cpt2 > input[type="submit"]{
+	border: none;
+	display: block;
+	background-color: #fff;
+	color: #0078d8;
+	font-size: 20px;
+	line-height: 50px;
+	text-align: center;
+	font-family: 'Microsoft Yahei';
+	outline: none;
+	width: 100%;
+	cursor: pointer;
+	text-shadow:2px 2px 2px rgba(0, 120, 216,0.45);
+}
+
+@-webkit-keyframes spin {
+	20% {-webkit-transform: rotate(72deg);}
+	40% {-webkit-transform: rotate(144deg);}
+	60% {-webkit-transform: rotate(216deg);}
+	80% {-webkit-transform: rotate(288deg);}
+	100% {-webkit-transform: rotate(360deg);}
+}
+
+.form_cpt2 > .loading{
+	height: 30px;
+	width: 30px;
+	background: url('/admin/css/images/loading.png') no-repeat 0 0;
+	background-size: 30px 30px;
+	/*-webkit-animation-name: spin;*/
+	 -webkit-animation-name:spin;/*动画属性名，也就是我们前面keyframes定义的动画名*/
+     -webkit-animation-duration: 0.5s;/*动画持续时间*/
+     -webkit-animation-timing-function: ease-in-out; /*动画频率，和transition-timing-function是一样的*/
+     -webkit-animation-delay: 0.5s;/*动画延迟时间*/
+     -webkit-animation-iteration-count: infinite;/*定义循环资料，infinite为无限次*/
+     /*-webkit-animation-direction: alternate;*//*定义动画方式*/
+	margin: 0px auto;
+}
+
+.form_cpt > .ttl{
+	float:left;
+	width:50px;
+	height: 50px;
+	background-color: #fff;
+	background-size: 30px 30px;
+}
+
+.form_cpt > .user{
+	background: url('/admin/css/images/user.png') no-repeat center center;
+	background-size: 30px 30px;
+	background-color: #fff;
+}
+
+.form_cpt > .psw{
+	background: url('/admin/css/images/psw.png') no-repeat center center;
+	background-size: 30px 30px;
+	background-color: #fff;
+}
+
+.form_cpt > .form_text{
+	float: left;
+	border-width: 0px;
+	height: 48px;
+	width:280px;
+	background-color: transparent;
+	color:#fff;
+	font:normal normal 20px/50px 'Microsoft Yahei';
+	outline: none;
+	padding-left: 10px;
+}
+
+.form_cpt > input::-moz-placeholder {
+	color:#fff;
+}
+.form_cpt > input:-ms-input-placeholder {
+	color:#fff;
+}
+.form_cpt > input::-webkit-input-placeholder {
+	color:#fff;
+}

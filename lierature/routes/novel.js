@@ -17,6 +17,8 @@ module.exports = function(app){
         var obj = req.body;
         
         console.log(obj.novel_name);
+        obj.novel_start = new Date();
+        obj.novel_end = 'null';
         
         //console.log("-------------------------------------------"+req.body.novel_pic);
         novelDao.save(obj,function(err){

@@ -73,11 +73,20 @@ chapter_status:String//章节状态(是否通过审核) -->
             <div class="form_item">
                 <div class="form_label"><label>章节正文</label></div>
                 <div class="form_cpt">
-                    <textarea class="form_article"></textarea><br>
+                    <textarea class="form_article" name="chapter_content"></textarea><br>
                     <label class="count_words"><span class="word_num">0</span>个字</label>
                 </div>
                 <div class="c_fix"></div>
             </div>
+
+            <script type="text/javascript">
+                $(function(){
+                    $('.form_article').change(function(evt){
+                    var ori_text = $(this).val()+'\n';
+                    $(this).val(ori_text.replace(/([^\n]+)\n/g,function(a,b){return '<p>'+b+'</p>';}));
+                });
+                });
+            </script>
 
             <div class="form_item">
                 <div class="form_label"><label>作者协议</label></div>

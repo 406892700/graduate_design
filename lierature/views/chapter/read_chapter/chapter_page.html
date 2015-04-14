@@ -8,6 +8,21 @@
   <meta name="Description" content="">
   <title>小说阅读</title>
   <link rel="stylesheet" type="text/css" href="/chapter/read_chapter/css/styles.css">
+  <style type="text/css">
+    .art_body{
+      text-align: left;
+      margin:10px auto;
+      width:860px;
+    }
+
+    .art_body > p{
+      text-align: left;
+      font-size: 14px;
+      color:#333;
+      text-indent: 2em;
+      line-height: 25px;
+    }
+  </style>
  </head>
  <body>
 <!--   <div class="load"></div> -->
@@ -31,7 +46,7 @@
           url:url,
           success:function(data){
             $('.art_header > h3').text(data.data.chapter_title);
-            $('.art_body').text(data.data.chapter_content);
+            $('.art_body').html(data.data.chapter_content);
             var next_index = chapter_index*1+1;
             var pre_index = chapter_index-1;
             console.log('current='+chapter_index+',next='+next_index+",pre="+pre_index);

@@ -46,6 +46,17 @@ module.exports = function(app){
         res.render('author_center/author_center',{'title':'作者个人中心','user':req.session.user});
     });
 
+    //网站后台登录
+    app.get('/admin_log',function(req,res){
+        res.render('admin/admin_log',{'title':'后台登录'})
+    });
+
+
+    //网站后台
+    app.get('/admin',function(req,res){
+        res.render('admin/admin',{'title':'网站后台','user':req.session.user});
+    });
+
     //后台错误 500
     app.get("/error_500",function(req,res){
         res.render('error/500',{});

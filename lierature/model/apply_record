@@ -4,8 +4,13 @@ var Schema = mongoose.Schema;
 //作者申请记录--------------------------------------------
 var Apply_record = new Schema({
     id:String,
-    Apply_record_name:String,
-    Apply_record_author:String
+    Apply_record_author:String,//申请者名字
+    Apply_record_author_id:String,//申请者id
+    Apply_record_date:String,//申请日期
+    Apply_record_status:String,//申请状态(1:未审核 2:审核未通过 3:审核通过)
+    Apply_record_title:String,//申请附带小说题目
+    Apply_record_type:String,//申请附带小说的类别
+    Apply_record_content:String//申请附带的小说章节
 });
 var Apply_record = mongoose.model('Apply_record',Apply_record);
 module.exports = Apply_record;

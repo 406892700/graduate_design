@@ -13,7 +13,7 @@ var Novel = new Schema({
     novel_collection_num:Number,//收藏数量
     novel_chapter_num:Number,//章节数目
     novel_comment_num:Number,//评论数目
-    novel_tags:[String],//标签，可以有多个
+    novel_tags:String,//标签，可以有多个
     novel_description:String,//小说简单描述
     novel_type:String,//小说所属类型
     if_end:String,//是否完结

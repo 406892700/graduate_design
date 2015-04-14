@@ -1,0 +1,147 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>网站后台</title>
+	<link rel="stylesheet" type="text/css" href="./css/admin.css">
+	<script type="text/javascript" src="/javascript/jquery-1.9.1.js"></script>
+</head>
+<body>
+	<script type="text/javascript">
+		;(function(global,$){
+			$.fn.routes = function(){
+				var that = this;
+				var tab_list  = that.find('a');
+				var init =  function(){
+					tab_list.bind('click',function(evt){
+						$.ajax({
+							url:$(this).data('url'),
+							success:function(data){
+								$('#main_pl').empty().html(data);
+							},
+							error:function(error){
+								alert('数据获取错误！');
+							}
+						});
+					});
+				}
+
+				return this.each(function(){
+						init();
+					});
+			}
+		})(window,$);
+
+		$(function(){
+			$('#left_bar').routes();
+		});
+	</script>
+	<div class="a_top">
+		<div class="left_logo">
+			xx网站后台
+		</div>
+		<a href="/" class="a_tab">回首页</a>
+		<div class="right_info">
+			 
+		</div>
+	</div>
+	<div class="a_left" id="left_bar">
+		<a href="javascript:void(0)" class="item current" data-url='/admin/content/author_apply_content.html'>
+			作者申请
+		</a>
+		<a href="javascript:void(0)" class="item">
+			新作品申请
+		</a>
+		<a href="javascript:void(0)" class="item">
+			举报申请
+		</a>
+		<a href="javascript:void(0)" class="item">
+			上传新书
+		</a>
+		<a href="javascript:void(0)" class="item">
+			首焦管理
+		</a>
+		<a href="javascript:void(0)" class="item">
+			推荐管理
+		</a>
+		<a href="javascript:void(0)" class="item">
+			权限管理
+		</a>
+		<a href="javascript:void(0)" class="item">
+			账号管理
+		</a>
+		<a href="javascript:void(0)" class="item">
+			留言管理
+		</a>
+
+	</div>
+	<style type="text/css">
+		.main_content{
+			width:100%;
+		}
+
+		.main_content > .ttl{
+			font-size: 30px;
+			color:#aaa;
+			line-height: 50px;
+			margin:0px  5%;
+			text-align: left;
+			border-bottom: 1px solid #666;
+		}
+
+		.main_content > .toolkit{
+			/*border:1px solid #aaa;*/
+			margin:10px 5%;
+			overflow: hidden;
+		}
+
+		.main_content > .toolkit > a{
+			display: block;
+			width:100px;
+			height: 40px;
+			background-color: rgb(242,242,242);
+			line-height: 40px;
+			font-size: 16px;
+			text-align: center;
+			float: left;
+			margin-right:1px;
+			color:#333;
+		}
+
+		.main_content > .toolkit > a:hover{
+			background-color: rgb(230,230,230);
+			transition:all 0.5s;
+		}
+
+		.main_content > .ttl > .sub_ttl{
+			font-size: 14px;
+			color:#666;
+
+		}
+
+		.table_wrap {
+			margin:0px 5%;
+			margin-top: 10px;
+			overflow-x:scroll;
+		}
+
+		.table_style1{
+			width: 100%;
+			border-collapse:collapse;
+			border: 1px solid #ccc;
+			/*margin: 0px 50px;*/
+		}
+
+		.table_style1  td{
+			padding:10px;
+		}
+	</style>
+	<div class="a_main" id="main_pl">
+
+	</div><!--a_main
+-->
+	<div class="a_footer">
+		406862700@qq.com 联系我
+	</div>
+</body>
+</html>
