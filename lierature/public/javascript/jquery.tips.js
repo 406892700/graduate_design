@@ -57,6 +57,7 @@
 
 	tips_obj.setText = function(content){//设置文字
 		tips_obj.children('.content').html(content);
+		$('.button_pl').show();
 		return this;
 	}
 
@@ -67,7 +68,8 @@
 
 	var append_to_tips = function(data){//添加数据
 		//alert(data);
-		tips_obj.children('.content').append(data);
+		$('.button_pl').hide();
+		tips_obj.children('.content').html('').append(data);
 	};
 
 	var getData = function(url,callback){//获取弹窗内要显示的内容
@@ -83,13 +85,14 @@
 	};
 
 	$.tips = function(url,config){//插件入口函数，返回一个弹窗对象
-		// if(url){
-		// 	getData(url,append_to_tips);
-		// }else{
-		// 	throw 'url is invalid';
-		// }
+		if(url){
+			getData(url,append_to_tips);
+		}else{
+			//throw 'url is invalid';
+		
 		config = config || {};
 		global_config = $.extend({},default_config,config);
+		}
 		return _tips_init(url,global_config);
 	}
 

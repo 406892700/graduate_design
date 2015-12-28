@@ -30,6 +30,11 @@
     margin-top:30px;
   }
 
+  .content  p {
+    text-align: left;
+    text-indent: 2em;
+  }
+
   .button_pl{
     height: 30px;
     width: 100%;

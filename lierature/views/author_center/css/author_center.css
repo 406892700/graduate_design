@@ -399,3 +399,59 @@
       margin:0px 20px 15px 20px;
       box-shadow:0px 0px 5px #aaa;
     }
+
+     .modify_info{
+      
+    }
+
+    .upload_instead {
+      border: 1px solid #0078d8;
+      height: 25px;
+      width: 210px;
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      background-color: #fff;
+    }
+
+    .upload_instead > .fake_btn {
+      float: right;
+      height: 25px;
+      background-color: #0078d8;
+      color: #fff;
+      line-height: 25px;
+      width: 60px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .pic_preview {
+      width: 150px;
+      height: 200px;
+      border: 1px solid #aaa;
+      margin-top: 10px;
+      margin-left: 90px;
+      background-size: 150px 200px !important;
+    }
+
+    .form_submit {
+        border: none;
+        color: #fff;
+        background-color: #0078d8;
+        width: 80px;
+        height: 30px;
+        font-size: 16px;
+        line-height: 30px;
+        font-family: 'Microsoft Yahei';
+      }
+
+    #valide_code,#valide_code_1{
+      border: none;
+      color: #fff;
+      background-color: #0078d8;
+      width: 120px;
+      height: 27px;
+      font-size: 12px;
+      line-height: 28px;
+      font-family: 'Microsoft Yahei';
+    }

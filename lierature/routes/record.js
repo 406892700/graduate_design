@@ -10,16 +10,22 @@ module.exports = function(app){
   //收藏记录页面
     app.get('/lookCollectRecord',function(req,res){
         console.log('去看收藏记录!');
-        if(!req.session.user)
-            res.render('login/login1',{'title':"登录",'user':req.session.user});
+        if(!req.session.user){
+          res.render('login/login1',{'title':"登录",'user':null});
+          return;
+        }
+            
         var tab = req.query.tab;
         res.render('reader_center/reader_center',{'title':'作者个人中心','user':req.session.user});
     });
     //点赞记录页面
     app.get('/lookZanRecord',function(req,res){
         console.log('去看点赞记录!');
-        if(!req.session.user)
-            res.render('login/login1',{'title':"登录",'user':req.session.user});
+        if(!req.session.user){
+          res.render('login/login1',{'title':"登录",'user':null});
+          return;
+        }
+            
         var tab = req.query.tab;
         res.render('reader_center/reader_center',{'title':'作者个人中心','user':req.session.user});
     });
@@ -27,8 +33,11 @@ module.exports = function(app){
     //收藏记录页面
     app.get('/lookReadRecord',function(req,res){
         console.log('去看阅读记录!');
-        if(!req.session.user)
-            res.render('login/login1',{'title':"登录",'user':req.session.user});
+        if(!req.session.user){
+          res.render('login/login1',{'title':"登录",'user':null});
+          return;
+        }
+            
         var tab = req.query.tab;
         res.render('reader_center/reader_center',{'title':'作者个人中心','user':req.session.user});
     });
@@ -141,15 +150,21 @@ module.exports = function(app){
                  end_p = (end_p > docs.length)?(docs.length):(end_p);
                  var id_list = [],
                      date_list = [],
-                     record_id_list = [];
+                     record_id_list = [],
+                     indexx_list = [];
                  docs.slice(start_p,end_p).map(function(v,i){
                     id_list.push(v.read_record_novel_id);
                     date_list.push(v.read_date);
                     record_id_list.push(v._id);
+                    indexx_list.push(v.read_record_novel_index);
                  });
                  console.log(id_list);
                  novelDao.findByIdArray(id_list,function(err,docs){
                     var temp = []
+
+                    console.log('打出来看看-----------------------------------------------------');
+                    console.log(indexx_list);
+                    console.log(docs);
                     for(var i = 0 ; i<docs.length;i++){
                         temp[i] = {
                               "_id" :docs[i]._id,
@@ -165,7 +180,8 @@ module.exports = function(app){
                               "novel_pic" : docs[i].novel_pic,
                               "novel_tags" : docs[i].novel_tags,
                               "collect_time":date_list[i],
-                              "collect_id":record_id_list[i]
+                              "collect_id":record_id_list[i],
+                              "chapter_index":indexx_list[i]
                         }
                     }
                     console.log(temp);
@@ -220,6 +236,40 @@ module.exports = function(app){
         read_recordDao.deleteRecord(_id,function(err,docs){
             if(!err){
                 res.json({'info':'删除成功！'});
+            }
+        });
+    });
+
+
+    //新阅读记录
+    app.get('/add_new_read_record',function(req,res){
+      console.log('添加新阅读记录~！');
+      var novel_id = req.query.novel_id;//小说id
+      var novel_user_id = req.session.user._id;//小说作者id
+      var chapter_id  = req.query.chapter_id;//章节id
+      var obj = {'read_record_novel_id':novel_id,
+                 'read_record_from_id':novel_user_id};
+        read_recordDao.ifExist(obj,function(err,docs){
+            if(err){
+                res.json('数据获取错误！');
+                return;
+            }
+            if(docs.length > 0){
+              var temp = obj;
+              obj.read_record_novel_index = chapter_id;
+                //read_recordDao.updateDate(obj,function(err,docs){
+                 //   res.json('info','阅读记录已更新'); 
+               // });
+                read_recordDao.update(temp,obj,function(err,docs){
+                  res.json('info','阅读记录已更新！');
+                })
+            }else{
+                obj.read_date = new Date();
+                obj.read_record_novel_index = chapter_id;
+                read_recordDao.save(obj,function(err,docs){
+                    if(!err)
+                        res.json({'info':'添加成功'});
+                });
             }
         });
     });

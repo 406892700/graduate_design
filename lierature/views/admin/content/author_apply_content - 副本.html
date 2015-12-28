@@ -1,0 +1,107 @@
+<div class="main_content">
+	<input type="hidden" value="1" name="currentPage">
+	<input type="hidden" value="" name="pageSize">
+	<style type="text/css">
+		.ellipsis{
+			text-overflow:ellipsis;
+			overflow: hidden;
+			white-space: nowrap;
+			width: 130px;
+		}
+	</style>
+	<script type="text/javascript">
+		var global = (function(){
+			var callback = function(data){
+				// alert('回调函数未指定！');
+				//alert(data.currentPage);
+				var x = parseInt(data.currentPage);
+				$('input[name="currentPage"]').val(x);
+				var record_list = data.content;
+				var str = "";
+				//alert(record_list.length);
+				record_list.map(function(v,i){
+					var status = v.Apply_record_status == '1'?'未审核':'已审核';
+					str+="<tr data-id="+v._id+">"+
+					"<td><input type='checkbox' onclick=$(this).parent().parent().toggleClass('selected')></td>"+
+					"<td>"+v.Apply_record_title+"</td>"+
+					"<td data-user-id="+v.Apply_record_author_id+">"+v.Apply_record_author+"</td>"+
+					"<td>"+Date.format(v.Apply_record_date)+"</td>"+
+					// "<td ><div class='ellipsis'>"+v.Apply_record_content+"</div></td>"+
+					"<td>"+v.Apply_record_type+"</td>"+
+					"<td>"+status+"</td>"+
+					"</tr>";
+				});
+
+				//global.config().currentPage++;
+				//alert($('input[name="currentPage"]').val());
+				var strx = "<div class='page_ctrl'>"+
+					"<a href='javascript:;' class='prev_page' onclick='$.getRecord({url:\"/get_apply_record/\",pageSize:15,currentPage:"+
+						($('input[name="currentPage"]').val()+1) +
+						",callback:global.callback});'> &nbsp;</a>"+
+					"<a href='javascript:;' class='current_page'>"+$('input[name="currentPage"]').val()+"</a>"+
+					"<a href='javascript:;' class='next_page'> &nbsp;</a>"+
+					"</div>";
+				$('#page_ctrl').empty().append(strx);
+				$(".table_style1").find("tbody").empty().append(str);
+			}
+			return {
+				callback:callback,
+				config:function(){
+					return {
+						'url':'/get_apply_record/',
+						'pageSize':15,
+						'currentPage':1,
+						'callback':callback
+					}
+				},
+				page_ctrl:function(){
+					
+				}
+			}
+		})();
+		$(function(){
+			$.getRecord(global.config());
+		});
+	</script>
+	
+	<div class="ttl">
+		作者申请 
+		<span class="sub_ttl">
+			|审阅作者
+		</span>
+	</div><!--ttl-->
+	<div class="search">
+		
+	</div>
+
+	<div class="toolkit">
+		<a href="javascript:void(0)" onclick="updateApplyStatus('3')">通过审核1</a>
+		<a href="javascript:void(0)" onclick="updateApplyStatus('2')">驳回审核</a>
+	</div>
+	<div class="table_wrap">
+		<table border="1" class="table_style1">
+			<thead>
+				<tr>
+					<td><input type="checkbox" id="selecedAll"></td>
+					<td>申请标题</td>
+					<td>申请人</td>
+					<td>申请时间</td>
+					<!-- <td width="120">申请正文</td> -->
+					<td>申请正文类别</td>
+					<td>申请状态</td>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div><!--table_wrap-->
+	<div id="page_ctrl"></div>
+</div><!--main_content-->
+
+<script type="text/javascript">
+	$("#selecedAll").click(function(evt){
+		$(this).parent().parent().parent().parent().find('tbody').find("input[type='checkbox']").trigger('click');
+	});
+
+</script>

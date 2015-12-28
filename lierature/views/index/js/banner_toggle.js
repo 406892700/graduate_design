@@ -22,11 +22,11 @@
 
         
         var init = function(){
-            reset_scale_init($('.show',that));
-            scale_init($('.banner_idt',that).eq(0));
-            ctr_obj.children('a').bind('click',function(e){
+            reset_scale_init($('.show',that));//重置变形函数
+            scale_init($('.banner_idt',that).eq(0));//获取第一个变形元素
+            ctr_obj.children('a').bind('click',function(e){//绑定事件
                 $('.current',ctr_obj).removeClass('current');//控制器
-                reset_scale_init($('.show',that));
+                reset_scale_init($('.show',that));//重置变形函数
                 $('.show',that).removeClass('show').fadeOut();
                 
                 $(this).addClass('current');
@@ -36,20 +36,19 @@
             });
 
             var auto_toggle = function(){//自动切换函数
-                var now_tab_index = $('.current',ctr_obj).index();
-                var length = ctr_obj.children("a").length;
+                var now_tab_index = $('.current',ctr_obj).index();//获取当前激活banner的序号
+                var length = ctr_obj.children("a").length;//获取一共有多少个控制器a标签
                 console.log(length+","+now_tab_index)
-                if(now_tab_index == length-1){
-                    now_tab_index = 0;
-                    console.log('fuck');
+                if(now_tab_index == length-1){//如果是最后一个的话
+                    now_tab_index = 0;//把激活状态切换到第一个
                 }else{
-                    now_tab_index++;
-                    console.log('you');
+                    now_tab_index++;//如果没有到最后一个就自增
+
                 }
-                ctr_obj.children('a').eq(now_tab_index).trigger('click');  
+                ctr_obj.children('a').eq(now_tab_index).trigger('click');  //自动触发点击事件
         };
 
-            setInterval(auto_toggle,4000);
+            setInterval(auto_toggle,4000);//设置定时器，默认是4秒钟触发一次banner的切换
         };
 
         return  this.each(function(){

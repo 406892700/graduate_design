@@ -6,10 +6,16 @@ var User = new Schema({
     id:String,
     username:String,
     password:String,
-    role:String,//角色(注册的时候都是普通读者,读者可以通过申请成为作者)
-    status:String,//用户状态(可能因为发布不健康信息被禁言或者封号)
+    user_type:String,//角色(注册的时候都是普通读者,读者可以通过申请成为作者)'1':普通读者 '2'作者
+    status:String,//用户状态(可能因为发布不健康信息被禁言或者封号) '1'正常 2'禁言'
+    remove_date:String,//禁言解除时间（3天，永久）
     pic:String,//用户头像
-    sign:String//个性签名
+    sign:String,//个性签名
+    birthday:String,//出生年月
+    reg_date:String,//注册时间
+    exp:Number,//经验
+    grade:Number,//等级
+    personal_info:String//个人信息
 });
 var User = mongoose.model('User',User);
 module.exports = User;

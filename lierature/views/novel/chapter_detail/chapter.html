@@ -17,13 +17,17 @@
 <script type="text/javascript" src="/javascript/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/javascript/jquery.qqFace.js"></script>
 <script type="text/javascript" src="/javascript/jquery.tips.js"></script>
+<script type="text/javascript" src="/javascript/util.js"></script>
 <script type="text/javascript">
 $(function(){
+	//初始化表情插件
 	$('.emotion').qqFace({
 		id : 'facebox', 
 		assign:'comment', 
-		path:'arclist/'	//表情存放的路径
+		path:'/pic/arclist/'	//表情存放的路径
 	});
+
+	//转码表情
 	$(".sub_btn").click(function(){
 		var str = $("#comment").val();
 		$("#show").html(replace_em(str));
@@ -34,7 +38,7 @@ function replace_em(str){
 	str = str.replace(/\</g,'&lt;');
 	str = str.replace(/\>/g,'&gt;');
 	str = str.replace(/\n/g,'<br/>');
-	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="arclist/$1.gif" border="0" />');
+	str = str.replace(/\[em_([0-9]*)\]/g,'<img src="/pic/arclist/$1.gif" border="0" />');
 	return str;
 }
 </script>
@@ -68,8 +72,22 @@ function replace_em(str){
         $.ajax({
             url:'/get_comments'+window.location.search+"&rd="+Math.random(),
             success:function(data){
+            	/*判断是不是自己的作品*/
+            	var flag = false;
+            	var $hide_info = $('#hide_info');
+            	if($hide_info.length == 0){
+            		flag = false;
+            	}
+            	else if($hide_info.val() == '<%= res.novel_author %>'){
+            		flag = true;
+            	}else{
+            		flag = false;
+            	}
+            	//alert(flag);
+            	
                 var str = "";
                 for(var i=0;i<data.length;i++){
+                	var opt = flag?'<a href="javascript:void(0)" class="c_opt" data-id="'+data[i]._id+'"></a>':'';
                     str += "	<div class=\"comment_idt\">" +
                             "<div class=\"user_pic\">" +
                             "<img alt=\"\" src=\""+data[i].comment_author_pic+"\">" +
@@ -78,10 +96,11 @@ function replace_em(str){
                             "<div class=\"word\">" +
                             "<div class=\"user_info\">" +
                             "<a class=\"username\" href=\"\">"+data[i].comment_author_name+"</a>"+
-                            "<span class=\"comment_date\">"+data[i].comment_date+"</span>" +
+                            " <span class=\"comment_date\">"+Date.format(data[i].comment_date)+"</span>" +
                             "</div>" +
                             "<div class=\"arrow_left\"></div>" +
-                            "<p>"+data[i].comment_content+"</p>" +
+                            "<p>"+replace_em(data[i].comment_content)+"</p>" +
+                            opt+
                             "</div>" +
                             "</div>" +
                             "<div style=\"clear:both;\"></div>" +
@@ -107,12 +126,63 @@ function replace_em(str){
 
 <script type="text/javascript">
 	$(function(){
+
+		$('body').on('click','.c_opt',function(evt){
+			var _id = $(this).data('id');//获取id
+			$.ajax({
+				url:'quit_comment?_id='+_id,
+				success:function(data){
+					$.tips(undefined).setText('删除成功！').show();
+					setTimeout(function(){
+						window.location.reload();
+					},2000);
+				}
+			})
+		});
+
+		//评论操作的脚本
+		$('#sbm_comment').bind('click',function(evt){
+					//var this = $(this);
+				if(!"<%= user %>"){
+						window.location.href="/login?return_url="+encodeURIComponent(window.location.pathname+window.location.search);
+						return;
+					}
+
+					$.ajax({
+						url:'/add_comment',
+						data:$('#comment_form').serialize(),
+						type:'post',
+						success:function(data){
+							$.tips(undefined).setText('评论成功！').show();
+							setTimeout(function(){
+								window.location.reload();
+							},2000);
+						},
+						error:function(err){
+							alert('数据获取错误！');
+						}
+					})
+				});
+
+		//弹窗函数
 		var tips = function(){
 			  //var tips = $.tips(undefined,{width:'300px',height:'140px'}).show();
 			  return $.tips(undefined,{width:'350px',height:'250px'});
 		}
+
+		// $('.zan_icon,.sc_icon').bind('click',function(evt){
+		// 	if(<%= user %>){
+		// 		alert()
+		// 	}
+		// });
+
+		//点赞按钮点击脚本
 		$('.zan_icon').bind('click',function(e){
 			e.preventDefault();
+			if(!"<%= user %>"){
+				window.location.href="/login?return_url="+encodeURIComponent(window.location.pathname+window.location.search);
+				return;
+			}
 			//$(this).next('span').text("2次");
 			var $that = $(this);
 			var href = $(this).data('href'),if_can_zan = false,href1 = href.replace(/\w{0,9}_novel/,'if_zan');
@@ -147,10 +217,15 @@ function replace_em(str){
 				},
 				method:'get'
 			});
-		});
+		});	
 
+		//收藏按钮点击脚本
 		$('.sc_icon').bind('click',function(e){
 			e.preventDefault();
+			if(!"<%= user %>"){
+				window.location.href="/login?return_url="+encodeURIComponent(window.location.pathname+window.location.search);
+				return;
+			}
 			var $that = $(this);
 			var href = $(this).data('href'),if_can_collect = false,href1 = href.replace(/\w{0,9}_novel/,'if_collect');
 			$.ajax({
@@ -189,20 +264,32 @@ function replace_em(str){
 
 	$(function(){
 		//写入&更新阅读记录
-		if("<%= user%>"){
-			$.ajax({
-				url:'addReadRecord?novel_id='+window.location.search.split("=")[1]+"&r="+Math.random(),
-				success:function(data){
-					console.log('特么的已经加到阅读记录里面了！');
-				},
-				error:function(error){
-					alert('数据获取错误！3');
-				}
-			})
-		}
+		// if("<%= user%>"){
+		// 	$.ajax({
+		// 		url:'addReadRecord?novel_id='+window.location.search.split("=")[1]+"&r="+Math.random(),
+		// 		success:function(data){
+		// 			console.log('特么的已经加到阅读记录里面了！');
+		// 		},
+		// 		error:function(error){
+		// 			alert('数据获取错误！3');
+		// 		}
+		// 	})
+		// }
 	});
 </script>
+
+
+
+
+
+
+
 <body>
+	<% if (user){%>
+		<input type="hidden" value="<%= user._id %>" id="hide_info">
+	<%}else{%>
+
+	<%}%>
 	<header class="chapter_head">
 		<div class="flex_wrap">
 			<div class="head_left">
@@ -216,23 +303,24 @@ function replace_em(str){
 				</div>
 			</div>
 			<div class="head_right">
-				<div class="novel_name"><%= res.novel_name %> <a href="javascript:void(0)" class="zan_icon" data-href="/zan_novel?novel_id=<%= res._id %>&user_id=<%= user._id%>"></a><span> <%= res.novel_zan_num %>次</span> <a href="javascript:void(0)" class="sc_icon" data-href="/collect_novel?novel_id=<%= res._id %>&user_id=<%= user._id%>"></a><span> <%= res.novel_collection_num %>次</span></div>
+				<div class="novel_name"><%= res.novel_name %> <a href="javascript:void(0)" class="zan_icon"
+				 data-href="/zan_novel?novel_id=<%= res._id %>"></a><span> <%= res.novel_zan_num %>次</span> <a href="javascript:void(0)" class="sc_icon" data-href="/collect_novel?novel_id=<%= res._id %>"></a><span> <%= res.novel_collection_num %>次</span></div>
 				<div class="novel_author"><%= res.novel_author_name %> <a href="#" class="look_author_icon"></a><span class="show_tip">去作者的空间看看</span></div>
 				<div class="novel_type">分类:<%= res.novel_type %></div>
 				<div class="novel_des">
                     <%= res.novel_description %>
 				</div>
 				<div class="novel_tags">
-                    <% for(var i = 0;i < res.novel_tags.length;i++){%>
-                        <a class="tag" href="#"><b class="icon icon_tag"></b> <%= res.novel_tags[i] %></a>
-                    <%}%>
+                    
+                        <a class="tag" href="#"><b class="icon icon_tag"></b> <%= res.novel_tags %></a>
+                    
 				</div>
 			</div> 
 		</div>
 	</header>
 	<div class="chapter_body">
 		<div class="flex_wrap">
-			<div class="chapter_preview">
+			<!-- <div class="chapter_preview">
 				<div class="ttl"><span class="icon_new"></span> 最新章节阅读<span class="update_date">更新于 2015-12-1 12:23</span></div>
 				<div class="content">
 					“斗之力，三段！”
@@ -248,19 +336,9 @@ function replace_em(str){
 					<p>　　少年缓缓抬起头来，露出一张有些清秀的稚嫩脸庞，漆黑的眸子木然的在周围那些嘲讽的同龄人身上扫过，少年嘴角的自嘲，似乎变得更加苦涩了。</p>
 				</div>
 				<a href="#" class="look_detail">查看全文 <span class="icon_arrow_right"></span></a>
-			</div>
+			</div> -->
 			<div class="chapter_wrap">
 				<div class="chapter_ttl"><div>章节汇总</div></div>
-
-				<!--分页器-->
-				<div class="page_ctrl">
-					<a href="javascript:;" class="prev_page"> &nbsp;</a>
-					<a href="javascript:;" class="current_page">1</a>
-					<a href="javascript:;">2</a>
-					<a href="javascript:;">3</a>
-					<a href="javascript:;" class="next_page"> &nbsp;</a>
-				</div>
-				<!--分页器-->
 			</div>
 		</div>
 	</div><!--chapter_body-->
@@ -278,21 +356,23 @@ function replace_em(str){
 					<span class="emotion icon_emotion"></span>
 				</div>
 				<div class="form_content">
-					<form action="/add_comment" method="post">
+					<form action="/add_comment" method="post" id="comment_form">
 						<textarea id="comment" name="comment_content"></textarea>
 						<div class="valide_area">
 							<input type="text">	
 							<img src="" alt="" width="80" height="32">
 						</div>
-                        <input type="hidden" name="comment_date" value="2015-1-2 12:23">
+                        <!-- <input type="hidden" name="comment_date" value="2015-1-2 12:23"> -->
                         <input type="hidden" name="comment_from" value="<%= res._id%>">
-                        <input type="hidden" name="comment_author" value="<%= user._id%>">
-                        <input type="hidden" name="comment_author_name" value="<%= user.username %>">
-                        <input type="hidden" name="comment_author_pic" value="<%= user.pic %>">
-						<button type="submit">提交评论</button>
+                        
+						<button type="button" id="sbm_comment">提交评论</button>
 					</form>
 				</div>
 			</div>
+
+			<script type="text/javascript">
+				
+			</script>
 		</div><!--flex_wrap-->
 	</div><!--comment_body-->
 </body>

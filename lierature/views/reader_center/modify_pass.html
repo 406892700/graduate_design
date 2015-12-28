@@ -1,0 +1,117 @@
+
+<!---------------------------------------------------------修改密码-------------------------------------------------->
+<div class="modify_pass">
+
+  <div class="form_item">
+    <div class="form_label">
+      <label>已绑定邮箱</label>
+    </div>
+    <div class="form_cpt">
+      <input type="text" name="novel_name" value="<%= user.username %>" disabled>
+      <button data-href="/send_mail?address=<%= user.username %>" href="javascript:void(0)"id="valide_code">发送验证码</button>
+      <script type="text/javascript">
+        $(function(){
+          $('body').on('click','#valide_code',function(){
+            var that = $(this);
+            that.attr('disabled','disabled');
+            $.ajax({
+              url:$(this).data('href'),
+              success:function(data){
+                // alert('ddd');
+                var true_code = data.code;//真确的验证码
+                var time = 20;
+                var timer = setInterval(function(){
+                  that.text('重新发送验证码('+(time--)+')');
+                  if(time == -1){
+                    clearInterval(timer);
+                    $.ajax({
+                      url:'/quit_valide_code',
+                      success:function(data){
+                        console.log(data);
+                      },
+                      error:function(err){
+                        alert('数据获取错误！');
+                      }
+                    })
+                    that.text('重新发送验证码');
+                    that.attr('disabled',false);
+                  }
+                },1000);
+                
+              },
+              error:function(err){
+                alert('数据获取错误！');
+              }
+            })
+          });
+        });
+      </script>
+    </div>
+    <div class="c_fix"></div>
+  </div><!--form_item-->
+
+  <div class="form_item">
+    <div class="form_label">
+      <label>验证码</label>
+    </div>
+    <div class="form_cpt">
+      <input type="text" name="valide_code" id="input_code">
+      <button id="valide_code_1">校验验证码</button>
+      <script type="text/javascript">
+        $(function(){
+          $('#valide_code_1').click(function(){
+            var that = $(this);
+            $.ajax({
+              url:'/valide_code?valid='+$('#input_code').val(),
+              success:function(data){
+                if(parseInt(data.code) == 1){
+                  $('.hide_area').css('display','block');
+                }else{
+                  $.tips(undefined).setText('<div style="height:80px;line-height:80px;font-size:16px;">验证码错误！</div>').resize(300,200).show();
+                  return;
+                }
+              },
+              error:function(err){
+                alert('数据获取错误！');
+              }
+            });
+          })
+        });
+      </script>
+    </div>
+    <div class="c_fix"></div>
+  </div><!--form_item-->
+  <div class="hide_area" style="display:none;">
+    <div class="form_item">
+      <div class="form_label">
+        <label>新密码：</label>
+      </div>
+      <div class="form_cpt">
+        <input type="password">
+      </div>
+      <div class="c_fix"></div>
+    </div><!--form_item-->
+
+    <div class="form_item">
+      <div class="form_label">
+        <label>确认密码：</label>
+      </div>
+      <div class="form_cpt">
+        <input type="password">
+      </div>
+      <div class="c_fix"></div>
+    </div><!--form_item-->
+  </div>
+
+   <div class="form_item">
+    <div class="form_label">
+      
+    </div>
+    <div class="form_cpt">
+      
+      <button class="form_submit">确认修改</button>
+    </div>
+    <div class="c_fix"></div>
+  </div><!--form_item-->
+</div>
+<!---------------------------------------------------------修改密码-------------------------------------------------->

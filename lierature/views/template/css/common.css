@@ -94,7 +94,7 @@ input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft
     margin:0px 60px;
 }
 
-.form_item input[type="text"]{
+.form_item input[type="text"],.form_item input[type="password"],.form_item input[type="date"]{
     border:1px solid #0078d8;
     width:200px;
     height: 25px;
@@ -130,11 +130,11 @@ input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft
 }
 
 .form_item > .form_cpt{
-    margin-left: 90px;
-    text-align: left;
+    margin-left: 90px !important;
+    text-align: left !important;
 }
 
-.form_item  button[type="submit"]{
+.form_item  button[type="submit"],button{
     background-color: #0078d8;
     color:#fff;
     display: inline-block;
@@ -148,6 +148,47 @@ input[type="text"],input[type="password"]{padding:0px 5px;font-family:'Microsoft
 }
 
 
+.upload_instead{
+    border:1px solid #0078d8;
+    height: 25px;
+    width: 210px;
+    position: absolute;
+    left:0px;
+    top:0px;
+    background-color: #fff;
+}
 
+.upload_instead > .fake_btn{
+    float:right;
+    height: 25px;
+    background-color: #0078d8;
+    color:#fff;
+    line-height: 25px;
+    width: 60px;
+    text-align:center;
+    cursor:pointer;
+}
+
+.upload_instead > .fake_text{
+    float:left;
+    margin-left: 5px;
+    margin-right: 5px;
+    height:25px;
+    width:140px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+}
+
+
+.m_loading{
+    width: 30px;
+    height:30px;
+    background: url('/pic/novel_pic/load.gif') no-repeat 0 0 ;
+    background-size: cover;
+    display: inline-block;
+    vertical-align: middle;
+    float: right;
+}
 
 

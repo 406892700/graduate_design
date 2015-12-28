@@ -1,6 +1,8 @@
 <link href="/template/css/common.css" rel="stylesheet" media="screen">
+<link rel="stylesheet" type="text/css" href="/stylesheets/tips.css">
 <script src="/javascript/jquery-2.0.3.js" type="text/javascript"></script>
 <script type="text/javascript" src="/javascript/util.js"></script>
+<script type="text/javascript" src="/javascript/jquery.tips.js"></script>
 
 <script>
     $(function(){
@@ -42,7 +44,11 @@
                     <%= user.username%>,欢迎来到
                 </div>
                 <div>
-                    <a href="/author_center">个人中心</a>
+                    <% if(user.user_type == 'author'){%>
+                      <a href="/author_center">个人中心</a>
+                    <%}else{%>
+                      <a href="/reader_center">个人中心</a>
+                    <%}%>
                 </div>
                 <div>
                     <a href="/quit_log">注销登录</a>
@@ -80,14 +86,14 @@
                    })
                 });
             </script>
-            <dl class="hot_word">
+            <!-- <dl class="hot_word">
                 <dd><a href="#" class="hot">诛仙</a></dd>
                 <dd><a href="#">遮天</a></dd>
                 <dd><a href="#">完美世界</a></dd>
                 <dd><a href="#">长生界</a></dd>
                 <dd><a href="#" class="hot">星辰变</a></dd>
                 <dd><a href="#">昆仑</a></dd>
-            </dl>
+            </dl> -->
         </div>
     </div>
 

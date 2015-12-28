@@ -32,7 +32,7 @@
 
                       "<div class=\"info_item\">"+
                         "<div class=\"item_item_sub\"><label>开更日期: </label>"+Date.format(data[i].novel_start)+"</div>"+
-                       " <div class=\"item_item_sub\"><label>完结日期: </label>"+(data[i].novel_end == 'null'?'<span style=\"color:#FF4401\">连载中..</span>':Date.format(data[i].novel_end))+"</div>"+
+                       " <div class=\"item_item_sub\"><label>完结日期: </label>"+(data[i].novel_end == 'null'|| data[i].novel_end == undefined?'<span style=\"color:#FF4401\">连载中..</span>':Date.format(data[i].novel_end))+"</div>"+
                      " </div><!--info_item-->"+
 
                       "<div class=\"info_item\">"+
@@ -108,23 +108,22 @@
                 <div class="drop_down">
                   <span class="icon icon_arrow_down"></span>
                   <div class="drop_down_list">
-                    <label data-href="/addNovel_page" class="fake_a">新开作品</label>
+                    <!-- <label data-href="/addNovel_page" class="fake_a">新开作品</label> -->
                   </div><!--drop_down_list-->
                 </div><!--drop_down-->
               </a>
-              <a href="javascript:;">个人资料
+              <!-- <a href="javascript:;">个人资料
                  <div class="drop_down">
                   <span class="icon icon_arrow_down"></span>
                   <div class="drop_down_list">
                     <label href="#">修改资料</label>
                     <label href="#">密码管理</label>
-                    <!-- <label href="#">修改资料</label> -->
-                  </div><!--drop_down_list-->
-                </div><!--drop_down-->
+                  </div>
+                </div>
               </a>
               <a href="javascript:;">我的微博</a>
-              <a href="javascript:;">我的动态</a>
-              <a href="javascript:;">账号管理</a>
+              <a href="javascript:;">我的动态</a> -->
+              <a href="/addNovel_page">新开作品</a>
               <div class="c_fix"></div>
             </header><!--lft_opt_nav-->
             <div class="lft_opt_bd">

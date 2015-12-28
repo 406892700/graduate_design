@@ -1,0 +1,87 @@
+<div class="main_content">
+	<script type="text/javascript">
+		function getContent(url){
+			var select = $('.table_style1').find('tr.selected');
+			if(select.length != 1){
+				$.tips(undefined).setText('<div style="font-size:16px;height:200px;display:table-cell;vertical-align:middle;">请选择一项操作!</div>').show();
+				return;
+			}
+			//$.tips(url).resize(600,500).show();
+			var select_row = $('.table_style1').children('tbody').find('tr.selected');
+			$.tips(undefined).setText(admin_modal.modal_type(select_row.data('id'))).resize(600,500).show();
+		}
+			
+		$(function(){
+			var config = {
+				'url':'/get_types',
+				'pageSize':15,
+				'currentPage':1,
+				'callback':function(data){
+					// alert('回调函数未指定！');
+					var record_list = data.content;
+					var str = "";
+					//alert(record_list.length);
+					record_list.map(function(v,i){
+						str+="<tr data-id="+v._id+">"+
+						"<td><input type='checkbox' onclick=$(this).parent().parent().toggleClass('selected')></td>"+
+						"<td>"+v.novel_type_name+"</td>"+
+						"<td><img src="+v.novel_type_pic+" width='60' height='60' style='background-color:#ddd;'></td>"+
+						"<td><div style='box-shadow:2px 2px 5px #333;width:60px;height:30px;background-color:"+v.novel_type_bg+"'></div></td>"+
+						"<td><img src="+v.novel_type_bg_pic+" width='130' height='60'></td>"+
+						"<td>"+v.novel_type_description+"</td>"+
+						+
+						"</tr>";			
+					});
+
+					var page = "<div class='page_ctrl'>"+
+									"<a href='javascript:;' class='prev_page'> &nbsp;</a>"+
+									"<a href='javascript:;' class='current_page'>"+config.currentPage+"</a>"+
+									"<a href='javascript:;' class='next_page'> &nbsp;</a>"+
+								"</div>";
+
+					$(".table_style1").find("tbody").append(str);
+					$(".main_content").append(page);
+				}
+			};
+			$.getRecord(config);
+		})
+	</script>
+	<div class="ttl">
+		分类管理
+		<span class="sub_ttl">
+			|管理分类
+		</span>
+	</div><!--ttl-->
+	<div class="search">
+		
+	</div>
+
+	<div class="toolkit">
+		<!-- <a href="javascript:void(0)">通过审核</a> -->
+		<a href="javascript:void(0)" onclick="getContent('/admin/content/type_control_modal.html')">编辑分类</a>
+	</div>
+	<div class="table_wrap">
+		<table border="1" class="table_style1">
+			<thead>
+				<tr>
+					<td><input type="checkbox" id="selecedAll"></td>
+					<td>类别名称</td>
+					<td>类别图标</td>
+					<td>类别背景色</td>
+					<td>类别背景图</td>
+					<td>类别描述</td>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div><!--table_wrap-->
+</div><!--main_content-->
+
+<script type="text/javascript">
+	$("#selecedAll").click(function(evt){
+		$(this).parent().parent().parent().parent().find('tbody').find("input[type='checkbox']").trigger('click');
+	});
+
+</script>

@@ -29,4 +29,29 @@ userDao.prototype.login = function(obj,callback){
     });
 }
 
+//根据_id获取用户信息
+userDao.prototype.findUserById = function(_id,callcback){
+    console.log('dao:根据_id获取用户信息');
+    User.find({'_id':_id},function(err,docs){
+        callcback(err,docs);
+    });
+}
+
+
+userDao.prototype.updateStatus = function(obj1,obj2,callback){
+    console.log('dao_');
+    console.log(obj1);
+    console.log(obj2);
+    User.update(obj1,{'$set':obj2},function(err){
+        callback(err);
+    });
+}
+
+userDao.prototype.findUser = function(obj,callback){
+    console.log('ddd');
+    User.find(obj,function(err,docs){
+        callback(err,docs);
+    });
+}
+
 module.exports = new userDao();

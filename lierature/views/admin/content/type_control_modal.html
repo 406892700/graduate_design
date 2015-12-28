@@ -1,0 +1,73 @@
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            url:'/get_type_by_id?_id=554b1872c0eafe056cc9ac21',
+            success:function(data){
+                $('#main_form2').fill(data);
+            },error:function(err){
+                alert('数据获取错误！');
+            }
+        })
+        
+    });
+</script>
+<div class="main_content">	
+	<form action="/add_new_apply" class="main_form" id="main_form2" method="post">
+        <div class="form_item">
+            <div class="form_label"><label>类别名称</label></div>
+            <div class="form_cpt"><input type="text" name="data.novel_type_name"></div>
+            <div class="c_fix"></div>
+        </div>
+
+		<div class="form_item">
+            <div class="form_label"><label>类别图标</label></div>
+            <div class="form_cpt" style="position:relative;">
+                <input type="file" name="novel_picx" id="input" style="opacity:0;">
+                <div class="upload_instead" onclick="$('#input').trigger('click');">
+                    <div class="fake_btn">上传图片</div>
+                    <div class="fake_text"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form_item">
+            <div class="form_label"><label>类别背景色</label></div>
+            <div class="form_cpt"><input type="text" name="data.novel_type_bg"></div>
+            <div class="c_fix"></div>
+        </div>
+
+        <div class="form_item">
+            <div class="form_label"><label>类别背景</label></div>
+            <div class="form_cpt" style="position:relative;">
+                <input type="file" name="novel_picx" id="input1" style="opacity:0;">
+                <div class="upload_instead" onclick="$('#input1').trigger('click');">
+                    <div class="fake_btn">上传图片</div>
+                    <div class="fake_text"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        	$('#input,#input1').bind('change',function(){
+                $('.fake_text',$(this).parent()).text($(this).val());
+            });
+        </script>
+
+        
+
+        <div class="form_item">
+            <div class="form_label"><label>类别描述</label></div>
+            <div class="form_cpt"><input type="text" name="data.novel_type_bg"></div>
+            <div class="c_fix"></div>
+        </div>
+
+        <input type="hidden" name="data.novel_type_pic">
+        <input type="hidden" name="data.novel_type_bg_pic">
+        <div class="form_item" style="border:none;">
+            <div class="form_label"></div>
+            <div class="form_cpt"><button type="submit" class="form_submit">确认添加</button></div>
+            <div class="c_fix"></div>
+        </div>
+
+    </form>
+</div><!--main_content-->
+

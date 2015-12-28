@@ -3,9 +3,11 @@
  <head>
   <title>关于利趣</title>
   <link href="/author_center/css/author_center.css" rel="stylesheet">
+  
  </head>
  <body>
     <% include ../template/header.html %>
+      <script type="text/javascript" src="/reader_center/js/tpl.js"></script>
     <div class="main_content"> 
     <div class="flex_wrap">
       <div class="r_ct_ttl">
@@ -18,7 +20,7 @@
           </div><!--ttl_rgt_top-->
           <div class="ttl_rgt_bottom">
             <div class="host_sign">
-              今晚一更..
+              <%= user.sign %>
             </div>
           </div><!--ttl_rgt_bottom-->
 
@@ -29,24 +31,26 @@
         <div class="left_pt">
           <div class="left_operation">
             <header class="lft_opt_nav">  
-              <a href="javascript:;">个人资料
+              <!-- <a href="javascript:;">个人资料
                  <div class="drop_down">
                   <span class="icon icon_arrow_down"></span>
                   <div class="drop_down_list">
                     <label href="#">修改资料</label>
-                    <label href="#">密码管理</label>
+                    <label href="#" onclick="">密码管理</label>
                     <label href="#">账号管理</label>
-                    <!-- <label href="#">修改资料</label> -->
-                  </div><!--drop_down_list-->
-                </div><!--drop_down-->
-              </a>
+                  </div>
+                </div>
+              </a> -->
+              <a href="javascript:;" onclick="get_Info()">个人信息</a>
               <a href="javascript:;" data-href="/getReadRecord?record_pageNum=1&record_pageSize=5" data-type="read" id="i_read">我读过的</a>
               <a href="javascript:;" data-href="/getZanRecord?record_pageNum=1&record_pageSize=5" data-type="zan" id="i_zan">我赞过的</a>
               <a href="javascript:;" data-href="/getCollectRecord?record_pageNum=1&record_pageSize=5" data-type="sc" id="i_collect">我收藏的</a>
+              <a href="javascript:;" onclick="get_modify()">修改密码</a>
               <div class="c_fix"></div>
             </header><!--lft_opt_nav-->
             <div class="lft_opt_bd">
               <div class="lft_opt_bd_pl work_list">
+
               </div><!--lft_opt_bd_pl-->
             </div><!--lft_opt_bd-->
           </div><!--left_operation-->
@@ -66,6 +70,108 @@
       </div>
     </div>
   </div>
+
+  <!--更改个人信息的脚本-->
+  <script type="text/javascript">
+
+  var get_modify =  function(){
+    // $.ajax({
+    //   url:'/reader_center/modify_pass.html',
+    //   success:function(data){
+    //     $('.work_list').html("").append(data);
+    //   },error:function(er){
+    //     alert("数据获取错误！");
+    //   }
+    // })
+  $('.work_list').html("").append(golbal_var.modify_pass('<%= user.username %>','<%= user._id %>'));
+  }
+  var get_Info =  function () {
+        $.ajax({
+          url:'/get_user_info?_id=<%= user._id %>',
+          success:function(data){
+            // for(var i in data){
+            //   alert(data[i]);
+            // }
+            var tpl = '<form action="/update_user" method="post"><div class="modify_info">'+
+                    '<div class="form_item">'+
+                    '<input name="_id" value="'+data._id+'" type="hidden">'+
+                      '<div class="form_label"><label>用户头像</label></div>'+
+                      '<div class="form_cpt"><img src="'+data.pic+'" width="60" height="60" style="  float:left;display: block;box-shadow: 0px 0px 5px #aaa;padding: 2px;background-color: #fff;">'+
+                      '</div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item">'+
+                      '<div class="form_label"><label>用户名</label></div>'+
+                      '<div class="form_cpt"><input type="text" name="username" value='+data.username+' disabled></div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item">'+
+                      '<div class="form_label"><label>个性签名</label></div>'+
+                      '<div class="form_cpt"><textarea name="sign" style="height:80px;">'+data.sign+'</textarea></div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item">'+
+                      '<div class="form_label"><label>出生年月</label></div>'+
+                      '<div class="form_cpt">'+
+                        '<input type="date" name="birthday" value="'+Date.format(data.birthday)+'" style="  width: 200px;height: 25px;border: 1px solid #0078d8;padding: 0px 5px;line-height: 25px;">'+
+                      '</div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item">'+
+                      '<div class="form_label"><label>注册时间</label></div>'+
+                      '<div class="form_cpt"><input type="text" name="reg_date"value='+Date.format(data.reg_date)+' disabled></div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item">'+
+                      '<div class="form_label"><label>经验</label></div>'+
+                      '<div class="form_cpt"><input type="text" name="exp" value='+data.exp+' disabled></div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item">'+
+                      '<div class="form_label"><label>等级</label></div>'+
+                      '<div class="form_cpt"><input type="text" name="grade" value='+data.grade+' disabled></div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item">'+
+                      '<div class="form_label"><label>个人信息</label></div>'+
+                      '<div class="form_cpt"><textarea name="personal_info" style="height:80px;" value='+data.personal_info+'></textarea></div>'+
+                      '<div class="c_fix"></div>'+
+                    '</div><!--form_item-->'+
+
+                    '<div class="form_item" style="border:none;">'+
+                      '<div class="form_label"></div>'+
+                      '<div class="form_cpt"><button type="submit" class="form_submit">确认提交</button></div>'+
+                      '<div class="c_fix"></div>'+
+                  '</div>'+
+                  '</div></form>';
+                   $('.work_list').html("").append(tpl);
+            //alert(data);
+          },
+          error:function(err){
+            alert('数据获取错误！');
+          }
+        });
+      }
+    // $(function(){
+
+      
+    // });
+
+    // $(function(){
+    //   var changePassword = function(){
+
+    //   }
+    // });
+  </script>
+
+  <!--收藏，点赞，阅读记录的脚本-->
   <script type="text/javascript">
      $(function(){
       var r_getData = function(url,type){
@@ -76,6 +182,7 @@
 
             for(var i = 0;i<data.length;i++){
               pic_src = data[i].novel_pic || '/pic/novel_pic/dp.jpg';
+              //alert(data[i].collect_id);
               type_url = (function(type){
                                 if(type == "sc")
                                   return "<a href=\"/quitCollect?_id="+data[i].collect_id+"\">取消收藏</a>";
@@ -117,7 +224,7 @@
                           "<div class=\"info_des_pl\">"+data[i].novel_description+
                           "</div>"+
                           "<div class=\"r_btn_pl\" >"+
-                            "<a href=\"/novel_detail?_id="+data[i]._id+"\">开始阅读</a>"+
+                            "<a href=\/read_chapter_page?indexx="+data[i].chapter_index+"&novel="+data[i]._id+">开始阅读</a>"+
                             type_url+
                           "</div>"+
                         "</div><!--info_item--> "+
@@ -139,9 +246,10 @@
      // r_getData('/getCollectRecord?record_pageNum=2&record_pageSize=3');
 
 
-      $('#i_zan,#i_collect,#i_read').bind('click',function(e){
+      $('.lft_opt_nav > a').bind('click',function(e){
          $('.lft_opt_nav').children('a.current').removeClass('current');
          $(this).addClass('current');
+         if($(this).text() == '我读过的' ||$(this).text() == '我赞过的' || $(this).text() == '我收藏的')
          r_getData($(this).data('href'),$(this).data('type'));
       });
 

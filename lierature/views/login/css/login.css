@@ -40,7 +40,7 @@
 }
 
 .login_panel{
-	border:2px solid #0078D8;
+	box-shadow: 0px 0px 5px #aaa;
 	width:320px;
 	height:360px;
 	text-align: center;

@@ -14,8 +14,8 @@
 .nav_left > a{
     color:#fff;
     display: block;
-    padding:8px 10px;
-    font-size:14px;
+    padding: 5px 10px;
+    font-size: 15px;
 }
 
 .nav_left > a:hover{
@@ -144,6 +144,8 @@
 
 .banner_img > .banner_idt{
     display: none;
+    width: 800px;
+    height: 400px;
 }
 
  .banner_idt >  img{
@@ -212,7 +214,7 @@
     transition:all 0.5s;
 }
 
-.recommend_novel_idt > img{
+.recommend_novel_idt  img{
     display: block;
     width:216px;
     height:220px;
@@ -322,4 +324,59 @@
 
 .idt_bottom {
     height: 150px !important;
+}
+
+.sx{
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 8px;
+}
+
+.sx_shu{
+    background: url('./images/shu.png') no-repeat 0 0;
+    background-size: cover;
+}
+
+.sx_niu{
+    background: url('./images/niu.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_hu{
+    background: url('./images/hu.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_tu{
+    background: url('./images/tu.png') no-repeat 0 0;
+    background-size: cover;
+}
+
+.sx_long{
+    background: url('./images/long.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_she{
+    background: url('./images/she.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_ma{
+    background: url('./images/ma.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_yang{
+    background: url('./images/yang.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_hou{
+    background: url('./images/hou.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_ji{
+    background: url('./images/ji.png') no-repeat 0 0;
+    background-size: cover;
+}
+.sx_gou{
+    background: url('./images/gou.png') no-repeat 0 0;
+    background-size: cover;
 }

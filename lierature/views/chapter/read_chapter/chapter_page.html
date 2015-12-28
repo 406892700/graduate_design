@@ -6,7 +6,7 @@
   <meta name="Author" content="">
   <meta name="Keywords" content="">
   <meta name="Description" content="">
-  <title>小说阅读</title>
+  <title>小说阅读4</title>
   <link rel="stylesheet" type="text/css" href="/chapter/read_chapter/css/styles.css">
   <style type="text/css">
     .art_body{
@@ -69,6 +69,28 @@
       $(function(){
         $(window).getData('/go_to_read'+window.location.search);
       });
+
+
+      $(function(){
+    //写入&更新阅读记录
+    if("<%= user%>"){
+      var args = window.location.search.split('&');
+      var chapter_id = args[0].split('=')[1];//章节id
+      var novel_id = args[1].split('=')[1];//小说id
+      alert(chapter_id);
+      alert(novel_id);
+      $.ajax({
+        url:'add_new_read_record?novel_id='+novel_id+"&chapter_id="+chapter_id+"&r="+Math.random(),
+        success:function(data){
+          alert(data);
+          console.log('特么的已经加到阅读记录里面了！');
+        },
+        error:function(error){
+          alert('数据获取错误！3');
+        }
+      })
+    }
+  });
     // });
   </script>
  </body>

@@ -19,6 +19,12 @@ commentDao.prototype.findByNovel  = function(_id,callback){//saveæ–¹æ³•
     });
 }
 
+commentDao.prototype.removeComment = function(obj,callback){//É¾³ýÆÀÂÛ
+	Comment.remove(obj,function(err,docs){
+		callback(err,docs);
+	});
+}
+
 
 module.exports = new commentDao();
 

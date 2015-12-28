@@ -1,0 +1,113 @@
+<div class="main_content">
+	<script type="text/javascript">
+		function getContent(url){
+			// $.ajax({
+			// 	url:url,
+			// 	success:function(data){
+			// 		var str = '<div style="margin:20px auto;height:250px;width:400px;overflow-y:scroll;overflow-x:hidden;">'+data.content+'</div>'
+			// 		$.tips(undefined).setText(str).resize(500,400).show();
+			// 	},
+			// 	error:function(err){
+			// 		alert('数据获取错误！');
+			// 	}
+			// });
+			//$.tips(undefined).setText(str).resize(500,400).show();
+			$.tips(url).resize(500,600).show();
+		}
+
+
+		$('#delete_recommend').click(function(){
+			var select = $('.table_style1').find('tr.selected');
+			if(select.length  == 1){
+				$.ajax({
+				url:'/delete_recommend?_id='+select.data('id'),
+				success:function(data){
+					$.tips(undefined).setText('<div style="font-size:16px;height:200px;display:table-cell;vertical-align:middle;">操作成功!</div>').show();
+					setTimeout(function(){
+						window.location.reload();
+					},1000);
+				}
+			})
+			}else{
+				$.tips(undefined).setText('<div style="font-size:16px;height:200px;display:table-cell;vertical-align:middle;">请选择一项操作!</div>').show();
+				return;
+			}
+			
+		});
+			
+		$(function(){
+			var config = {
+				'url':'/get_recommends/',
+				'pageSize':15,
+				'currentPage':1,
+				'callback':function(data){
+					// alert('回调函数未指定！');
+					var record_list = data.content;
+					var str = "";
+					//alert(record_list.length);
+					record_list.map(function(v,i){
+						str+="<tr data-id="+v._id+">"+
+						"<td><input type='checkbox' onclick=$(this).parent().parent().toggleClass('selected')></td>"+
+						"<td><img src="+v.novel_pic+" width='60' height='60'></td>"+
+						"<td>"+v.novel_name+"</td>"+
+						"<td>"+v.novel_tags+"</td>"+
+						"<td><div class='ellipsis'>"+v.novel_description+"</div></td>"+
+						"<td>"+v.novel_type+"</td>"+
+						// "<td ><div class='ellipsis'>"+v.novel_content+"</div></td>"+
+						"<td data-user-id="+v.novel_author+">"+v.novel_author_name+"</td>"+
+						"</tr>";			
+					});
+
+					var page = "<div class='page_ctrl'>"+
+									"<a href='javascript:;' class='prev_page'> &nbsp;</a>"+
+									"<a href='javascript:;' class='current_page'>"+config.currentPage+"</a>"+
+									"<a href='javascript:;' class='next_page'> &nbsp;</a>"+
+								"</div>";
+
+					$(".table_style1").find("tbody").append(str);
+					$(".main_content").append(page);
+				}
+			};
+			$.getRecord(config);
+		})
+	</script>
+	<div class="ttl">
+		首页推荐
+		<span class="sub_ttl">
+			|热推作品
+		</span>
+	</div><!--ttl-->
+	<div class="search">
+		
+	</div>
+
+	<div class="toolkit">
+		<a href="javascript:void(0)" onclick="getContent('/admin/content/recommend_modal.html')">添加推荐</a>
+		<a href="javascript:void(0)" id="delete_recommend">删除推荐</a>
+	</div>
+	<div class="table_wrap">
+		<table border="1" class="table_style1">
+			<thead>
+				<tr>
+					<td><input type="checkbox" id="selecedAll"></td>
+					<td>作品封面</td>
+					<td>作品名称</td>
+					<td>作品标签</td>
+					<td>作品描述</td>
+					<td>作品类别</td>
+					<td>作者</td>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div><!--table_wrap-->
+</div><!--main_content-->
+
+<script type="text/javascript">
+	$("#selecedAll").click(function(evt){
+		$(this).parent().parent().parent().parent().find('tbody').find("input[type='checkbox']").trigger('click');
+	});
+
+</script>

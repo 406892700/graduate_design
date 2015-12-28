@@ -4,17 +4,29 @@ body{
 	text-align: center;
 }
 .mainContent{
+	overflow: hidden;
+	padding: 60px 0px;
 }
 
 .reg_panel{
-	width:400px;
+	width:350px;
 /*	height: 450px;*/
 	background-color: #fff;
 /*	box-shadow: 0px 0px 10px #fff;*/
-	margin:200px auto;
 /*	border-radius:30px;*/
-	border:2px solid #0078d8;
+	box-shadow: 0px 0px 5px #aaa;	
 	padding:0px 0px 30px 0px;
+	float:left;
+}
+
+.right_bg{
+	float: right;
+	width:750px;
+	height: 400px;
+	background: url('/images/6597487581075011335.jpg') no-repeat 0 0;
+	background-size: 100%;
+	box-shadow: 0px 0px 10px #000;
+	border-radius: 10px;	
 }
 
 .reg_panel > .reg_ttl{

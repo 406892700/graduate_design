@@ -13,7 +13,9 @@ var novel= require("./routes/novel");//小说相关
 var chapter = require("./routes/chapter");//章节相关
 var comment = require("./routes/comment");//评论相关
 var record = require("./routes/record");//各种记录相关
+var users = require("./routes/user")//用户相关
 var admin = require("./routes/admin")//后台相关
+var type = require('./routes/type')
 /*------------所有的路由控制 end-------------------*/
 
 var http = require('http');
@@ -58,7 +60,9 @@ novel(app);
 chapter(app);
 comment(app);
 record(app);
+users(app);
 admin(app);
+type(app);
 http.createServer(app).listen(app.get('port'), function(){
   console.log('监听了localhost: ' + app.get('port')+
  "\n-------------------------------------------------------------------------------------------");

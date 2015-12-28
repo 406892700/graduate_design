@@ -450,5 +450,20 @@
 }
 
 
+.c_opt{
+	  right: 10px;
+	  top: 10px;
+	  position: absolute;
+	  color: #666;
+	  font-size: 25px;
+	  font-family: 'Microsoft Yahei';
+	  cursor: pointer;
+	  width: 20px;
+	  height: 20px;
+	  background: url('/images/close_x.png') no-repeat 0 0;
+	  display: inline-block;
+	  cursor: pointer;
+}
+
 
 

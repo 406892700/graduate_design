@@ -6,9 +6,9 @@ var Novel_type = new Schema({
     id:String,//主键
     novel_type_name:String,//类别名字
     novel_type_pic:String,//类别图标
-    novel_type_bg:String,//类别背景
-    novel_type_description:String,//类别描述
-    novel_type_index:Number//类别序号
+    novel_type_bg:String,//类别背景颜色
+    novel_type_bg_pic:String,//类别背景图片
+    novel_type_description:String//类别描述
 });
 var Novel_type = mongoose.model('Novel_type',Novel_type);
 module.exports = Novel_type;

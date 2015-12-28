@@ -9,54 +9,53 @@
 <body>
     <% include ../template/header.html %>
     <div class="mainContent">
-        <div class="reg_panel">
-            <div class="reg_ttl">用户注册</div>
-            <form action = "/regnow" method="post" class="reg_form">
-                <!--username <input type="text" name="username" id="username"> <span class="user_info"></span><br>-->
-                <!--password <input type="password" name="password"><br>-->
-                <!--repeat password <input type="password"><br>-->
-                <!--<input type="submit" value="register">-->
-                <div class="form_contrl">
-                    <div class="form_label"><label>用户名</label></div>
-                    <div class="form_cpt">
-                        <input type="text" name="username" id="username" data-valid-type="email" data-valid-success="输入正确" data-valid-faild="邮箱格式错误" placeholder="输入有效邮箱地址">
-                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+        <div class="flex_wrap">
+            <div class="reg_panel">
+                <div class="reg_ttl">用户注册</div>
+                <form action = "/regnow" method="post" class="reg_form">
+                    <div class="form_contrl">
+                        <div class="form_label"><label>用户名</label></div>
+                        <div class="form_cpt">
+                            <input type="text" name="username" id="username" data-valid-type="email" data-valid-success="输入正确" data-valid-faild="邮箱格式错误" placeholder="输入有效邮箱地址">
+                            <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                        </div>
+                        <div class="c_fix"></div>
                     </div>
-                    <div class="c_fix"></div>
-                </div>
 
-                <div class="form_contrl">
-                    <div class="form_label"><label>密码</label></div>
-                    <div class="form_cpt">
-                        <input type="password" name="password" class="psw"  data-valid-type="password" data-valid-success="输入正确" data-valid-faild="密码格式错误" placeholder="输入密码">
-                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                    <div class="form_contrl">
+                        <div class="form_label"><label>密码</label></div>
+                        <div class="form_cpt">
+                            <input type="password" name="password" class="psw"  data-valid-type="password" data-valid-success="输入正确" data-valid-faild="密码格式错误" placeholder="输入密码">
+                            <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                        </div>
+                        <div class="c_fix"></div>
                     </div>
-                    <div class="c_fix"></div>
-                </div>
 
-                <div class="form_contrl">
-                    <div class="form_label"><label>确认密码</label></div>
-                    <div class="form_cpt">
-                        <input type="password" data-valid-type="psw_same" data-valid-success="输入正确" data-valid-faild="两次密码不一致" placeholder="再次输入密码">
-                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                    <div class="form_contrl">
+                        <div class="form_label"><label>确认密码</label></div>
+                        <div class="form_cpt">
+                            <input type="password" data-valid-type="psw_same" data-valid-success="输入正确" data-valid-faild="两次密码不一致" placeholder="再次输入密码">
+                            <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                        </div>
+                        <div class="c_fix"></div>
                     </div>
-                    <div class="c_fix"></div>
-                </div>
 
-                 <div class="form_contrl">
-                    <div class="form_label"><label>验证码</label></div>
-                    <div class="form_cpt">
-                        <input type="text" data-valid-type="vd_code" data-valid-success="输入正确" data-valid-faild="验证码输入错误" placeholder="输入验证码">
-                        <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                     <div class="form_contrl">
+                        <div class="form_label"><label>验证码</label></div>
+                        <div class="form_cpt">
+                            <input type="text" data-valid-type="vd_code" data-valid-success="输入正确" data-valid-faild="验证码输入错误" placeholder="输入验证码">
+                            <span class="valid_info"><b class="v_arrow_left"></b><label></label></span>
+                        </div>
+                        <div class="c_fix"></div>
                     </div>
-                    <div class="c_fix"></div>
-                </div>
-                <button type="button" class="reg_submit">确认注册</button>
+                    <button type="button" class="reg_submit">确认注册</button>
 
-                <div class="reg_other">
-                    <a href="/login">已有账号,立即登录</a>
-                </div>
-            </form>
+                    <div class="reg_other">
+                        <a href="/login">已有账号,立即登录</a>
+                    </div>
+                </form>
+            </div>
+            <div class="right_bg"></div>
         </div>
     </div>
     <% include ../template/footer.html %>

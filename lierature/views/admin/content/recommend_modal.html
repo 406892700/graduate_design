@@ -1,0 +1,107 @@
+<script type="text/javascript">
+    // $(function(){
+       
+        $('#input_id').blur(function(evt){
+            var x = $(this).parent().find('.m_loading');
+            x.css('display','inline-block');
+            $.ajax({
+                url:'/get_commmend_by_id?_id='+$(this).val(),
+                success:function(data){
+                    if(data !='出错了！'){
+                        $('#main_form2').fill(data);
+                        $('.form_submit')[0].removeAttribute('disabled');
+                    }else{
+                        $('.form_submit')[0].setAttribute('disabled','disabled');
+                        $('#main_form2')[0].reset();
+                        $('#novel_pic').fadeOut();
+                    }
+                     x.css('display','none');
+                },error:function(err){
+                    alert('数据获取错误！');
+                }
+            });
+        });
+
+        $('#look_novel_pic').click(function(evt){
+            var input = $(this).parent().find('input');
+            var img = $(this).parent().find('img');
+            img[0].src = input.val();
+            img.fadeIn();
+        });
+
+
+        $('.form_submit').click(function(evt){
+            $.ajax({
+                url:'/add_recommend?_id='+$('#input_id').val(),
+                success:function(data){
+                   alert(data);
+                },error:function(err){
+                    alert('数据获取错误！');
+                }
+            })
+        });
+    // });
+</script>
+<div class="main_content">	
+        <div class="form_item">
+            <div class="form_label"><label>推荐作品id</label></div>
+            <div class="form_cpt"><input type="text" name="data.novel_type_name" id="input_id">
+            <span class="m_loading" style="display:none;">
+            </div>
+            <div class="c_fix"></div>
+        </div>
+	<form action="/add_new_apply" class="main_form" id="main_form2" method="post">
+        
+        <div id="show_info">
+    		<div class="form_item">
+                <div class="form_label"><label>作品封面</label></div>
+                <div class="form_cpt" style="position:relative;">
+                    <div class="form_cpt">
+                        <input type="text" name="data.novel_pic">
+                        <a id="look_novel_pic" href="javascript:void(0)">查看封面</a>
+                        <img src="" width="100" height="120" id="novel_pic"style="display:none;margin-top:10px;">
+                    </div>
+                </div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item">
+                <div class="form_label"><label>作品名称</label></div>
+                <div class="form_cpt"><input type="text" name="data.novel_name"></div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item">
+                <div class="form_label"><label>作品标签</label></div>
+                <div class="form_cpt"><input type="text" name="data.novel_tags"></div>
+                <div class="c_fix"></div>
+            </div>
+        
+            <div class="form_item">
+                <div class="form_label"><label>作品描述</label></div>
+                <div class="form_cpt"><input type="text" name="data.novel_description"></div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item">
+                <div class="form_label"><label>作品类别</label></div>
+                <div class="form_cpt"><input type="text" name="data.novel_type"></div>
+                <div class="c_fix"></div>
+            </div>
+
+            <div class="form_item">
+                <div class="form_label"><label>作者</label></div>
+                <div class="form_cpt"><input type="text" name="data.novel_author_name"></div>
+                <div class="c_fix"></div>
+            </div>
+        </div>
+
+        <div class="form_item" style="border:none;">
+            <div class="form_label"></div>
+            <div class="form_cpt"><button type="button" class="form_submit" disabled>确认添加</button></div>
+            <div class="c_fix"></div>
+        </div>
+
+    </form>
+</div><!--main_content-->
+

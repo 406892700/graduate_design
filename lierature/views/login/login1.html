@@ -7,12 +7,15 @@
  <body>
         <% include ../template/header.html %>
         <div class="flex_wrap" style="padding-top: 60px;">
+          <div style="background:url('/images/2008122318048772_2.jpg') no-repeat 0 0;width:800px;height:380px;background-size:100%;float:left;box-shadow:0px 0px 10px #aaa;border-radius:10px;">
+            
+          </div>
 	    	<div class="login_panel float_right">
 	   		<div class="login_panel_head">登录</div>
 	   		<!--<div class="status_info">-->
 	   	  		<!--<span class="icon danger float_left"></span>验证码错误，请重新输入!-->
   		    <!--</div>-->
-  		    <form action = "/loginNow" method="post">
+  		    <form action = "/loginNow" method="get" id="login_form">
   		    	<div class="form_control">
   		    		<input type="text" class="" id="email" name="username" value="xhy@qq.com">
   		    	</div>
@@ -24,29 +27,13 @@
   		    		 <img src="" width="60" height="30" class="float_left valide_code_img">
   		    		 <a class="float_left refresh" href="#"></a>
   		    	</div>
+            
   		    	<input type="submit" value="登录" class="login_submit float_left margin_top_10">
   		    	<div class="forget_register float_left margin_top_10">
   		    		<a href="#"> 忘记密码?</a>&nbsp;|&nbsp;<a href="#" class="light_blue">免费注册</a>
   		    	</div>
   		    	<div style="clear:both;"></div>
   		    </form>
-  		    <script type="text/javascript">
-			    var placeholder = function(id,str){
-			    	var _element = document.getElementById(id);
-			    	_element.value = str;
-			    	var strShow = str;
-			    	var noop = function(){};
-			    	_element.onfocus = function(){
-			    		(strShow == this.value)?(this.value = ""):(noop());
-			    	}
-			    	_element.onblur = function(){
-			    		(this.value == "")?(this.value = strShow):(noop());
-			    	}
-			    }
-			    //placeholder("email","请输入邮箱");
-			    //placeholder("psw","密码");
-			    //placeholder("valide_code","验证码");
-			 </script>
   		    <div class="login_ways">
   		    	其他登录方式:&nbsp;
   		    	<span class="icon login_ways_platform login_taobao"></span><a href="#" class=""> 淘宝登录</a>
@@ -55,5 +42,17 @@
   		    </div> 
 	   	</div>
     </div>
+    <div class="c_fix" style="margin-top:40px;padding-top:80px;"></div>
+    <script type="text/javascript">
+      $(function(){
+        if(window.location.search.split("=")[0] != '?return_url')
+          return;
+        var return_url = decodeURIComponent(window.location.search.split("=")[1]);
+        //alert(return_url);
+        $('#login_form').append('<input type="hidden" name="return_url" value="'+return_url+'">')
+        //$('input[name="return_url"]').val(return_url);
+      });
+    </script>
+    <% include ../template/footer.html %>
  </body>
 </html>

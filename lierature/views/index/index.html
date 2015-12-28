@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
   <head>
     <title>主页</title>
@@ -6,68 +6,96 @@
   </head>
   <body>
   <% include ../template/header.html %>
+  <script type="text/javascript">
+    $(function(){
+        var top_ten = $('#top_ten > .body');//排行榜元素
+        $.ajax({
+            url:'/get_top_ten',
+            success:function(data){
+                var str = "";
+                data.map(function(v,i){
+                    if(i==0){
+                        str+='<a class="no1" href="/novel_detail?_id='+v._id+'">'+
+                                    '<img src="'+v.novel_pic+'" width="50" height="60">'+
+                                    '<div class="top_index">'+(i+1)+'</div>'+
+                                    '<div class="top_info">'+
+                                        '<div class="top_ttl">'+v.novel_name+'</div>'+
+                                        '<div class="top_author">'+v.novel_author_name+'</div>'+
+                                        '<div class="top_zan"><span class="icon icon_star"></span> '+v.novel_zan_num+'</div>'+
+                                    '</div>'+
+                                '</a>';
+                    }else{
+                        str+='<a href="/novel_detail?_id='+v._id+'"><span>'+(i+1)+'</span> '+v.novel_name+' <label class="zan_num"><span class="icon icon_star"></span> '+v.novel_zan_num+'</label></a>'
+                    }
+                });
+
+                top_ten.append(str);
+
+            },
+            error:function(err){
+                alert('数据获取错误！');
+            }
+        });
+
+        var recommend_el = $('#r_idt_wrap');//推荐元素
+
+        $.ajax({
+            url:'/get_recommont',
+            success:function(data){
+                var str = "";
+                data.map(function(v,i){
+                   str += "<div class=\"recommend_novel_idt\">"+
+                            "<a href=\"http://localhost:3000/novel_detail?_id="+v._id+"\"><img alt=\"\" src=\""+v.novel_pic+"\"></a>"+
+                                "<div class=\"novel_info\">"+
+                                    "<div class=\"novel_name\">"+v.novel_name+"</div>"+
+                                        "<div class=\"novel_author\">"+v.novel_author_name+
+                                        "<span class=\"icon icon_star\"></span>"+v.novel_zan_num+
+                                        "</div>"+
+                                "</div>"+
+                            "</div>";
+                });
+                recommend_el.html("").html(str);
+                
+            },error:function(err){
+                alert('获取数据错误！');
+            }
+        })
+    })
+  </script>
     <div class="index_banner">
         <div class="flex_wrap" style="overflow:hidden;">
             <div class="nav_left">
-                <a href="#" class="current">武侠/仙侠 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
-                <a href="#">修真/玄幻 </a>
+                <a href="/go_to_type?_type_name=奇幻" class="current"><span class="sx sx_shu"></span>奇幻_世界</a>
+                <a href="/go_to_type?_type_name=武侠"><span class="sx sx_niu"></span>武侠_江湖</a>
+                <a href="/go_to_type?_type_name=仙侠"><span class="sx sx_hu"></span>仙侠_天地</a>
+                <a href="/go_to_type?_type_name=都市"><span class="sx sx_tu"></span>都市_生活</a>
+                <a href="/go_to_type?_type_name=职业"><span class="sx sx_long"></span>职业_职场</a>
+                <a href="/go_to_type?_type_name=历史"><span class="sx sx_she"></span>历史_史料</a>
+                <a href="/go_to_type?_type_name=军事"><span class="sx sx_ma"></span>军事_战争</a>
+                <a href="/go_to_type?_type_name=游戏"><span class="sx sx_yang"></span>游戏_娱乐</a>
+                <a href="/go_to_type?_type_name=竞技"><span class="sx sx_hou"></span>竞技_竞争</a>
+                <a href="/go_to_type?_type_name=科幻"><span class="sx sx_ji"></span>科幻_科技</a>
+                <a href="/go_to_type?_type_name=灵异"><span class="sx sx_gou"></span>灵异_志怪</a>
             </div>
-            <div class="top_ten">
+            <div class="top_ten" id="top_ten">
                 <div class="ttl">
                     <span class="icon icon_top"></span> Top 10
                 </div>
                 <div class="body">
-                    <a class="no1" href="#">
-                        <img src="/index/images/banner_bg.jpg" width="50" height="60">
-                        <div class="top_index">1</div>
-                        <div class="top_info">
-                            <div class="top_ttl">斗破苍穹</div>
-                            <div class="top_author">天蚕土豆</div>
-                            <div class="top_zan"><span class="icon icon_star"></span> 1190</div>
-                        </div>
-                    </a>
-                    <a href="#"><span>2</span> 遮天 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>3</span> 完美世界 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>4</span> 灵飞经 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>5</span> 沧海 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>6</span> 昆仑 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>7</span> 盗墓笔记 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>8</span> 鬼吹灯 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>9</span> 遮天 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
-                    <a href="#"><span>10</span> 遮天 <label class="zan_num"><span class="icon icon_star"></span> 1000</label></a>
                 </div>
             </div>
             <div class="banner_img" style="overflow:hidden;">
-                <div class="banner_idt show" data-color='rgb(39,197,208)'>
-                    <img  alt="" src="/index/images/banner_bg.jpg">
-                </div>
-                <div class="banner_idt" data-color='rgb(252,252,252)'>
-                    <img  alt="" src="/index/images/banner1.jpg">
-                </div>
-                <div class="banner_idt" data-color='rgb(17,4,74)'>
-                    <img  alt="" src="/index/images/banner2.jpg">
-                </div>
-                <div class="banner_idt" data-color='rgb(239,39,78)'>
-                    <img  alt="" src="/index/images/banner3.jpg">
-                </div>
-                <div class="banner_idt" data-color='rgb(252,252,252)'>
-                    <img  alt="" src="/index/images/banner1.jpg">
-                </div>
+                <%for(var i = 0;i< ad.length;i++){%>
+                    <div class="banner_idt show" data-color='<%= ad[i].color %>'>
+                        <a href="<%= ad[i].link %>">
+                         <img  alt="" src="<%= ad[i].pic %>">
+                        </a>
+                    </div>
+                <% }%>
                 <div class="banner_ctrl">
-                    <a href= "javascript:;" class="current">1</a>
-                    <a href= "javascript:;">2</a>
-                    <a href= "javascript:;">3</a>
-                    <a href= "javascript:;">4</a>
-                    <a href= "javascript:;">5</a>
+                    <%for(var i = 0;i< ad.length;i++){%>
+                        <a href= "javascript:;" class="<% if(i ==0) {%> current <% } %>"><%= i+1 %></a>
+                    <%}%>
                 </div>
             </div>
 
@@ -78,7 +106,7 @@
     <div class="recommend_wrap">
         <div class="flex_wrap">
             <div class="recommend_ttl">推荐</div>
-            <div>
+            <div id="r_idt_wrap">
                 <div class="recommend_novel_idt">
                     <img alt="" src="/pic/novel_pic/dp.jpg">
                     <div class="novel_info">
@@ -127,7 +155,7 @@
         </div><!--flex_wrap-->
     </div><!--recommend_wrap-->
 
-    <div class="type_wrap">
+   <!--  <div class="type_wrap">
         <div class="flex_wrap">
             <div class="type_idt">
                 <div class="left_part" style="border:1px solid #aaa;">
@@ -155,9 +183,9 @@
                         和你一脸
                     </div>
                 </div>
-            </div><!--type_idt-->
-        </div><!--flex_wrap-->
-    </div><!--type_wrap-->
+            </div>
+        </div>
+    </div> -->
   <% include ../template/footer.html %>
   <script type="text/javascript" src="/index/js/banner_toggle.js"></script>
    <script type="text/javascript">

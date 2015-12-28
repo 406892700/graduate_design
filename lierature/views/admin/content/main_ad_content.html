@@ -1,0 +1,109 @@
+<div class="main_content">
+	
+	<script type="text/javascript">
+		function getContent(flag){
+			if(flag == 1){
+				$.tips(undefined).setText(admin_modal.modal_ad()).resize(600,500).show();
+			}
+				
+			else if(flag == 2){
+				var select_row = $('.table_style1').children('tbody').find('tr.selected');
+				if(select_row.length == 1){
+					$.tips(undefined).setText(admin_modal.modal_ad(select_row.data('id'))).resize(600,500).show();
+				}
+				else{
+					$.tips(undefined).setText('<div style="font-size:16px;height:200px;display:table-cell;vertical-align:middle;">请选择一项操作!</div>').show();
+					return;
+				}
+			}
+				
+			
+		}
+			
+
+		function delete_ad(){
+			$.ajax({
+				url:'/delete_ad?_id='+$('.table_style1').children('tbody').find('tr.selected').data('id'),
+				success:function(data){
+					$.tips(undefined).setText('<div style="font-size:16px;height:200px;display:table-cell;vertical-align:middle;">操作成功!</div>').show();
+				},error:function(err){
+					alert('数据获取错误！');
+				}
+			})
+		}
+		$(function(){
+			var config = {
+				'url':'/get_ads',
+				'pageSize':15,
+				'currentPage':1,
+				'callback':function(data){
+					// alert('回调函数未指定！');
+					var record_list = data.content;
+					var str = "";
+					//alert(record_list.length);
+					record_list.map(function(v,i){
+						// var status = (v.novel_status == 1)?'未审核':"已审核";
+						str+="<tr data-id="+v._id+">"+
+						"<td><input type='checkbox' onclick=$(this).parent().parent().toggleClass('selected')></td>"+
+						"<td><img src="+v.pic+" width='120' height='60'></td>"+
+						"<td><div style='box-shadow:2px 2px 5px #333;width:60px;height:30px;background-color:"+v.color+"'></div></td>"+
+						"<td>"+v.index+"</td>"+
+						"<td><div class='ellipsis'>"+v.link+"</div></td>"+
+						"<td>"+Date.format(v.end_time)+"</td>"+
+						+
+						"</tr>";			
+					});
+
+					var page = "<div class='page_ctrl'>"+
+									"<a href='javascript:;' class='prev_page'> &nbsp;</a>"+
+									"<a href='javascript:;' class='current_page'>"+config.currentPage+"</a>"+
+									"<a href='javascript:;' class='next_page'> &nbsp;</a>"+
+								"</div>";
+
+					$(".table_style1").find("tbody").append(str);
+					$(".main_content").append(page);
+				}
+			};
+			$.getRecord(config);
+		})
+	</script>
+	<div class="ttl">
+		首焦广告 
+		<span class="sub_ttl">
+			|广告作品
+		</span>
+	</div><!--ttl-->
+	<div class="search">
+		
+	</div>
+
+	<div class="toolkit">
+		<a href="javascript:void(0)" onclick="getContent(1)">添加首焦</a>
+		<a href="javascript:void(0)" onclick="getContent(2)">编辑</a>
+		<a href="javascript:void(0)" onclick="delete_ad()">删除首焦</a>
+	</div>
+	<div class="table_wrap">
+		<table border="1" class="table_style1">
+			<thead>
+				<tr>
+					<td><input type="checkbox" id="selecedAll"></td>
+					<td>首焦图片</td>
+					<td>首焦色值</td>
+					<td>首焦序号</td>
+					<td>首焦链接</td>
+					<td>首焦结束时间</td>
+				</tr>
+			</thead>
+			<tbody>
+				
+			</tbody>
+		</table>
+	</div><!--table_wrap-->
+</div><!--main_content-->
+
+<script type="text/javascript">
+	$("#selecedAll").click(function(evt){
+		$(this).parent().parent().parent().parent().find('tbody').find("input[type='checkbox']").trigger('click');
+	});
+
+</script>

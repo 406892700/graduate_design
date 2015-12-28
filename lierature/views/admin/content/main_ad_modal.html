@@ -1,0 +1,69 @@
+<script type="text/javascript">
+    $(function(){
+        $.ajax({
+            url:'/get_ad_by_id?_id=55506cd2c0eafe11743501ea',
+            success:function(data){
+                $('#main_form1').fill(data);
+            },error:function(err){
+                alert('数据获取错误！');
+            }
+        })
+        
+    });
+</script>
+<div class="main_content">	
+	<form action="/update_ad" class="main_form" id="main_form1" method="post">
+		<div class="form_item">
+            <div class="form_label"><label>首焦图片</label></div>
+            <div class="form_cpt" style="position:relative;">
+                <input type="file" name="novel_picx" id="input" style="opacity:0;">
+                <div class="upload_instead" onclick="$('#input').trigger('click');">
+                    <div class="fake_btn">上传图片</div>
+                    <div class="fake_text"></div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        	$('#input').bind('change',function(){
+                $('.fake_text',$(this).parent()).text($(this).val());
+                var pic_name = $('.fake_text').text().split('\\');
+                $("input[name='data.pic']").val("/pic/novel_pic/"+pic_name[pic_name.length-1]);
+            });
+        </script>
+
+        <div class="form_item">
+            <div class="form_label"><label>主色值</label></div>
+            <div class="form_cpt"><input type="text" name="data.color"></div>
+            <div class="c_fix"></div>
+        </div>
+
+        <div class="form_item">
+            <div class="form_label"><label>广告链接</label></div>
+            <div class="form_cpt"><input type="text" name="data.link"></div>
+            <div class="c_fix"></div>
+        </div>
+
+        <div class="form_item">
+            <div class="form_label"><label>结束时间</label></div>
+            <div class="form_cpt"><input type="date" name="data.end_time"></div>
+            <div class="c_fix"></div>
+        </div>
+
+        <div class="form_item">
+            <div class="form_label"><label>序号</label></div>
+            <div class="form_cpt"><input type="text" name="data.index"></div>
+            <div class="c_fix"></div>
+        </div>
+
+        <input type="hidden" name="data.pic">
+
+        <div class="form_item" style="border:none;">
+            <div class="form_label"></div>
+            <div class="form_cpt"><button type="submit" class="form_submit">确认添加</button></div>
+            <div class="c_fix"></div>
+        </div>
+        
+
+    </form>
+</div><!--main_content-->
+

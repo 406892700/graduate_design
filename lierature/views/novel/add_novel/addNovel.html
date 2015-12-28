@@ -22,11 +22,11 @@
         <div class="c_fix"></div>
     </div>
 
-    <div class="form_item">
+    <!-- <div class="form_item">
         <div class="form_label"><label>作品首字母</label></div>
         <div class="form_cpt"><input type="text" name="novel_char"></div>
         <div class="c_fix"></div>
-    </div>
+    </div> -->
 
     <div class="form_item">
         <div class="form_label"><label>作品类别</label></div>
@@ -83,9 +83,17 @@
     <div class="form_item">
         <div class="form_label"><label>作品章节(选段)</label></div>
         <div class="form_cpt">
-            <textarea class="form_article"></textarea><br>
+            <textarea class="form_article" name="novel_content"></textarea><br>
             <label class="count_words"><span class="word_num">0</span>个字</label>
         </div>
+        <script type="text/javascript">
+             $(function(){
+                    $('.form_article').change(function(evt){
+                    var ori_text = $(this).val()+'\n';
+                    $(this).val(ori_text.replace(/([^\n]+)\n/g,function(a,b){return '<p>'+b+'</p>';}));
+                });
+                });
+        </script>
         <div class="c_fix"></div>
     </div>
 
@@ -96,8 +104,6 @@
         </div>
         <div class="c_fix"></div>
     </div>
-    <input type="hidden" value="<%= user._id%>" name="novel_author">
-    <input type="hidden" value="<%= user.username%>" name="novel_author_name">
     <input type="hidden" value="0" name="novel_zan_num">
     <input type="hidden" value="0" name="novel_collection_num">
     <input type="hidden" value="0" name="novel_chapter_num">

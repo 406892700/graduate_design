@@ -16,8 +16,9 @@ var Novel = new Schema({
     novel_tags:String,//标签，可以有多个
     novel_description:String,//小说简单描述
     novel_type:String,//小说所属类型
+    novel_content:String,//申请小说时候带的选章
     if_end:String,//是否完结
-    novel_status:String,//小说状态，是否通过审核
+    novel_status:String,//小说状态，是否通过审核 1:'未审核' 2:'未通过审核' 3:'审核通过'
     novel_pic:String//小说封面
 });
 var Novel = mongoose.model('Novel',Novel);
